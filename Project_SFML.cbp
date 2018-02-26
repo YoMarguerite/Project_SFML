@@ -46,7 +46,7 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
 			<Add option="-DSFML_STATIC" />
-			<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/include" />
+			<Add directory="C:/SFML-2.4.2/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="C:/SFML-2.4.2/lib" />

@@ -8,11 +8,16 @@
 using namespace std;
 using namespace sf;
 
-CircleShape hex(int posx, int posy, int rouge, int vert, int bleu){
+// constructeur d'hexagone
+
+CircleShape hex(int posx, int posy){
+
+    // taille d'un côté et nombre de points
     CircleShape hexagon(35, 6);
-    hexagon.setFillColor(Color(rouge,vert,bleu));
+    // couleur et épaisseur de la bordure extérieur
     hexagon.setOutlineColor(Color(250,150,100));
     hexagon.setOutlineThickness(3);
+    // positionnement de l'hexagone
     hexagon.setRotation(90);
     hexagon.setPosition(posx,posy);
 
