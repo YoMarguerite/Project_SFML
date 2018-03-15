@@ -1,0 +1,79 @@
+1;Commun;Slime;Slime;1;1;1;1;;0
+2;Commun;Cheval;Bête;1;1;1;3;;0
+3;Commun;Pillard;Barbare;1;1;2;1;;0
+4;Rare;Loup-Garou;Mort-vivant;2;2;2;1;;0
+5;Commun;Gobelin des profondeurs;Gobelin;2;3;2;1;;0
+6;Commun;Archer;Barbare;2;2;1;2;;0
+7;Commun;Araignée;Bête;2;2;2;2;;0
+8;Commun;Warg;Bête;2;2;2;3;;0
+9;Rare;MECHA.zap.Z-42;Mecanique;2;2;2;1;;0
+10;Rare;Porc-Epique;Bête;2;2;3;1;;0
+11;Commun;Sanglier;Bête;3;3;3;1;;0
+12;Epique;Cauchemar;Mort-vivant;3;1;1;4;;0
+13;Commun;Diablotin;Enfer;3;4;1;2;;0
+14;Rare;Limon toxique;Slime;3;2;4;1;;0
+15;Commun;Cavalier;Barbare;3;2;3;3;;0
+16;Rare;Bélier;Royal;3;3;3;2;;0
+17;Commun;Guerrier orc;Orc;3;3;3;2;;0
+18;Rare;Spectre;Mort-vivant;3;2;4;1;;0
+19;Rare;Satire;Nature;4;2;4;2;;0
+20;Epique;Cadavre pestiféré;Mort-Vivant;4;3;5;1;;0
+21;Epique;Paladin;Royal;4;2;6;1;;0
+22;Rare;Assassin;Barbare;4;4;2;2;;0
+23;Commun;Golemite;Colosse;4;3;6;1;;0
+24;Commun;Mage;Royal;4;5;2;1;;0
+25;Rare;Chef de guerre;Orc;4;4;5;1;;0
+26;Commun;Eclaireur Gobelin;Gobelin;4;3;3;3;;0
+27;Epique;MECHA.bomb.B-76;Mecanique;5;4;5;2;;0
+28;Epique;Chasseur;Barbare;5;5;4;2;;0
+29;Rare;Garde;Royal;5;4;6;1;;0
+30;Rare;Chevaucheur de Warg;Orc;5;5;5;3;;0
+31;Rare;Hydre;Bête;5;3;3;1;;0
+32;Rare;Missionnaire;Royal;5;3;5;2;;0
+33;Epique;Bourreau;Royal;5;2;5;2;;0
+34;Epique;Adepte de la lumière;Royal;6;2;7;1;;0
+35;Rare;Ent;Nature;6;4;10;1;;0
+36;Epique;Roi Slime;Slime;6;5;5;2;;0
+37;Rare;Sauvage;Barbare;6;10;3;2;;0
+38;Rare;Golemite de Cristal;Colosse;6;5;6;1;;0
+39;Epique;Prince;Royal;6;3;6;1;;0
+40;Epique;Porte étendard;Royal;6;2;5;1;;0
+41;Légendaire;MECHA.worker.W-15;Mecanique;7;5;6;1;;0
+42;Rare;Minotaure;Bête;7;7;8;3;;0
+43;Epique;Vampire;Mort-vivant;7;7;6;1;;0
+44;Légendaire;Sergent putride;Barbare;7;3;5;2;;0
+45;Epique;Troll;Enfer;7;12;10;2;;0
+46;Légendaire;Aragog;Bête;8;5;6;2;;0
+47;Légendaire;Roi Gobelin;Gobelin;8;8;10;2;;0
+48;Rare;Dragon;Bête;8;12;7;3;;0
+49;Légendaire;Marcheur Blanc;Mort-vivant;8;6;7;1;;0
+50;Epique;Démon;Enfer;9;8;10;2;;0
+51;Epique;Golem;Colosse;9;8;15;1;;0
+52;Commun;Muraille;Royal;2;0;4;0;0;1
+53;Rare;Lanterne;Royal;2;0;5;0;0;1
+54;Commun;Electrocuteur;Méchanique;3;0;5;0;1;1
+55;Rare;Extracteur de Slime;Slime;3;0;4;0;1;1
+56;Commun;Canon;Barbare;3;2;5;0;1;1
+57;Commun;Tour de Guet;Barbare;4;0;8;0;1;1
+58;Rare;Tribu Gobeline;Gobelin;4;0;6;0;1;1
+59;Epique;Oeuf d'Aragog;Bête;4;0;6;0;1;1
+60;Rare;Mortier;Barbare;5;3;6;0;1;1
+61;Epique;Porte dimensionnelle;Royal;5;0;4;0;1;1
+62;Epique;Forteresse;Royal;6;0;8;0;1;1
+63;Rare;Arbalète automatique;Bare;6;2;5;0;1;1
+64;Epique;Toile Géante;Slime ou Bête;6;0;12;0;0;1
+65;Epique;Yggdrasil;Nature;7;0;8;0;1;1
+66;Légendaire;Chambre des Ents;Nature;8;0;10;0;2;1
+67;Rare;Catapulte;Barbare;8;6;10;1;1;1
+68;Légendaire;Titan;Colosse;10;15;20;1;1;1
+69;Commun;Fuite de mana;;1;;;;;2
+70;Commun;Entrave;;2;;;;;2
+71;Rare;Foudre;;2;;;;;2
+72;Rare;Poison;;3;;;;;2
+73;Rare;Camouflage;;3;;;;;2
+74;Epique;Transformation;;4;;;;;2
+75;Rare;Boule de feu;;5;;;;;2
+76;Légendaire;Rayon solaire;;5;;;;;2
+77;Légendaire;Voile nocturne;;5;;;;;2
+78;Légendaire;Régénération;;;;;;;2
+79;Epique;Aura de mort;;6;;;;;2

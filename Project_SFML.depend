@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1519666925 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1521143840 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
 	<stdio.h>
 	<SFML/Graphics.hpp>
 	<vector>
 	<cmath>
+	<fstream>
+	<string>
 	"class.h"
 
 1486736397 c:\sfml-2.4.2\include\sfml\graphics.hpp

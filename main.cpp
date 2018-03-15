@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <cmath>
+#include <fstream>
+#include <string>
 #include "class.h"
 
 
@@ -11,15 +13,41 @@ using namespace sf;
 
 // déclaration en dehors du main pour pouvoir les utiliser dans tout le programme
 // sprite des boutons du menu
-Sprite jouer, quitter;
+Sprite play, leave;
 // fenêtre principale avec sa taille et son nom
 RenderWindow window(VideoMode(1200,800), "LES TOURS");
 // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
-Vector2i position_souris;
+Vector2i position_mouse;
 // variable définissant si on est sur le menu ou dans une partie
 int interface = 1;
 
 
+
+class CartePlateau{
+
+public:
+    string type;
+    string nom;
+    int vie;
+    int attaque;
+
+    CartePlateau();
+    void echo();
+};
+
+CartePlateau::CartePlateau(){
+    type="Unité";
+    nom="Gobelin";
+    vie=3;
+    attaque=3;
+}
+
+void CartePlateau::echo(){
+    cout << type << endl;
+    cout << nom << endl;
+    cout << vie << endl;
+    cout << attaque << endl;
+}
 
 // class pour créer les différentes cases du plateau de manière indépendante
 class Emplacement{
@@ -30,8 +58,10 @@ public:
     int rouge;
     int vert;
     int bleu;
-    // effet sur la case
+    // carte sur la case
     bool vide;
+    CartePlateau carte;
+    // effet sur la case
     bool mana;
     bool poison;
     // définition de la case
@@ -287,9 +317,9 @@ void Plateau::collision(){
     // on fait défiler tous les hexagones
     for(int i=0; i<50; i++){
         // on récupère les coordonnées de la souris
-        position_souris = Mouse::getPosition(window);
+        position_mouse = Mouse::getPosition(window);
         // on vérifie que l'hexagone contient la souris
-        if(plateau_graphique[i].getGlobalBounds().contains(position_souris.x,position_souris.y)){
+        if(plateau_graphique[i].getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
             // si c'est le cas on change sa couleur en magenta
             plateau_graphique[i].setFillColor(Color::Magenta);
             // si on clique les caractéristiques de la case s'affiche
@@ -305,18 +335,68 @@ void Plateau::collision(){
 
 
 // on vérifie que le sprite contient la souris
-bool sprite_souris(Sprite sprite){
-    position_souris = Mouse::getPosition(window);
+bool sprite_mouse(Sprite sprite){
+    position_mouse = Mouse::getPosition(window);
     //cout << "Mouse.x :" << position_souris.x << "Mouse.y :" << position_souris.y << endl;
-    return sprite.getGlobalBounds().contains(position_souris.x,position_souris.y);
+    return sprite.getGlobalBounds().contains(position_mouse.x,position_mouse.y);
+}
+
+vector<vector<string>> card_export(){
+    string ligne;
+    char colonne;
+    int taille=80;
+    vector<string>c;
+    ifstream fichier ("card_export.csv",ios::in);
+    vector <vector<string> > card(taille);
+    int indice=0;
+    int id=0;
+
+    for(int i = 0; i<taille;i++){
+
+        card[i]=vector<string>(10);
+    }
+
+      // Si mon fichier est ouvert
+      if (fichier.is_open()){
+      // Tant qu'on a pas parcouru tout le fichier
+        while ( getline (fichier,ligne) ){
+
+          cout << ligne << endl;
+          taille=ligne.size();
+          id=0;
+          for(int i=0; i<taille; i++){
+                colonne=ligne[i];
+                if(colonne==';'){
+                    id++;
+                }else{
+                    card[indice][id]=card[indice][id]+colonne;
+                }
+          }
+
+          for(int i=0; i<10; i++){
+                cout << card[indice][i] << " ";
+          }
+          cout<<endl;
+          indice++;
+        }
+        // Fermer le fichier
+
+        fichier.close();
+      }
+
+      else {
+
+            cerr << "Impossible d'ouvrir le fichier" << endl;
+      }
+      return card;
 }
 
 // fonction pour gérer le menu
 void menu(){
     // si le bouton jouer contient la souris
-    if(sprite_souris(jouer)){
+    if(sprite_mouse(play)){
             // on change sa couleur
-            jouer.setColor(Color(100,250,100));
+            play.setColor(Color(100,250,100));
             // si on clique
             if(Mouse::isButtonPressed(Mouse::Left)){
                 // le jeu commence et on change d'interface
@@ -325,24 +405,24 @@ void menu(){
             }
         }else{
             // sinon on lui redonne sa couleur d'origine
-            jouer.setColor(Color(255,255,255));
+            play.setColor(Color(255,255,255));
         }
 
         // si le bouton quitter contient la souris
-        if(sprite_souris(quitter)){
+        if(sprite_mouse(leave)){
             // on change sa couleur
-            quitter.setColor(Color(100,250,100));
+            leave.setColor(Color(100,250,100));
             // si on clique la fenêtre se ferme
             if(Mouse::isButtonPressed(Mouse::Left)){
                 window.close();
             }
         }else{
             // sinon le bouton reprend sa couleur
-            quitter.setColor(Color(255,255,255));
+            leave.setColor(Color(255,255,255));
         }
         // on dessine le bouton jouer et quitter sur la fenêtre
-        window.draw(jouer);
-        window.draw(quitter);
+        window.draw(play);
+        window.draw(leave);
 }
 
 // fonction contenant le futur code du jeu
@@ -358,22 +438,22 @@ int main()
     // création de l'objet plateau et des cases
     Plateau plateau;
     plateau.liaison();
-
+    vector<vector<string>>card=card_export();
 
     // on définit des textures et on leur donne une image
-    Texture texture_jouer, texture_quitter;
+    Texture texture_play, texture_leave;
 
-    if (!texture_jouer.loadFromFile("image/button_jouer.png")){
+    if (!texture_play.loadFromFile("image/button_jouer.png")){
         cout << "erreur";
     }
-    if (!texture_quitter.loadFromFile("image/button_quit.png")){
+    if (!texture_leave.loadFromFile("image/button_quit.png")){
         cout << "erreur";
     }
     //on donne cette texture aux sprites, et on leur donne des coordonnées
-    jouer.setTexture(texture_jouer);
-    jouer.setPosition(Vector2f(400, 400));
-    quitter.setTexture(texture_quitter);
-    quitter.setPosition(Vector2f(400,600));
+    play.setTexture(texture_play);
+    play.setPosition(Vector2f(400, 400));
+    leave.setTexture(texture_leave);
+    leave.setPosition(Vector2f(400,600));
 
     while (window.isOpen())
     {
@@ -397,13 +477,6 @@ int main()
             jeu();
             plateau.afficher();
             plateau.collision();
-
-            // condition inutile c'était juste pour mes tests
-            if(Keyboard::isKeyPressed(Keyboard::Space)){
-
-                window.draw(jouer);
-                plateau.echo();
-            }
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){
