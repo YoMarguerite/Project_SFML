@@ -1,13 +1,11 @@
 # depslib dependency file v1.0
-1521213849 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1521241722 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
-	<stdio.h>
 	<SFML/Graphics.hpp>
 	<vector>
-	<cmath>
 	<fstream>
 	<string>
-	"Plateau.h"
+	"Board.h"
 
 1486736397 c:\sfml-2.4.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -815,18 +813,50 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1521213699 c:\users\yoann\documents\codeblock\project_sfml\plateau.h
+1521226849 c:\users\yoann\documents\codeblock\project_sfml\plateau.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Square.h"
 
-1521211688 c:\users\yoann\documents\codeblock\project_sfml\square.h
-	"CartePlateau.h"
+1521241622 c:\users\yoann\documents\codeblock\project_sfml\square.h
+	"CardBoard.h"
 
-1521212400 c:\users\yoann\documents\codeblock\project_sfml\carteplateau.h
-	<string>
+1521240434 c:\users\yoann\documents\codeblock\project_sfml\carteplateau.h
 
-1521212405 source:c:\users\yoann\documents\codeblock\project_sfml\carteplateau.cpp
+1521240434 source:c:\users\yoann\documents\codeblock\project_sfml\carteplateau.cpp
 	<iostream>
 	"CartePlateau.h"
+
+1521213975 source:c:\users\yoann\documents\codeblock\project_sfml\plateau.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Plateau.h"
+
+1521241622 source:c:\users\yoann\documents\codeblock\project_sfml\square.cpp
+	<iostream>
+	<stdio.h>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Square.h"
+
+1521241377 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Board.h"
+
+1521241723 c:\users\yoann\documents\codeblock\project_sfml\board.h
+	<vector>
+	<SFML/Graphics.hpp>
+	"Square.h"
+
+1521240434 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
+
+1521240787 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
+	<iostream>
+	"CardBoard.h"
 

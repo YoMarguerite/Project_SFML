@@ -9,27 +9,27 @@ using namespace std;
 using namespace sf;
 
 // class pour créer le plateau en lui même
-class Plateau{
+class Board{
 
 private:
     // vecteur qui va contenir toutes les cases du plateau
-    vector<Emplacement*> tab;
+    vector<Square*> tab;
 
     // vecteur qui va contenir les hexagones pour chaque case
     //(on peut retrouver l'hexagone d'une case car ils sont rangés dans le même ordre sur chaque vecteur)
-    vector<CircleShape> plateau_graphique;
+    vector<CircleShape> graphics_board;
 
 public:
     // constructeur
-    Plateau();
+    Board();
     // destructeur
-    ~Plateau();
+    ~Board();
     // autre méthode ou fonction
     void echo();
     void echo_case(int id);
     void liaison();
-    vector<Emplacement*>& get();
-    void afficher(RenderWindow* window);
+    vector<Square*>& get();
+    void display(RenderWindow* window);
     void collision(RenderWindow* window);
 
 };

@@ -1,22 +1,22 @@
 #ifndef SQUARE_H_INCLUDED
 #define SQUARE_H_INCLUDED
-#include "CartePlateau.h"
+#include "CardBoard.h"
 
 using namespace std;
 using namespace sf;
 
 // class pour créer les différentes cases du plateau de manière indépendante
-class Emplacement{
+class Square{
 
 public:
     int numero;
     // couleur enregistrée pour chaque case
-    int rouge;
-    int vert;
-    int bleu;
+    int red;
+    int green;
+    int blue;
     // carte sur la case
-    bool vide;
-    CartePlateau carte;
+    bool empty;
+    CardBoard pion;
     // effet sur la case
     bool mana;
     bool poison;
@@ -24,11 +24,11 @@ public:
     string camp;
     string type;
     // case adjacente
-    vector<Emplacement*> proche;
+    vector<Square*> nearbySquare;
 
     //constructeur et autre méthode
-    Emplacement(int id);
-    vector<Emplacement*>& get();
+    Square(int id);
+    vector<Square*>& get();
 
 };
 

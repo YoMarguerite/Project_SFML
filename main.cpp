@@ -1,78 +1,61 @@
 #include <iostream>
-#include <stdio.h>
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <cmath>
 #include <fstream>
 #include <string>
-#include "Plateau.h"
+#include "Board.h"
 
 
 using namespace std;
 using namespace sf;
 
-// déclaration en dehors du main pour pouvoir les utiliser dans tout le programme
-// sprite des boutons du menu
-Sprite play, leave;
-// fenêtre principale avec sa taille et son nom
-RenderWindow window(VideoMode(1200,800), "LES TOURS");
-// Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
-
-// variable définissant si on est sur le menu ou dans une partie
-int interface = 1;
-
-
-
-
-
 // on vérifie que le sprite contient la souris
-bool sprite_mouse(Vector2i position_mouse, Sprite sprite){
-    position_mouse = Mouse::getPosition(window);
+bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
+    position_mouse = Mouse::getPosition(*window);
     //cout << "Mouse.x :" << position_souris.x << "Mouse.y :" << position_souris.y << endl;
     return sprite.getGlobalBounds().contains(position_mouse.x,position_mouse.y);
 }
 
 vector<vector<string>> card_import(){
-    string ligne;
-    char colonne;
-    int taille=80;
-    vector<string>c;
-    ifstream fichier ("card_export.csv",ios::in);
-    vector <vector<string> > card(taille);
-    int indice=0;
+    string line;
+    char letter;
+    int lengh=80;
+    ifstream file ("card_export.csv",ios::in);
+    vector <vector<string> > card(lengh);
+    int index=0;
     int id=0;
 
-    for(int i = 0; i<taille;i++){
+    for(int i = 0; i<lengh;i++){
 
         card[i]=vector<string>(10);
     }
 
       // Si mon fichier est ouvert
-      if (fichier.is_open()){
+      if (file.is_open()){
       // Tant qu'on a pas parcouru tout le fichier
-        while ( getline (fichier,ligne) ){
+        while ( getline (file,line) ){
 
-          cout << ligne << endl;
-          taille=ligne.size();
+          cout << line << endl;
+          lengh=line.size();
           id=0;
-          for(int i=0; i<taille; i++){
-                colonne=ligne[i];
-                if(colonne==';'){
+          for(int i=0; i<lengh; i++){
+                letter=line[i];
+                if(letter==';'){
                     id++;
                 }else{
-                    card[indice][id]=card[indice][id]+colonne;
+                    card[index][id]=card[index][id]+letter;
                 }
           }
 
           for(int i=0; i<10; i++){
-                cout << card[indice][i] << " ";
+                cout << card[index][i] << " ";
           }
           cout<<endl;
-          indice++;
+          index++;
         }
         // Fermer le fichier
 
-        fichier.close();
+        file.close();
       }
 
       else {
@@ -83,16 +66,16 @@ vector<vector<string>> card_import(){
 }
 
 // fonction pour gérer le menu
-void menu(Vector2i position_mouse){
+void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave, int* interface){
     // si le bouton jouer contient la souris
-    if(sprite_mouse(position_mouse,play)){
+    if(sprite_mouse(window,position_mouse,play)){
             // on change sa couleur
             play.setColor(Color(100,250,100));
             // si on clique
             if(Mouse::isButtonPressed(Mouse::Left)){
                 // le jeu commence et on change d'interface
                 cout << "Le jeu commence" << endl;
-                interface = 2;
+                *interface = 2;
             }
         }else{
             // sinon on lui redonne sa couleur d'origine
@@ -100,36 +83,43 @@ void menu(Vector2i position_mouse){
         }
 
         // si le bouton quitter contient la souris
-        if(sprite_mouse(position_mouse,leave)){
+        if(sprite_mouse(window,position_mouse,leave)){
             // on change sa couleur
             leave.setColor(Color(100,250,100));
             // si on clique la fenêtre se ferme
             if(Mouse::isButtonPressed(Mouse::Left)){
-                window.close();
+                window->close();
             }
         }else{
             // sinon le bouton reprend sa couleur
             leave.setColor(Color(255,255,255));
         }
         // on dessine le bouton jouer et quitter sur la fenêtre
-        window.draw(play);
-        window.draw(leave);
+        window->draw(play);
+        window->draw(leave);
 }
 
 // fonction contenant le futur code du jeu
-void jeu(){
+void game(){
 
 
 }
 
 int main()
 {
+    // fenêtre principale avec sa taille et son nom
+    RenderWindow window(VideoMode(1200,800), "LES TOURS");
+    // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
     Vector2i position_mouse;
+    // sprite des boutons du menu
+    Sprite play, leave;
+    // variable définissant si on est sur le menu ou dans une partie
+    int interface = 1;
     // limite les fps pour ne pas faire surchauffer la carte graphique
     window.setFramerateLimit(60);
     // création de l'objet plateau et des cases
-    Plateau plateau;
-    plateau.liaison();
+    Board board;
+    board.liaison();
     vector<vector<string>>card=card_import();
 
     // on définit des textures et on leur donne une image
@@ -161,14 +151,14 @@ int main()
         // on vérifie sur qu'elle interface on est menu ou en jeu
         if(interface == 1){
             // execution du menu
-            menu(position_mouse);
+            menu(&window,position_mouse,play,leave,&interface);
         }
         if(interface == 2){
 
             // execution du jeu
-            jeu();
-            plateau.afficher(&window);
-            plateau.collision(&window);
+            game();
+            board.display(&window);
+            board.collision(&window);
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){
@@ -176,7 +166,7 @@ int main()
                 while(( id < 0 ) || (id > 49)){
                     cin >> id;
                 }
-                plateau.echo_case(id);
+                board.echo_case(id);
             }
 
         }
@@ -187,5 +177,3 @@ int main()
 
     return 0;
 }
-
-

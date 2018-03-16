@@ -51,7 +51,24 @@
 		<Linker>
 			<Add directory="C:/SFML-2.4.2/lib" />
 		</Linker>
-		<Unit filename="class.h" />
+		<Unit filename="CartePlateau.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="CartePlateau.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Plateau.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Plateau.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Square.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Square.h">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
