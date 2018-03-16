@@ -1,7 +1,6 @@
 #ifndef SHAPE_H_INCLUDED
 #define SHAPE_H_INCLUDED
 
-#endif // SHAPE_H_INCLUDED
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -23,3 +22,4 @@ CircleShape hex(int posx, int posy){
 
     return hexagon;
 }
+#endif // SHAPE_H_INCLUDED
