@@ -4,12 +4,13 @@
 #include <fstream>
 #include <string>
 #include "Board.h"
+#include mabite
 
 
 using namespace std;
 using namespace sf;
 
-// on vérifie que le sprite contient la souris
+// on vÃ©rifie que le sprite contient la souris
 bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
     position_mouse = Mouse::getPosition(*window);
     //cout << "Mouse.x :" << position_souris.x << "Mouse.y :" << position_souris.y << endl;
@@ -65,7 +66,7 @@ vector<vector<string>> card_import(){
       return card;
 }
 
-// fonction pour gérer le menu
+// fonction pour gÃ©rer le menu
 void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave, int* interface){
     // si le bouton jouer contient la souris
     if(sprite_mouse(window,position_mouse,play)){
@@ -86,7 +87,7 @@ void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave
         if(sprite_mouse(window,position_mouse,leave)){
             // on change sa couleur
             leave.setColor(Color(100,250,100));
-            // si on clique la fenêtre se ferme
+            // si on clique la fenÃªtre se ferme
             if(Mouse::isButtonPressed(Mouse::Left)){
                 window->close();
             }
@@ -94,7 +95,7 @@ void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave
             // sinon le bouton reprend sa couleur
             leave.setColor(Color(255,255,255));
         }
-        // on dessine le bouton jouer et quitter sur la fenêtre
+        // on dessine le bouton jouer et quitter sur la fenÃªtre
         window->draw(play);
         window->draw(leave);
 }
@@ -107,22 +108,22 @@ void game(){
 
 int main()
 {
-    // fenêtre principale avec sa taille et son nom
+    // fenÃªtre principale avec sa taille et son nom
     RenderWindow window(VideoMode(1200,800), "LES TOURS");
-    // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
+    // Vector2i est l'Ã©quivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnÃ©es de la souris
     Vector2i position_mouse;
     // sprite des boutons du menu
     Sprite play, leave;
-    // variable définissant si on est sur le menu ou dans une partie
+    // variable dÃ©finissant si on est sur le menu ou dans une partie
     int interface = 1;
     // limite les fps pour ne pas faire surchauffer la carte graphique
     window.setFramerateLimit(60);
-    // création de l'objet plateau et des cases
+    // crÃ©ation de l'objet plateau et des cases
     Board board;
     board.liaison();
     vector<vector<string>>card=card_import();
 
-    // on définit des textures et on leur donne une image
+    // on dÃ©finit des textures et on leur donne une image
     Texture texture_play, texture_leave;
 
     if (!texture_play.loadFromFile("image/button_jouer.png")){
@@ -131,7 +132,7 @@ int main()
     if (!texture_leave.loadFromFile("image/button_quit.png")){
         cout << "erreur";
     }
-    //on donne cette texture aux sprites, et on leur donne des coordonnées
+    //on donne cette texture aux sprites, et on leur donne des coordonnÃ©es
     play.setTexture(texture_play);
     play.setPosition(Vector2f(400, 400));
     leave.setTexture(texture_leave);
@@ -148,7 +149,7 @@ int main()
 
         }
         window.clear();
-        // on vérifie sur qu'elle interface on est menu ou en jeu
+        // on vÃ©rifie sur qu'elle interface on est menu ou en jeu
         if(interface == 1){
             // execution du menu
             menu(&window,position_mouse,play,leave,&interface);
@@ -160,7 +161,7 @@ int main()
             board.display(&window);
             board.collision(&window);
 
-            // condition inutile c'était juste pour mes tests
+            // condition inutile c'Ã©tait juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){
                 int id = -1;
                 while(( id < 0 ) || (id > 49)){
