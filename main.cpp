@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include "Board.h"
+#include "Player.h"
 
 
 using namespace std;
