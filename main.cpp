@@ -108,8 +108,11 @@ void game(){
 
 int main()
 {
+    Vector2f windowsize;
+    windowsize.x=1600;
+    windowsize.y=900;
     // fenêtre principale avec sa taille et son nom
-    RenderWindow window(VideoMode(1200,800), "LES TOURS");
+    RenderWindow window(VideoMode(windowsize.x,windowsize.y), "LES TOURS");
     // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
     Vector2i position_mouse;
     // sprite des boutons du menu

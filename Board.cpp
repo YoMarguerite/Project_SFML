@@ -22,9 +22,6 @@ CircleShape hex(int posx, int posy){
 }
 
 Board::Board(){
-    for(int i=0; i<50 ; i++){
-        tab.push_back(new Square(i));
-    }
 // création de chaque case puis on conserve leurs adresses dans le vecteur tab
     for(int i=0; i<50 ; i++){
         tab.push_back(new Square(i));

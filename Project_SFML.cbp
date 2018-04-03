@@ -53,8 +53,21 @@
 		</Linker>
 		<Unit filename="Board.cpp" />
 		<Unit filename="Board.h" />
-		<Unit filename="CardBoard.cpp" />
-		<Unit filename="CardBoard.h" />
+		<Unit filename="Card.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Card.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Event.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Player.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Player.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Square.cpp">
 			<Option target="Debug" />
 		</Unit>
