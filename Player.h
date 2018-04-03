@@ -1,5 +1,9 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
+#include <vector>
+#include "Card.h"
+
+using namespace std;
 
 class Player{
     private:

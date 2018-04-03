@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Player.h"
 
     Player::Player() {
@@ -10,7 +12,7 @@
     void Player::shuffleDeck() {        //Mélange le deck du joueur
         srand(time(NULL));
         int exchange;
-        for (int i = 0; i < deck.size(); i++) {
+        for (unsigned int i = 0; i < deck.size(); i++) {
             int j = rand()%(deck.size());
             exchange = deck[j];
             deck[j] = deck[i];
@@ -23,7 +25,7 @@
         if (deck.empty() == true){
             cout << "Vide";
         } else {
-            for (int i = 0; i < deck.size(); i++) {
+            for (unsigned int i = 0; i < deck.size(); i++) {
                 cout << deck[i];
                 if (i < deck.size()-1) {
                     cout << ", ";
@@ -70,7 +72,7 @@
 
     void Player::displayHand() {                //Affiche la main du joueur dans la console
         cout << "Main: " ;
-        for (int i = 0; i < hand.size(); i++) {
+        for (unsigned int i = 0; i < hand.size(); i++) {
             cout << hand[i];
             if (i < hand.size()-1) {
                 cout << ", ";

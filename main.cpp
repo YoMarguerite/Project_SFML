@@ -2,13 +2,16 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include "Board.h"
 #include "Player.h"
+#include "Timer.h"
 
 
 using namespace std;
 using namespace sf;
+
 
 // on vérifie que le sprite contient la souris
 bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
@@ -126,6 +129,8 @@ int main()
     board.liaison();
     vector<vector<string>>card=card_import();
 
+    Timer chrono(windowsize);
+
     // on définit des textures et on leur donne une image
     Texture texture_play, texture_leave;
 
@@ -156,13 +161,12 @@ int main()
         if(interface == 1){
             // execution du menu
             menu(&window,position_mouse,play,leave,&interface);
-        }
-        if(interface == 2){
-
-            // execution du jeu
+        }else{
+             // execution du jeu
             game();
             board.display(&window);
             board.collision(&window);
+            chrono.echo(&window);
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){
@@ -172,7 +176,6 @@ int main()
                 }
                 board.echo_case(id);
             }
-
         }
 
         window.display();

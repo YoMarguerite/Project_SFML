@@ -1,12 +1,14 @@
 # depslib dependency file v1.0
-1522254571 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1522786588 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
 	<fstream>
+	<sstream>
 	<string>
 	"Board.h"
 	"Player.h"
+	"Timer.h"
 
 1486739997 c:\sfml-2.4.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -863,5 +865,22 @@
 
 1522242024 c:\users\yoann\documents\codeblock\project_sfml\card.h
 
-1522254537 c:\users\yoann\documents\codeblock\project_sfml\player.h
+1522786730 c:\users\yoann\documents\codeblock\project_sfml\player.h
+	<vector>
+	"Card.h"
+
+1522785660 c:\users\yoann\documents\codeblock\project_sfml\timer.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+
+1522240341 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
+	<iostream>
+	"Card.h"
+
+1522785644 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+	"Timer.h"
 
