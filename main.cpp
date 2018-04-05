@@ -142,9 +142,22 @@ int main()
     }
     //on donne cette texture aux sprites, et on leur donne des coordonnées
     play.setTexture(texture_play);
-    play.setPosition(Vector2f(400, 400));
+    play.setPosition(windowsize.x/3, windowsize.y/3);
     leave.setTexture(texture_leave);
-    leave.setPosition(Vector2f(400,600));
+    leave.setPosition(windowsize.x/3, windowsize.y/2);
+
+
+    // Affichage tu titre du jeu
+    Font title;
+    if(!title.loadFromFile("font/dumbledor.ttf")){
+        cerr<<"Fichier font 'dumbledor.ttf' introuvable"<<endl;
+    }
+    Text titleGame;
+    titleGame.setString("Battle Tower");
+    titleGame.setFont(title);
+    titleGame.setCharacterSize(100);
+    titleGame.setPosition(3*windowsize.x/9, windowsize.y/16);
+    titleGame.setFillColor(sf::Color::White);
 
     while (window.isOpen())
     {
@@ -161,6 +174,7 @@ int main()
         if(interface == 1){
             // execution du menu
             menu(&window,position_mouse,play,leave,&interface);
+            window.draw(titleGame);
         }else{
              // execution du jeu
             game();

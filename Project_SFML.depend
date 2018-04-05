@@ -884,3 +884,70 @@
 	<sstream>
 	"Timer.h"
 
+1522878042 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\board.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Board.h"
+
+1522244606 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\board.h
+	<vector>
+	<SFML/Graphics.hpp>
+	"Square.h"
+
+1522257297 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\square.h
+	"Card.h"
+
+1522257297 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\card.h
+
+1522244606 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\cardboard.cpp
+	<iostream>
+	"CardBoard.h"
+
+1522244606 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\cardboard.h
+
+1522879411 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<fstream>
+	<sstream>
+	<string>
+	"Board.h"
+	"Player.h"
+	"Timer.h"
+
+1522873501 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\player.h
+	<vector>
+	"Card.h"
+
+1522880310 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\square.cpp
+	<iostream>
+	<stdio.h>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Square.h"
+
+1522873501 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\timer.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+
+1522257297 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\card.cpp
+	<iostream>
+	"Card.h"
+
+1522873501 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\player.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"Player.h"
+
+1522877840 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\timer.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+	"Timer.h"
+
