@@ -11,13 +11,13 @@ Timer::Timer(Vector2f windowsize){
     countdown = seconds(0.01f);
     verif=0;
     chrono=61;
-    if(!font.loadFromFile("font/lucon.ttf")){
-        cerr<<"Fichier font 'lucon.ttf' introuvable"<<endl;
+    if(!font.loadFromFile("font/CloisterBlack.ttf")){
+        cerr<<"Fichier font 'CloisterBlack.ttf' introuvable"<<endl;
     }
     text.setString("Début");
     text.setFont(font);
-    text.setCharacterSize(40);
-    text.setPosition(windowsize.x/2,windowsize.y/12);
+    text.setCharacterSize(75);
+    text.setPosition(windowsize.x/2,windowsize.y/20);
     text.setFillColor(sf::Color::White);
 }
 

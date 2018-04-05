@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1522786588 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1522880650 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -821,7 +821,7 @@
 	<SFML/Graphics.hpp>
 	"Square.h"
 
-1522245360 c:\users\yoann\documents\codeblock\project_sfml\square.h
+1522880650 c:\users\yoann\documents\codeblock\project_sfml\square.h
 	"Card.h"
 
 1521240434 c:\users\yoann\documents\codeblock\project_sfml\carteplateau.h
@@ -837,7 +837,7 @@
 	<string>
 	"Plateau.h"
 
-1521245222 source:c:\users\yoann\documents\codeblock\project_sfml\square.cpp
+1522880650 source:c:\users\yoann\documents\codeblock\project_sfml\square.cpp
 	<iostream>
 	<stdio.h>
 	<SFML/Graphics.hpp>
@@ -845,14 +845,14 @@
 	<string>
 	"Square.h"
 
-1522762260 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
+1522880650 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"Board.h"
 
-1521245323 c:\users\yoann\documents\codeblock\project_sfml\board.h
+1522880650 c:\users\yoann\documents\codeblock\project_sfml\board.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Square.h"
@@ -863,24 +863,97 @@
 	<iostream>
 	"CardBoard.h"
 
-1522242024 c:\users\yoann\documents\codeblock\project_sfml\card.h
+1522880650 c:\users\yoann\documents\codeblock\project_sfml\card.h
 
-1522786730 c:\users\yoann\documents\codeblock\project_sfml\player.h
+1522880650 c:\users\yoann\documents\codeblock\project_sfml\player.h
 	<vector>
 	"Card.h"
 
-1522785660 c:\users\yoann\documents\codeblock\project_sfml\timer.h
+1522880650 c:\users\yoann\documents\codeblock\project_sfml\timer.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
 
-1522240341 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
+1522880650 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
 	<iostream>
 	"Card.h"
 
-1522785644 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
+1522880650 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
 	"Timer.h"
+
+1522878042 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\board.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Board.h"
+
+1522244606 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\board.h
+	<vector>
+	<SFML/Graphics.hpp>
+	"Square.h"
+
+1522257297 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\square.h
+	"Card.h"
+
+1522257297 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\card.h
+
+1522244606 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\cardboard.cpp
+	<iostream>
+	"CardBoard.h"
+
+1522244606 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\cardboard.h
+
+1522879411 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<fstream>
+	<sstream>
+	<string>
+	"Board.h"
+	"Player.h"
+	"Timer.h"
+
+1522873501 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\player.h
+	<vector>
+	"Card.h"
+
+1522880310 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\square.cpp
+	<iostream>
+	<stdio.h>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Square.h"
+
+1522873501 c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\timer.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+
+1522257297 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\card.cpp
+	<iostream>
+	"Card.h"
+
+1522873501 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\player.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"Player.h"
+
+1522877840 source:c:\users\anais\documents\epsi_cours\projet_transdev_obj\project_files\project_sfml\timer.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+	"Timer.h"
+
+1522880650 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"Player.h"
 
