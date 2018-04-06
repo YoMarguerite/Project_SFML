@@ -74,7 +74,7 @@ void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave
     // si le bouton jouer contient la souris
     if(sprite_mouse(window,position_mouse,play)){
             // on change sa couleur
-            play.setColor(Color(100,250,100));
+            play.setColor(Color(57,206,107));
             // si on clique
             if(Mouse::isButtonPressed(Mouse::Left)){
                 // le jeu commence et on change d'interface
@@ -89,7 +89,7 @@ void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave
         // si le bouton quitter contient la souris
         if(sprite_mouse(window,position_mouse,leave)){
             // on change sa couleur
-            leave.setColor(Color(100,250,100));
+            leave.setColor(Color(150,150,150));
             // si on clique la fenêtre se ferme
             if(Mouse::isButtonPressed(Mouse::Left)){
                 window->close();
@@ -114,10 +114,13 @@ int main()
     Vector2f windowsize;
     windowsize.x=1600;
     windowsize.y=900;
+
     // fenêtre principale avec sa taille et son nom
     RenderWindow window(VideoMode(windowsize.x,windowsize.y), "LES TOURS");
     // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
     Vector2i position_mouse;
+
+
     // sprite des boutons du menu
     Sprite play, leave;
     // variable définissant si on est sur le menu ou dans une partie
@@ -131,6 +134,19 @@ int main()
 
     Timer chrono(windowsize);
 
+    Texture textureBkg;
+    if (!textureBkg.loadFromFile("image/backgroundMenu.png")){
+        cout << "erreur";
+
+    }
+
+    //    Chargement de la texture pour le background
+    Sprite bckg;
+
+    //on donne cette texture aux sprites, et on leur donne des coordonnées
+    bckg.setTexture(textureBkg);
+    bckg.setPosition(0,0);
+
     // on définit des textures et on leur donne une image
     Texture texture_play, texture_leave;
 
@@ -142,9 +158,9 @@ int main()
     }
     //on donne cette texture aux sprites, et on leur donne des coordonnées
     play.setTexture(texture_play);
-    play.setPosition(windowsize.x/3, windowsize.y/3);
+    play.setPosition(windowsize.x/3, 4*windowsize.y/9);
     leave.setTexture(texture_leave);
-    leave.setPosition(windowsize.x/3, windowsize.y/2);
+    leave.setPosition(windowsize.x/3, 5.5*windowsize.y/9);
 
 
     // Affichage tu titre du jeu
@@ -152,11 +168,12 @@ int main()
     if(!title.loadFromFile("font/dumbledor.ttf")){
         cerr<<"Fichier font 'dumbledor.ttf' introuvable"<<endl;
     }
+
     Text titleGame;
     titleGame.setString("Battle Tower");
     titleGame.setFont(title);
     titleGame.setCharacterSize(100);
-    titleGame.setPosition(3*windowsize.x/9, windowsize.y/16);
+    titleGame.setPosition(3*windowsize.x/9, windowsize.y/9);
     titleGame.setFillColor(sf::Color::White);
 
     while (window.isOpen())
@@ -173,6 +190,7 @@ int main()
         // on vérifie sur qu'elle interface on est menu ou en jeu
         if(interface == 1){
             // execution du menu
+            window.draw(bckg);
             menu(&window,position_mouse,play,leave,&interface);
             window.draw(titleGame);
         }else{
