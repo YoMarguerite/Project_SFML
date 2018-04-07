@@ -104,9 +104,21 @@ void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave
 }
 
 // fonction contenant le futur code du jeu
-void game(){
-
-
+void game(RenderWindow* window, Vector2i position_mouse, Sprite exit, int* interface){
+    // si le bouton quitter contient la souris
+    if(sprite_mouse(window,position_mouse,exit)){
+        // on change sa couleur
+        exit.setColor(Color(150,150,150));
+        // si on clique la fenêtre se ferme
+        if(Mouse::isButtonPressed(Mouse::Left)){
+             *interface=1;
+        }
+    }else{
+        // sinon le bouton reprend sa couleur
+        exit.setColor(Color(255,255,255));
+    }
+    // on dessine le bouton jouer et quitter sur la fenêtre
+    window->draw(exit);
 }
 
 int main()
@@ -119,7 +131,6 @@ int main()
     RenderWindow window(VideoMode(windowsize.x,windowsize.y), "LES TOURS");
     // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
     Vector2i position_mouse;
-
 
     // sprite des boutons du menu
     Sprite play, leave;
@@ -137,8 +148,9 @@ int main()
     Texture textureBkg;
     if (!textureBkg.loadFromFile("image/backgroundMenu.png")){
         cout << "erreur";
-
     }
+
+    // ---------------------------BACKGROUND MENU ------------------------------
 
     //    Chargement de la texture pour le background
     Sprite bckg;
@@ -146,6 +158,9 @@ int main()
     //on donne cette texture aux sprites, et on leur donne des coordonnées
     bckg.setTexture(textureBkg);
     bckg.setPosition(0,0);
+
+
+    // ---------------------------BOUTONS MENU ------------------------------
 
     // on définit des textures et on leur donne une image
     Texture texture_play, texture_leave;
@@ -162,6 +177,7 @@ int main()
     leave.setTexture(texture_leave);
     leave.setPosition(windowsize.x/3, 5.5*windowsize.y/9);
 
+    // --------------------------- TITRE DU JEU ------------------------------
 
     // Affichage tu titre du jeu
     Font title;
@@ -175,6 +191,17 @@ int main()
     titleGame.setCharacterSize(100);
     titleGame.setPosition(3*windowsize.x/9, windowsize.y/9);
     titleGame.setFillColor(sf::Color::White);
+
+
+    // ------------------- QUITTER LE JEU EN COURS DE PARTIE -------------------
+    Sprite exit;
+    Texture exitGame;
+	if (!exitGame.loadFromFile("image/button_exit.png")) {
+		cout << "erreur";
+	}
+	exit.setTexture(exitGame);
+	exit.setPosition((windowsize.x)-(windowsize.x)/17,windowsize.x/90);
+
 
     while (window.isOpen())
     {
@@ -195,7 +222,7 @@ int main()
             window.draw(titleGame);
         }else{
              // execution du jeu
-            game();
+            game(&window, position_mouse,exit,&interface);
             board.display(&window);
             board.collision(&window);
             chrono.echo(&window);

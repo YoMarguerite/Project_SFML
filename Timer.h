@@ -13,6 +13,9 @@ private:
     Time countdown;
     Text text;
     Font font;
+    // BOUTON POUR FINIR LE TOUR AVANT LA FIN DU TIMER
+    Sprite endTurn;
+    Texture endTurnButton;
     int nbturn;
     int joueurcourant;
     int sec;

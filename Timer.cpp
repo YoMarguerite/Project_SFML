@@ -19,6 +19,13 @@ Timer::Timer(Vector2f windowsize){
     text.setCharacterSize(75);
     text.setPosition(windowsize.x/2,windowsize.y/20);
     text.setFillColor(sf::Color::White);
+    Texture textureBkg;
+
+    if (!endTurnButton.loadFromFile("image/button_endturn.png")){
+        cout << "erreur";
+    }
+    endTurn.setTexture(endTurnButton);
+    endTurn.setPosition(windowsize.x/6,windowsize.y/50);
 }
 
 void Timer::echo(RenderWindow* window){
@@ -38,6 +45,7 @@ void Timer::echo(RenderWindow* window){
             verif = sec;
         }
     }
+    window->draw(endTurn);
     window->draw(text);
 }
 
