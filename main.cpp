@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include "Board.h"
+#include "Console.cpp"
 
 
 using namespace std;
@@ -119,6 +120,7 @@ int main()
     window.setFramerateLimit(60);
     // création de l'objet plateau et des cases
     Board board;
+    Console console;
     board.liaison();
     vector<vector<string>>card=card_import();
 
