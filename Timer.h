@@ -11,8 +11,12 @@ class Timer{
 private:
     Clock clock;
     Time countdown;
-    Text text;
+    Text time;
+    Text joueur;
     Font font;
+    // BOUTON POUR FINIR LE TOUR AVANT LA FIN DU TIMER
+    Sprite endTurn;
+    Texture endTurnButton;
     int nbturn;
     int joueurcourant;
     int sec;
@@ -21,6 +25,7 @@ private:
 public:
     Timer(Vector2f windowsize);
     void echo(RenderWindow* window);
+    void changement();
 };
 
 #endif // TIMER_H_INCLUDED
