@@ -7,6 +7,7 @@
 #include "Board.h"
 #include "Player.h"
 #include "Timer.h"
+#include "Console.cpp"
 
 
 using namespace std;
@@ -133,6 +134,7 @@ int main()
     // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
     Vector2i position_mouse;
 
+    Console console;
 
     // sprite des boutons du menu
     Sprite play, leave;

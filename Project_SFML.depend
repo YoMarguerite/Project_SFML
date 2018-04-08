@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1523197693 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1523198935 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -9,6 +9,7 @@
 	"Board.h"
 	"Player.h"
 	"Timer.h"
+	"Console.cpp"
 
 1486739997 c:\sfml-2.4.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -863,7 +864,7 @@
 	<iostream>
 	"CardBoard.h"
 
-1523049867 c:\users\yoann\documents\codeblock\project_sfml\card.h
+1523198683 c:\users\yoann\documents\codeblock\project_sfml\card.h
 
 1523049867 c:\users\yoann\documents\codeblock\project_sfml\player.h
 	<vector>
@@ -874,7 +875,7 @@
 	<SFML/Graphics.hpp>
 	<sstream>
 
-1523049867 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
+1523198373 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
 	<iostream>
 	"Card.h"
 
@@ -956,4 +957,24 @@
 	<cstdlib>
 	<ctime>
 	"Player.h"
+
+1523198683 source:c:\users\yoann\documents\codeblock\project_sfml\console.cpp
+	<iostream>
+	<stdio.h>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Console.h"
+
+1523198814 c:\users\yoann\documents\codeblock\project_sfml\console.h
+	<iostream>
+	<SFML/System.hpp>
+
+1523199604 c:\users\yoann\documents\codeblock\project_sfml\console.cpp
+	<iostream>
+	<stdio.h>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Console.h"
 

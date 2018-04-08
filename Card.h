@@ -20,29 +20,6 @@ class Card{
 
     void importStats();
 
-    void beginturn();
-
-    void endturn();
-
-    void attack();
-
-    void kill();
-
-    void ishurt();
-
-    void isput();
-
-    void isdead();
-
-    void daybegin();
-
-    void nightbegin();
-
-    void fight();
-
-    void move();
-
-    void testId();
 };
 
 class Placeable : public Card {
