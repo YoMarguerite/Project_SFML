@@ -26,6 +26,7 @@ public:
     Timer(Vector2f windowsize);
     void echo(RenderWindow* window);
     void changement();
+    void endturn(RenderWindow* window);
 };
 
 #endif // TIMER_H_INCLUDED

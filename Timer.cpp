@@ -74,3 +74,20 @@ void Timer::changement(){
     }
 }
 
+void Timer::endturn(RenderWindow* window){
+    Vector2i position_mouse = Mouse::getPosition(*window);
+    if(endTurn.getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
+            // on change sa couleur
+            endTurn.setColor(Color(150,150,150));
+            // si on clique la fenêtre se ferme
+            if(Mouse::isButtonPressed(Mouse::Left)){
+                while(Mouse::isButtonPressed(Mouse::Left)){
+
+                }
+                changement();
+            }
+        }else{
+            // sinon le bouton reprend sa couleur
+            endTurn.setColor(Color(255,255,255));
+        }
+}

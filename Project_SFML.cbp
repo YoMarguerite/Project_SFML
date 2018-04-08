@@ -59,6 +59,12 @@
 		<Unit filename="Card.h">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="Console.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Console.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Event.h">
 			<Option target="Debug" />
 		</Unit>

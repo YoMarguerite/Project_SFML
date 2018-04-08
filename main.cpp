@@ -227,6 +227,7 @@ int main()
             board.display(&window);
             board.collision(&window);
             chrono.echo(&window);
+            chrono.endturn(&window);
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){
