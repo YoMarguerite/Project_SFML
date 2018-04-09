@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1523222473 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1523277545 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -9,7 +9,8 @@
 	"Board.h"
 	"Player.h"
 	"Timer.h"
-	"Console.cpp"
+	"Console.h"
+	"Statcard.h"
 
 1486739997 c:\sfml-2.4.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -866,20 +867,21 @@
 
 1523198683 c:\users\yoann\documents\codeblock\project_sfml\card.h
 
-1523049867 c:\users\yoann\documents\codeblock\project_sfml\player.h
+1523276280 c:\users\yoann\documents\codeblock\project_sfml\player.h
 	<vector>
 	"Card.h"
 
-1523222429 c:\users\yoann\documents\codeblock\project_sfml\timer.h
+1523267827 c:\users\yoann\documents\codeblock\project_sfml\timer.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
+	"Player.h"
 
-1523198373 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
+1523224044 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
 	<iostream>
 	"Card.h"
 
-1523222568 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
+1523276538 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
@@ -952,13 +954,13 @@
 	<sstream>
 	"Timer.h"
 
-1523049867 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
+1523276459 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
 	"Player.h"
 
-1523198683 source:c:\users\yoann\documents\codeblock\project_sfml\console.cpp
+1523199604 source:c:\users\yoann\documents\codeblock\project_sfml\console.cpp
 	<iostream>
 	<stdio.h>
 	<SFML/Graphics.hpp>
@@ -977,4 +979,19 @@
 	<vector>
 	<string>
 	"Console.h"
+
+1523277403 c:\users\yoann\documents\codeblock\project_sfml\statcard.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+
+1523277456 source:c:\users\yoann\documents\codeblock\project_sfml\statcard.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<fstream>
+	<sstream>
+	<string>
+	"Statcard.h"
 

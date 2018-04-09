@@ -14,6 +14,7 @@
 				<Compiler>
 					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="libsfml-graphics-d" />
@@ -31,6 +32,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++11" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -60,10 +62,10 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="Console.cpp">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="Console.h">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="Event.h">
 			<Option target="Debug" />
@@ -80,8 +82,15 @@
 		<Unit filename="Square.h">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="Statcard.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Statcard.h">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="Timer.cpp" />
 		<Unit filename="Timer.h" />
+		<Unit filename="include/Statcard.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

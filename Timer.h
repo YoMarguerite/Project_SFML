@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include "Player.h"
 
 using namespace std;
 using namespace sf;
@@ -22,8 +23,10 @@ private:
     int sec;
     int chrono;
     int verif;
+    Player* joueur1;
+    Player* joueur2;
 public:
-    Timer(Vector2f windowsize);
+    Timer(Vector2f windowsize,Player* joueur1,Player* joueur2);
     void echo(RenderWindow* window);
     void changement();
     void endturn(RenderWindow* window);

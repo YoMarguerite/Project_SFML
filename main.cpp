@@ -7,7 +7,8 @@
 #include "Board.h"
 #include "Player.h"
 #include "Timer.h"
-#include "Console.cpp"
+#include "Console.h"
+#include "Statcard.h"
 
 
 using namespace std;
@@ -21,54 +22,6 @@ bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
     return sprite.getGlobalBounds().contains(position_mouse.x,position_mouse.y);
 }
 
-vector<vector<string>> card_import(){
-    string line;
-    char letter;
-    int lengh=80;
-    ifstream file ("card_export.csv",ios::in);
-    vector <vector<string> > card(lengh);
-    int index=0;
-    int id=0;
-
-    for(int i = 0; i<lengh;i++){
-
-        card[i]=vector<string>(10);
-    }
-
-      // Si mon fichier est ouvert
-      if (file.is_open()){
-      // Tant qu'on a pas parcouru tout le fichier
-        while ( getline (file,line) ){
-
-          cout << line << endl;
-          lengh=line.size();
-          id=0;
-          for(int i=0; i<lengh; i++){
-                letter=line[i];
-                if(letter==';'){
-                    id++;
-                }else{
-                    card[index][id]=card[index][id]+letter;
-                }
-          }
-
-          for(int i=0; i<10; i++){
-                cout << card[index][i] << " ";
-          }
-          cout<<endl;
-          index++;
-        }
-        // Fermer le fichier
-
-        file.close();
-      }
-
-      else {
-
-            cerr << "Impossible d'ouvrir le fichier" << endl;
-      }
-      return card;
-}
 
 // fonction pour gérer le menu
 void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave, int* interface){
@@ -145,9 +98,12 @@ int main()
     // création de l'objet plateau et des cases
     Board board;
     board.liaison();
-    vector<vector<string>>card=card_import();
+    Statcard stat;
 
-    Timer chrono(windowsize);
+    Player joueur1;
+    Player joueur2;
+
+    Timer chrono(windowsize,&joueur1,&joueur2);
 
     Texture textureBkg;
     if (!textureBkg.loadFromFile("image/backgroundMenu.png")){
@@ -221,6 +177,7 @@ int main()
             window.draw(bckg);
             menu(&window,position_mouse,play,leave,&interface);
             window.draw(titleGame);
+
         }else{
              // execution du jeu
             game(&window, position_mouse,exit,&interface);
@@ -228,6 +185,7 @@ int main()
             board.collision(&window);
             chrono.echo(&window);
             chrono.endturn(&window);
+            joueur1.displayHand();
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){

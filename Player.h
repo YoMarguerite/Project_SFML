@@ -11,6 +11,7 @@ class Player{
     vector<unsigned int> discard;
     vector<unsigned int> hand;
     vector<Card*> placed;
+    unsigned int mana_dispo;
     public:
 
     Player();
@@ -37,6 +38,8 @@ class Player{
     void displayHand();                //Affiche la main du joueur dans la console
 
     //____________________MANA____________________
+
+    void augmentmana();
 };
 
 #endif // PLAYER_H_INCLUDED

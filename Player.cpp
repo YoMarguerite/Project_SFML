@@ -4,6 +4,7 @@
 #include "Player.h"
 
     Player::Player() {
+        mana_dispo=1;
         deck = {1,2,4,3,1,3,4,2,1,3}; //importation du deck préconstruit en .csv
     }
 
@@ -79,4 +80,10 @@
             }
         }
         cout << endl << endl;
+    }
+
+    void Player::augmentmana(){
+        if(mana_dispo<10){
+            mana_dispo++;
+        }
     }

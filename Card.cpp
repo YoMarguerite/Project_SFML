@@ -4,14 +4,14 @@
 using namespace std;
 
 
-    Card::Card(int id){
-        this->id = id;
-        importStats();
+Card::Card(int id){
+    this->id = id;
+    importStats();
 
 
-    }
+}
 
-    void Card::importStats(){
+void Card::importStats(){
 
-    }
+}
 

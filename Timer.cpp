@@ -6,7 +6,11 @@
 using namespace std;
 using namespace sf;
 
-Timer::Timer(Vector2f windowsize){
+Timer::Timer(Vector2f windowsize,Player* joueur1,Player* joueur2){
+    this->joueur1=joueur1;
+    this->joueur2=joueur2;
+    this->joueur1->addCardHand();
+    this->joueur2->addCardHand();
     clock.restart();
     countdown = seconds(0.01f);
     verif=0;
@@ -67,10 +71,14 @@ void Timer::changement(){
     if(joueurcourant==1){
         joueurcourant++;
         joueur.setString("Joueur 2");
+        this->joueur2->addCardHand();
+        joueur2->augmentmana();
     }else{
         joueurcourant--;
         cout<<"joueur"<<joueurcourant<<endl;
         joueur.setString("Joueur 1");
+        this->joueur1->addCardHand();
+        joueur1->augmentmana();
     }
 }
 
