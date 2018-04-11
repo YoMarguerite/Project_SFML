@@ -1,22 +1,24 @@
 #ifndef CARD_H_INCLUDED
 #define CARD_H_INCLUDED
-
+#include <SFML/Graphics.hpp>
+#include "Statcard.h"
 
 using namespace std;
+using namespace sf;
 
 class Card{
     //ATTRIBUTS
     private:
     int id;
-    short type;         //0:unité   1:batiment  2:sort
+    string quality;      //commun  rare   epique   legendaire
     string name;
-    short quality;      //0:commun  1:rare      2:epique    3:legendaire
-    //image
     int mana;
+    short type;         //0:unité   1:batiment  2:sort
     string effectText;
+    Sprite image;
 
     public:
-    Card(int id);
+    Card(int id, Statcard* stat);
 
     void importStats();
 

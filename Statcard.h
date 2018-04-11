@@ -14,6 +14,8 @@ private:
     vector<Texture>image;
 public:
     Statcard();
+    Texture getimage(int id);
+    vector<string> getstats(int id);
 };
 
 #endif // STATCARD_H_INCLUDED

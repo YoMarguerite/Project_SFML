@@ -1,20 +1,23 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 #include <vector>
+#include "Statcard.h"
 #include "Card.h"
 
 using namespace std;
 
 class Player{
     private:
+    Statcard* stat;
     vector<unsigned int> deck;
     vector<unsigned int> discard;
-    vector<unsigned int> hand;
+    vector<Card*> hand;
+    // Ce sera pas vector<Card*> placed; mais peut-être vector<Cardboard*>placed;
     vector<Card*> placed;
     unsigned int mana_dispo;
     public:
 
-    Player();
+    Player(Statcard* stat);
 
     // ____________________DECK____________________
 

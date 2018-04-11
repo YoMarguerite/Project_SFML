@@ -6,6 +6,9 @@
 #include <string>
 #include "Statcard.h"
 
+using namespace std;
+using namespace sf;
+
 Statcard::Statcard(){
     string line;
     char letter;
@@ -46,10 +49,28 @@ Statcard::Statcard(){
         // Fermer le fichier
 
         file.close();
+        Texture texture;
+        for(unsigned int i=6; i<card.size();i++){
+            if(!texture.loadFromFile("image/"+card[i][2]+".png")){
+                cerr<<"Fichier image "+card[i][2]+".png introuvable"<<endl;
+            }else{
+                cout<<"c'est bon : "+card[i][2]<<endl;
+
+            }
+            image.push_back(texture);
+        }
       }
 
       else {
 
             cerr << "Impossible d'ouvrir le fichier" << endl;
       }
+}
+
+Texture Statcard::getimage(int id){
+    return image[id];
+}
+
+vector<string> Statcard::getstats(int id){
+    return card[id];
 }

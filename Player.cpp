@@ -3,7 +3,8 @@
 #include <ctime>
 #include "Player.h"
 
-    Player::Player() {
+    Player::Player(Statcard* stat) {
+        this->stat=stat;
         mana_dispo=1;
         deck = {1,2,4,3,1,3,4,2,1,3}; //importation du deck préconstruit en .csv
     }
@@ -62,7 +63,7 @@
     void Player::addCardHand () {               //Ajoute une carte dans la main (proviens du deck)
         if (hand.size() < 20){
             if (deck.empty() == false){
-                hand.push_back(drawCardDeck());
+                hand.push_back(new Card(drawCardDeck(),stat));
             } else {
                 cout << "! Le deck est vide" << endl << endl;
             }

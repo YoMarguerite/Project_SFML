@@ -100,8 +100,8 @@ int main()
     board.liaison();
     Statcard stat;
 
-    Player joueur1;
-    Player joueur2;
+    Player joueur1(&stat);
+    Player joueur2(&stat);
 
     Timer chrono(windowsize,&joueur1,&joueur2);
 
