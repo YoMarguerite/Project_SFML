@@ -80,7 +80,7 @@ int main()
 {
     Vector2f windowsize;
     windowsize.x=1600;
-    windowsize.y=900;
+    windowsize.y=1000;
 
     // fenêtre principale avec sa taille et son nom
     RenderWindow window(VideoMode(windowsize.x,windowsize.y), "LES TOURS");
@@ -186,6 +186,7 @@ int main()
             chrono.echo(&window);
             chrono.endturn(&window);
             joueur1.displayHand();
+            joueur1.echoHand(&window);
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){

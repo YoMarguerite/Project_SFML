@@ -15,12 +15,15 @@ class Card{
     int mana;
     short type;         //0:unité   1:batiment  2:sort
     string effectText;
+    Texture dessin;
     Sprite image;
 
     public:
     Card(int id, Statcard* stat);
-
     void importStats();
+    Sprite getimage();
+    void echocard(RenderWindow* window,int i);
+    string getname();
 
 };
 

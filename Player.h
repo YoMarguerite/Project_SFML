@@ -1,6 +1,7 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 #include <vector>
+#include <SFML/Graphics.hpp>
 #include "Statcard.h"
 #include "Card.h"
 
@@ -39,6 +40,8 @@ class Player{
     void addCardHand ();                //Ajoute une carte dans la main (proviens du deck)
 
     void displayHand();                //Affiche la main du joueur dans la console
+
+    void echoHand(RenderWindow* window);
 
     //____________________MANA____________________
 

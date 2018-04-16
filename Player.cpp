@@ -6,7 +6,7 @@
     Player::Player(Statcard* stat) {
         this->stat=stat;
         mana_dispo=1;
-        deck = {1,2,4,3,1,3,4,2,1,3}; //importation du deck préconstruit en .csv
+        deck = {6,52,35,59,17}; //importation du deck préconstruit en .csv
     }
 
     // ____________________DECK____________________
@@ -75,12 +75,18 @@
     void Player::displayHand() {                //Affiche la main du joueur dans la console
         cout << "Main: " ;
         for (unsigned int i = 0; i < hand.size(); i++) {
-            cout << hand[i];
+            cout << hand[i]->getname();
             if (i < hand.size()-1) {
                 cout << ", ";
             }
         }
         cout << endl << endl;
+    }
+
+    void Player::echoHand(RenderWindow* window){
+        for(unsigned int i=0; i<hand.size();i++){
+            hand[i]->echocard(window,i);
+        }
     }
 
     void Player::augmentmana(){
