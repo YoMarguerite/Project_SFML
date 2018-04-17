@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
@@ -29,6 +30,11 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+<<<<<<< HEAD
+=======
+					<Add option="-std=c++11" />
+					<Add directory="include" />
+>>>>>>> master
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -50,6 +56,7 @@
 		<Linker>
 			<Add directory="D:/SFML-2.4.2/lib" />
 		</Linker>
+<<<<<<< HEAD
 		<Unit filename=".gitattributes" />
 		<Unit filename="Board.cpp" />
 		<Unit filename="Board.h" />
@@ -74,6 +81,46 @@
 		<Unit filename="card_export.csv" />
 		<Unit filename="card_export.xlsx" />
 		<Unit filename="class.h" />
+=======
+		<Unit filename="Board.cpp" />
+		<Unit filename="Board.h" />
+		<Unit filename="Card.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Card.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Console.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Console.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Event.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Player.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Player.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Square.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Square.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Statcard.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Statcard.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Timer.cpp" />
+		<Unit filename="Timer.h" />
+		<Unit filename="include/Statcard.h" />
+>>>>>>> master
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
