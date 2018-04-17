@@ -7,8 +7,7 @@ using namespace sf;
 
 // class pour créer les différentes cases du plateau de manière indépendante
 class Square{
-
-public:
+private:
     int numero;
     // couleur enregistrée pour chaque case
     int red;
@@ -23,6 +22,9 @@ public:
     bool poison;
     // définition de la case
     string camp;
+
+public:
+
     string type;
     // case adjacente
     vector<Square*> nearbySquare;
@@ -30,6 +32,11 @@ public:
     //constructeur et autre méthode
     Square(int id);
     vector<Square*>& get();
+    int getnumero();
+    int getred();
+    int getgreen();
+    int getblue();
+    string getcamp();
 
 };
 

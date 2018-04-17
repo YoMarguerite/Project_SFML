@@ -61,3 +61,23 @@ vector<Square*>& Square::get(){
 
     return nearbySquare;
 }
+
+int Square::getnumero (){
+    return numero;
+}
+
+int Square::getred (){
+    return red;
+}
+
+int Square::getgreen (){
+    return green;
+}
+
+int Square::getblue (){
+    return blue;
+}
+
+string Square::getcamp(){
+    return camp;
+}

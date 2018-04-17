@@ -47,6 +47,9 @@ void Card::nothovercard(int i){
 void Card::setselect(bool check){
     select=check;
 }
+bool Card::getselect(){
+    return select;
+}
 
 string Card::getname(){
     return name;

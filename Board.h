@@ -23,7 +23,7 @@ private:
 
 public:
     // constructeur
-    Board();
+    Board(Player* joueur);
     // destructeur
     ~Board();
     // autre méthode ou fonction

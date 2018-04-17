@@ -27,6 +27,7 @@ class Card{
     void hovercard(int a, int b, Vector2f z);
     void nothovercard(int i);
     void setselect(bool check);
+    bool getselect();
     string getname();
 
 };

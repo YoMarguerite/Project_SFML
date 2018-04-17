@@ -96,12 +96,13 @@ int main()
     // limite les fps pour ne pas faire surchauffer la carte graphique
     window.setFramerateLimit(60);
     // création de l'objet plateau et des cases
-    Board board;
-    board.liaison();
     Statcard stat;
 
     Player joueur1(&stat);
     Player joueur2(&stat);
+
+    Board board(&joueur1);
+    board.liaison();
 
     Timer chrono(windowsize,&joueur1,&joueur2);
 

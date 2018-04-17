@@ -6,6 +6,7 @@
 #include "Card.h"
 
 using namespace std;
+using namespace sf;
 
 class Player{
     private:
@@ -15,8 +16,11 @@ class Player{
     vector<Card*> hand;
     // Ce sera pas vector<Card*> placed; mais peut-être vector<Cardboard*>placed;
     vector<Card*> placed;
+    unsigned int mana;
     unsigned int mana_dispo;
     int select;
+    Text cardselect;
+    Font fontselect;
     public:
 
     Player(Statcard* stat);
@@ -45,6 +49,10 @@ class Player{
     void echoHand(RenderWindow* window);
 
     int getselect();
+
+    //____________________PLACED__________________
+
+    void addCardPlaced (int i);
 
     //____________________MANA____________________
 

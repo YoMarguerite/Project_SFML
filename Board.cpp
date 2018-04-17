@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "Board.h"
+#include "Player.h"
 
 using namespace std;
 using namespace sf;
@@ -21,7 +22,8 @@ CircleShape hex(int posx, int posy){
     return hexagon;
 }
 
-Board::Board(){
+Board::Board(Player* joueur){
+    joueur1=joueur;
 // création de chaque case puis on conserve leurs adresses dans le vecteur tab
     for(int i=0; i<50 ; i++){
         tab.push_back(new Square(i));
@@ -89,11 +91,11 @@ void Board::echo_case(int id){
 
     cout << "Case N°" << id << endl;
     cout << "Type : " << tab[id]->type << endl;
-    cout << "Camp : " << tab[id]->camp << endl;
+    cout << "Camp : " << tab[id]->getcamp() << endl;
     cout << "Cases proches : " << endl;
     int longueur = tab[id]->nearbySquare.size();
     for(int i=0; i<longueur ; i++){
-        cout << "id : " << tab[id]->nearbySquare[i]->numero << " , " << tab[id]->nearbySquare[i] << endl;
+        cout << "id : " << tab[id]->nearbySquare[i]->getnumero() << " , " << tab[id]->nearbySquare[i] << endl;
     }
 
 }
@@ -183,10 +185,14 @@ void Board::collision(RenderWindow* window){
             // si on clique les caractéristiques de la case s'affiche
             if(Mouse::isButtonPressed(Mouse::Left)){
                 echo_case(i);
+                int select=joueur1->getselect();
+                if(select!=-1){
+                    joueur1->addCardPlaced(select);
+                }
             }
         }else{
             // si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
-            graphics_board[i].setFillColor(Color(tab[i]->red,tab[i]->green,tab[i]->blue));
+            graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
         }
     }
 }

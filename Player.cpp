@@ -1,15 +1,26 @@
 #include <iostream>
+#include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
 #include "Player.h"
 
+using namespace std;
+using namespace sf;
+
     Player::Player(Statcard* stat) {
         this->stat=stat;
+        mana=1;
         mana_dispo=1;
         deck = {6,52,35,59,17};
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));
         select=-1;
+        if(!fontselect.loadFromFile("font/CloisterBlack.ttf")){
+            cerr<<"Fichier font 'CloisterBlack.ttf' introuvable"<<endl;
+        }
+        cardselect.setString("Select");
+        cardselect.setFont(fontselect);
+        cardselect.setCharacterSize(30);
     }
 
     // ____________________DECK____________________
@@ -88,22 +99,28 @@
 
     void Player::echoHand(RenderWindow* window){
         int hover=-1;
+        Vector2f z;
+        z.x=1;
+        z.y=1;
+        int a=0;
+        int b=600;
         for(unsigned int i=0; i<hand.size();i++){
-            Vector2f z;
-            z.x=0.5;
-            z.y=0.5;
-            int a=0;
-            int b=0;
+
             Vector2i position_mouse = Mouse::getPosition(*window);
-            if(hand[i]->getimage().getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
-                int a=300+i*150-75;
-                int b=600;
-                z.x=1;
-                z.y=1;
+            if(hand[i]->getselect()){
+                cardselect.setPosition(300+i*150,760);
+                window->draw(cardselect);
+            }
+            if((hand[i]->getimage().getGlobalBounds().contains(position_mouse.x,position_mouse.y))&&(hover==-1)){
+                a=300+i*150-75;
                 hand[i]->hovercard(a,b,z);
                 hover=i;
                 if(Mouse::isButtonPressed(Mouse::Left)){
-                    select=1;
+                    select=hover;
+                    hand[hover]->echocard(window);
+                    for(unsigned int j=0; j<hand.size();j++){
+                        hand[j]->setselect(false);
+                    }
                     hand[hover]->setselect(true);
                 }
                 if(Mouse::isButtonPressed(Mouse::Right)){
@@ -115,14 +132,21 @@
             }
             hand[i]->echocard(window);
         }
-        if(hover!=-1){
-            hand[hover]->echocard(window);
-        }
-
     }
 
     void Player::augmentmana(){
         if(mana_dispo<10){
-            mana_dispo++;
+            mana++;
+            mana_dispo=mana;
         }
+    }
+
+    int Player::getselect(){
+        return select;
+    }
+//_______________________________PLACED______________________
+
+void Player::addCardPlaced (int i) {               //Ajoute une carte dans la main (proviens du deck)
+        placed.push_back(hand[i]);
+        hand.erase(hand.begin()+i);
     }

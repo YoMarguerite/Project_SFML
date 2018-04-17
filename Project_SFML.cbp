@@ -61,6 +61,8 @@
 		<Unit filename="Card.h">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="CardBoard.cpp" />
+		<Unit filename="CardBoard.h" />
 		<Unit filename="Console.cpp">
 			<Option target="Debug" />
 		</Unit>
