@@ -1,6 +1,6 @@
 #ifndef SQUARE_H_INCLUDED
 #define SQUARE_H_INCLUDED
-#include "Card.h"
+#include "CardBoard.h"
 
 using namespace std;
 using namespace sf;
@@ -16,8 +16,7 @@ public:
     int blue;
     // carte sur la case
     bool empty;
-    Unity* pawn;
-    Building* build;
+    CardBoard pion;
     // effet sur la case
     bool mana;
     bool poison;

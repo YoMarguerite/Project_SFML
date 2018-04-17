@@ -10,7 +10,7 @@ using namespace sf;
 CircleShape hex(int posx, int posy){
 
     // taille d'un côté et nombre de points
-    CircleShape hexagon(50, 6);
+    CircleShape hexagon(35, 6);
     // couleur et épaisseur de la bordure extérieur
     hexagon.setOutlineColor(Color(250,150,100));
     hexagon.setOutlineThickness(3);
@@ -22,6 +22,7 @@ CircleShape hex(int posx, int posy){
 }
 
 Board::Board(){
+
 // création de chaque case puis on conserve leurs adresses dans le vecteur tab
     for(int i=0; i<50 ; i++){
         tab.push_back(new Square(i));
@@ -30,7 +31,7 @@ Board::Board(){
 // création de chaque hexagone avec leurs positions
     int lengh=graphics_board.size();
     int i=1;
-    int posx=555, posy=40, decy=188;
+    int posx=400, posy=40, decy=136;
 
     while(lengh<50){
 
@@ -40,23 +41,23 @@ Board::Board(){
         }
         if((lengh == 3) || (lengh == 9) || (lengh == 16) || (lengh == 22)
            || (lengh == 28) || (lengh == 34) || (lengh == 41) || (lengh == 47)){
-            posx+=82;
+            posx+=60;
         }
         if((lengh==9) || (lengh==22) || (lengh==34)){
             posy=40;
         }
         if((lengh==3) || (lengh==16) || (lengh==28) ||(lengh==41)){
-            posy=88;
+            posy=74;
         }
         if(lengh==25){
-            posy=417;
+            posy=312;
         }
         if(lengh == 3){
-            decy=94;
+            decy=68;
         }
         if(lengh == 47){
             posy=40;
-            decy=188;
+            decy=136;
         }
 
         graphics_board.push_back(hex(posx,i*decy+posy));
@@ -179,7 +180,7 @@ void Board::collision(RenderWindow* window){
         // on vérifie que l'hexagone contient la souris
         if(graphics_board[i].getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
             // si c'est le cas on change sa couleur en magenta
-            graphics_board[i].setFillColor(Color(186, 186, 186));
+            graphics_board[i].setFillColor(Color::Magenta);
             // si on clique les caractéristiques de la case s'affiche
             if(Mouse::isButtonPressed(Mouse::Left)){
                 echo_case(i);

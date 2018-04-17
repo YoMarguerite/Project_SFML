@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1520373543 source:c:\users\anais\documents\epsi_cours\langage_c++\csv\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+

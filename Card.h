@@ -1,6 +1,5 @@
 #ifndef CARD_H_INCLUDED
 #define CARD_H_INCLUDED
-<<<<<<< HEAD
 #include <iostream>
 
 using namespace std;
@@ -18,32 +17,6 @@ private:
 
 public:
     Card(int id);
-=======
-#include <SFML/Graphics.hpp>
-#include "Statcard.h"
-
-using namespace std;
-using namespace sf;
-
-class Card{
-    //ATTRIBUTS
-    private:
-    int id;
-    string quality;      //commun  rare   epique   legendaire
-    string name;
-    int mana;
-    short type;         //0:unité   1:batiment  2:sort
-    string effectText;
-    Texture dessin;
-    Sprite image;
-
-    public:
-    Card(int id, Statcard* stat);
-    void importStats();
-    Sprite getimage();
-    void echocard(RenderWindow* window,int i);
-    string getname();
->>>>>>> master
 
 };
 
@@ -62,10 +35,7 @@ class Unity : public Placeable {
 
 class Building : public Placeable{
     int build;
-<<<<<<< HEAD
     bool defensive;
-=======
->>>>>>> master
 };
 
 class Spell : public Card {
@@ -73,8 +43,5 @@ class Spell : public Card {
 };
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 #endif // CARD_H_INCLUDED

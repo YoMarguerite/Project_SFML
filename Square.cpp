@@ -17,22 +17,22 @@ Square::Square(int id){
         camp = "Joueur 1";
         if(id < 3){
             type = "Tour";
-            red=188;
-            green=79;
-            blue=13;
+            red=255;
+            green=100;
+            blue=0;
         }else{
             type = "Case";
-            red=0;
-            green=204;
-            blue=9;
+            red=20;
+            green=255;
+            blue=30;
         }
     }else if(id < 34){
         camp = "Neutre";
         if((id  == 22) || (id == 27)){
             type = "Puit de mana";
-            red=5;
-            green=119;
-            blue=248;
+            red=100;
+            green=185;
+            blue=255;
         }else{
             type = "Case";
             red=240;
@@ -43,14 +43,14 @@ Square::Square(int id){
         camp = "Joueur 2";
         if(id > 46){
             type = "Tour";
-            red=188;
-            green=79;
-            blue=13;
+            red=255;
+            green=100;
+            blue=0;
         }else{
             type = "Case";
-            red=0;
-            green=204;
-            blue=9;
+            red=20;
+            green=255;
+            blue=30;
         }
     }
 }

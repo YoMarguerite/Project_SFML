@@ -2,22 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <fstream>
-#include <sstream>
 #include <string>
 #include "Board.h"
-<<<<<<< HEAD
 #include "Console.cpp"
-=======
-#include "Player.h"
-#include "Timer.h"
-#include "Console.h"
-#include "Statcard.h"
->>>>>>> master
 
 
 using namespace std;
 using namespace sf;
-
 
 // on vérifie que le sprite contient la souris
 bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
@@ -26,13 +17,61 @@ bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
     return sprite.getGlobalBounds().contains(position_mouse.x,position_mouse.y);
 }
 
+vector<vector<string>> card_import(){
+    string line;
+    char letter;
+    int lengh=80;
+    ifstream file ("card_export.csv",ios::in);
+    vector <vector<string> > card(lengh);
+    int index=0;
+    int id=0;
+
+    for(int i = 0; i<lengh;i++){
+
+        card[i]=vector<string>(10);
+    }
+
+      // Si mon fichier est ouvert
+      if (file.is_open()){
+      // Tant qu'on a pas parcouru tout le fichier
+        while ( getline (file,line) ){
+
+          cout << line << endl;
+          lengh=line.size();
+          id=0;
+          for(int i=0; i<lengh; i++){
+                letter=line[i];
+                if(letter==';'){
+                    id++;
+                }else{
+                    card[index][id]=card[index][id]+letter;
+                }
+          }
+
+          for(int i=0; i<10; i++){
+                cout << card[index][i] << " ";
+          }
+          cout<<endl;
+          index++;
+        }
+        // Fermer le fichier
+
+        file.close();
+      }
+
+      else {
+
+            cerr << "Impossible d'ouvrir le fichier" << endl;
+      }
+      return card;
+}
 
 // fonction pour gérer le menu
 void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave, int* interface){
     // si le bouton jouer contient la souris
     if(sprite_mouse(window,position_mouse,play)){
             // on change sa couleur
-            play.setColor(Color(57,206,107));
+            play.setColor(Color(100,250,100));
             // si on clique
             if(Mouse::isButtonPressed(Mouse::Left)){
                 // le jeu commence et on change d'interface
@@ -47,7 +86,7 @@ void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave
         // si le bouton quitter contient la souris
         if(sprite_mouse(window,position_mouse,leave)){
             // on change sa couleur
-            leave.setColor(Color(150,150,150));
+            leave.setColor(Color(100,250,100));
             // si on clique la fenêtre se ferme
             if(Mouse::isButtonPressed(Mouse::Left)){
                 window->close();
@@ -62,37 +101,17 @@ void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave
 }
 
 // fonction contenant le futur code du jeu
-void game(RenderWindow* window, Vector2i position_mouse, Sprite exit, int* interface){
-    // si le bouton quitter contient la souris
-    if(sprite_mouse(window,position_mouse,exit)){
-        // on change sa couleur
-        exit.setColor(Color(150,150,150));
-        // si on clique la fenêtre se ferme
-        if(Mouse::isButtonPressed(Mouse::Left)){
-             *interface=1;
-        }
-    }else{
-        // sinon le bouton reprend sa couleur
-        exit.setColor(Color(255,255,255));
+void game(){
 
-    }
-    // on dessine le bouton jouer et quitter sur la fenêtre
-    window->draw(exit);
- }
+
+}
 
 int main()
 {
-    Vector2f windowsize;
-    windowsize.x=1600;
-    windowsize.y=1000;
-
     // fenêtre principale avec sa taille et son nom
-    RenderWindow window(VideoMode(windowsize.x,windowsize.y), "LES TOURS");
+    RenderWindow window(VideoMode(1200,800), "LES TOURS");
     // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
     Vector2i position_mouse;
-
-    Console console;
-
     // sprite des boutons du menu
     Sprite play, leave;
     // variable définissant si on est sur le menu ou dans une partie
@@ -103,25 +122,7 @@ int main()
     Board board;
     Console console;
     board.liaison();
-    Statcard stat;
-
-    Player joueur1(&stat);
-    Player joueur2(&stat);
-
-    Timer chrono(windowsize,&joueur1,&joueur2);
-
-    Texture textureBkg;
-    if (!textureBkg.loadFromFile("image/backgroundMenu.png")){
-        cout << "erreur";
-
-    }
-
-    //    Chargement de la texture pour le background
-    Sprite bckg;
-
-    //on donne cette texture aux sprites, et on leur donne des coordonnées
-    bckg.setTexture(textureBkg);
-    bckg.setPosition(0,0);
+    vector<vector<string>>card=card_import();
 
     // on définit des textures et on leur donne une image
     Texture texture_play, texture_leave;
@@ -134,36 +135,9 @@ int main()
     }
     //on donne cette texture aux sprites, et on leur donne des coordonnées
     play.setTexture(texture_play);
-    play.setPosition(windowsize.x/3, 4*windowsize.y/9);
+    play.setPosition(Vector2f(400, 400));
     leave.setTexture(texture_leave);
-    leave.setPosition(windowsize.x/3, 5.5*windowsize.y/9);
-
-
-    // --------------------------- TITRE DU JEU ------------------------------
-
-
-    // Affichage tu titre du jeu
-    Font title;
-    if(!title.loadFromFile("font/dumbledor.ttf")){
-        cerr<<"Fichier font 'dumbledor.ttf' introuvable"<<endl;
-    }
-
-    Text titleGame;
-    titleGame.setString("Battle Tower");
-    titleGame.setFont(title);
-    titleGame.setCharacterSize(100);
-    titleGame.setPosition(3*windowsize.x/9, windowsize.y/9);
-    titleGame.setFillColor(sf::Color::White);
-
-    // ------------------- QUITTER LE JEU EN COURS DE PARTIE -------------------
-
-    Sprite exit;
-    Texture exitGame;
-	if (!exitGame.loadFromFile("image/button_exit.png")) {
-		cout << "erreur";
-	}
- 	exit.setTexture(exitGame);
- 	exit.setPosition((windowsize.x)-(windowsize.x)/17,windowsize.x/90);
+    leave.setPosition(Vector2f(400,600));
 
     while (window.isOpen())
     {
@@ -179,19 +153,14 @@ int main()
         // on vérifie sur qu'elle interface on est menu ou en jeu
         if(interface == 1){
             // execution du menu
-            window.draw(bckg);
             menu(&window,position_mouse,play,leave,&interface);
-            window.draw(titleGame);
+        }
+        if(interface == 2){
 
-        }else{
-             // execution du jeu
-            game(&window, position_mouse,exit,&interface);
+            // execution du jeu
+            game();
             board.display(&window);
             board.collision(&window);
-            chrono.echo(&window);
-            chrono.endturn(&window);
-            joueur1.displayHand();
-            joueur1.echoHand(&window);
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){
@@ -201,6 +170,7 @@ int main()
                 }
                 board.echo_case(id);
             }
+
         }
 
         window.display();
