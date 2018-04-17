@@ -81,3 +81,13 @@ int Square::getblue (){
 string Square::getcamp(){
     return camp;
 }
+
+string Square::gettype(){
+    return type;
+}
+vector<Square*> Square::getnearby(){
+    return nearbySquare;
+}
+void Square::setnearby(Square* square){
+    nearbySquare.push_back(square);
+}

@@ -12,7 +12,12 @@ Card::Card(int id, Statcard* stat, int i){
     vector<string>importstat=stat->getstats(id);
     quality=importstat[1];
     name=importstat[2];
+    family=importstat[3];
     mana=atoi(importstat[4].c_str());
+    damage=atoi(importstat[5].c_str());
+    life=atoi(importstat[6].c_str());
+    movement=atoi(importstat[7].c_str());
+    build=atoi(importstat[8].c_str());
     type=atoi(importstat[9].c_str());
     dessin=stat->getimage(id);
     dessin.setSmooth(true);

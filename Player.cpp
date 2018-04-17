@@ -147,6 +147,6 @@ using namespace sf;
 //_______________________________PLACED______________________
 
 void Player::addCardPlaced (int i) {               //Ajoute une carte dans la main (proviens du deck)
-        placed.push_back(hand[i]);
+        placed.push_back(new CardBoard(hand[i]));
         hand.erase(hand.begin()+i);
     }

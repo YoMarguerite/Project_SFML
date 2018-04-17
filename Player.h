@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Statcard.h"
 #include "Card.h"
+#include "CardBoard.h"
 
 using namespace std;
 using namespace sf;
@@ -15,7 +16,7 @@ class Player{
     vector<unsigned int> discard;
     vector<Card*> hand;
     // Ce sera pas vector<Card*> placed; mais peut-être vector<Cardboard*>placed;
-    vector<Card*> placed;
+    vector<CardBoard*> placed;
     unsigned int mana;
     unsigned int mana_dispo;
     int select;

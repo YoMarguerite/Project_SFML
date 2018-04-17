@@ -18,6 +18,12 @@ class Card{
     Texture dessin;
     Sprite image;
     bool select;
+    string family;
+    int life;
+    int damage;
+    int movement;
+    bool sleep;
+    int build;
 
     public:
     Card(int id, Statcard* stat, int i);
@@ -31,27 +37,5 @@ class Card{
     string getname();
 
 };
-
-class Placeable : public Card {
-    private:
-    int family;         //id de la famille
-    int life;
-    int damage;
-};
-
-class Unity : public Placeable {
-    private:
-    int movement;
-    bool sleep;
-};
-
-class Building : public Placeable{
-    int build;
-};
-
-class Spell : public Card {
-
-};
-
 
 #endif // CARD_H_INCLUDED

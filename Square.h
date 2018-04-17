@@ -1,6 +1,7 @@
 #ifndef SQUARE_H_INCLUDED
 #define SQUARE_H_INCLUDED
 #include "Card.h"
+#include "CardBoard.h"
 
 using namespace std;
 using namespace sf;
@@ -15,20 +16,16 @@ private:
     int blue;
     // carte sur la case
     bool empty;
-    Unity* pawn;
-    Building* build;
+    CardBoard* pawn;
     // effet sur la case
     bool mana;
     bool poison;
     // définition de la case
     string camp;
-
-public:
-
     string type;
     // case adjacente
     vector<Square*> nearbySquare;
-
+public:
     //constructeur et autre méthode
     Square(int id);
     vector<Square*>& get();
@@ -37,7 +34,9 @@ public:
     int getgreen();
     int getblue();
     string getcamp();
-
+    string gettype();
+    vector<Square*> getnearby();
+    void setnearby(Square* tab);
 };
 
 #endif // SQUARE_H_INCLUDED

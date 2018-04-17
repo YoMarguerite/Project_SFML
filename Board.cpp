@@ -90,12 +90,12 @@ void Board::echo(){
 void Board::echo_case(int id){
 
     cout << "Case N°" << id << endl;
-    cout << "Type : " << tab[id]->type << endl;
+    cout << "Type : " << tab[id]->gettype() << endl;
     cout << "Camp : " << tab[id]->getcamp() << endl;
     cout << "Cases proches : " << endl;
-    int longueur = tab[id]->nearbySquare.size();
+    int longueur = tab[id]->getnearby().size();
     for(int i=0; i<longueur ; i++){
-        cout << "id : " << tab[id]->nearbySquare[i]->getnumero() << " , " << tab[id]->nearbySquare[i] << endl;
+        cout << "id : " << tab[id]->getnearby()[i]->getnumero() << " , " << tab[id]->getnearby()[i] << endl;
     }
 
 }
@@ -114,51 +114,51 @@ void Board::liaison(){
 
             if(((i > 9) && (i < 25) && (i != 22)) || ((i > 31) && (i < 47) && (i != 34))){
 
-                tab[i]->nearbySquare.push_back(tab[i-7]);
+                tab[i]->setnearby(tab[i-7]);
             }
             if((i > 7) && (i < 48) && (i != 15) && (i != 40)){
 
-                tab[i]->nearbySquare.push_back(tab[i-6]);
+                tab[i]->setnearby(tab[i-6]);
             }
             if((i == 6) || (i == 7) || ((i > 24) && (i < 30) && (i != 27)) || (i == 47) || (i == 48)){
 
-                tab[i]->nearbySquare.push_back(tab[i-5]);
+                tab[i]->setnearby(tab[i-5]);
             }
             if((i == 4) || (i == 5) || (i == 48) || (i == 49)){
 
-                tab[i]->nearbySquare.push_back(tab[i-4]);
+                tab[i]->setnearby(tab[i-4]);
             }
             if((i == 3) || (i == 49)){
 
-                tab[i]->nearbySquare.push_back(tab[i-3]);
+                tab[i]->setnearby(tab[i-3]);
             }
             if((i > 3) && (i !=9) && (i != 16) && (i != 22) && (i != 25) && (i != 28) && (i != 34) && (i != 41) && (i < 47)){
 
-                tab[i]->nearbySquare.push_back(tab[i-1]);
+                tab[i]->setnearby(tab[i-1]);
             }
             if((i > 2) && (i !=8) && (i != 15) && (i != 21) && (i != 24) && (i != 27) && (i != 33) && (i != 40) && (i < 46)){
 
-                tab[i]->nearbySquare.push_back(tab[i+1]);
+                tab[i]->setnearby(tab[i+1]);
             }
             if((i == 0) || (i == 46)){
 
-                tab[i]->nearbySquare.push_back(tab[i+3]);
+                tab[i]->setnearby(tab[i+3]);
             }
             if((i == 0) || (i == 1) || (i == 44) || (i == 45)){
 
-                tab[i]->nearbySquare.push_back(tab[i+4]);
+                tab[i]->setnearby(tab[i+4]);
             }
             if((i == 1) || (i == 2) || ((i > 19) && (i < 25) && (i != 22)) || (i == 42) || (i == 43)){
 
-                tab[i]->nearbySquare.push_back(tab[i+5]);
+                tab[i]->setnearby(tab[i+5]);
             }
             if((i > 1) && (i < 42) && (i != 9) && (i != 34)){
 
-                tab[i]->nearbySquare.push_back(tab[i+6]);
+                tab[i]->setnearby(tab[i+6]);
             }
             if(((i > 2) && (i < 18) && (i != 15)) || ((i > 24) && (i < 40) && (i != 27))){
 
-                tab[i]->nearbySquare.push_back(tab[i+7]);
+                tab[i]->setnearby(tab[i+7]);
             }
     }
 }
@@ -185,9 +185,11 @@ void Board::collision(RenderWindow* window){
             // si on clique les caractéristiques de la case s'affiche
             if(Mouse::isButtonPressed(Mouse::Left)){
                 echo_case(i);
-                int select=joueur1->getselect();
-                if(select!=-1){
-                    joueur1->addCardPlaced(select);
+                if(tab[i]->getcamp()=="Joueur 1"){
+                    int select=joueur1->getselect();
+                    if(select!=-1){
+                        joueur1->addCardPlaced(select);
+                    }
                 }
             }
         }else{

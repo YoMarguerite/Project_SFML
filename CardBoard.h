@@ -1,18 +1,19 @@
 #ifndef CARTEPLATEAU_H_INCLUDED
 #define CARTEPLATEAU_H_INCLUDED
+#include "Card.h"
 
 using namespace std;
 
 
 class CardBoard{
-
-public:
+private:
     string type;
     string name;
     int life;
     int attaque;
 
-    CardBoard();
+public:
+    CardBoard(Card* card);
     void echo();
 };
 #endif // CARTEPLATEAU_H_INCLUDED

@@ -4,7 +4,7 @@
 using namespace std;
 
 
-CardBoard::CardBoard(){
+CardBoard::CardBoard(Card* card){
     type="Unité";
     name="Gobelin";
     life=3;

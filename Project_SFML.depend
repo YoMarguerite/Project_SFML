@@ -823,8 +823,9 @@
 	<SFML/Graphics.hpp>
 	"Square.h"
 
-1523990976 c:\users\yoann\documents\codeblock\project_sfml\square.h
+1524008594 c:\users\yoann\documents\codeblock\project_sfml\square.h
 	"Card.h"
+	"CardBoard.h"
 
 1521240434 c:\users\yoann\documents\codeblock\project_sfml\carteplateau.h
 
@@ -839,7 +840,7 @@
 	<string>
 	"Plateau.h"
 
-1523990976 source:c:\users\yoann\documents\codeblock\project_sfml\square.cpp
+1524006840 source:c:\users\yoann\documents\codeblock\project_sfml\square.cpp
 	<iostream>
 	<stdio.h>
 	<SFML/Graphics.hpp>
@@ -847,7 +848,7 @@
 	<string>
 	"Square.h"
 
-1523990976 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
+1524008620 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -861,21 +862,23 @@
 	"Square.h"
 	"Player.h"
 
-1523957337 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
+1524008654 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
+	"Card.h"
 
-1523049867 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
+1524008535 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
 	<iostream>
 	"CardBoard.h"
 
-1523961262 c:\users\yoann\documents\codeblock\project_sfml\card.h
+1524009850 c:\users\yoann\documents\codeblock\project_sfml\card.h
 	<SFML/Graphics.hpp>
 	"Statcard.h"
 
-1523991288 c:\users\yoann\documents\codeblock\project_sfml\player.h
+1524008535 c:\users\yoann\documents\codeblock\project_sfml\player.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Statcard.h"
 	"Card.h"
+	"CardBoard.h"
 
 1523267827 c:\users\yoann\documents\codeblock\project_sfml\timer.h
 	<iostream>
@@ -962,7 +965,7 @@
 	<sstream>
 	"Timer.h"
 
-1523990172 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
+1524008535 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<cstdlib>
