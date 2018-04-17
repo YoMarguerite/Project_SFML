@@ -3,6 +3,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "Square.h"
+#include "Player.h"
 
 
 using namespace std;
@@ -18,6 +19,7 @@ private:
     // vecteur qui va contenir les hexagones pour chaque case
     //(on peut retrouver l'hexagone d'une case car ils sont rangés dans le même ordre sur chaque vecteur)
     vector<CircleShape> graphics_board;
+    Player* joueur1;
 
 public:
     // constructeur

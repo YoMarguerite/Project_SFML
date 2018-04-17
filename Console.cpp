@@ -5,8 +5,10 @@
 #include <string>
 #include "Console.h"
 
+
 using namespace std;
 using namespace sf;
+
 
 Console::Console() : threadConsole(&Console::testCommand, this){
     threadConsole.launch();

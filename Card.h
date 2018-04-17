@@ -1,25 +1,43 @@
 #ifndef CARD_H_INCLUDED
 #define CARD_H_INCLUDED
-#include <iostream>
+#include <SFML/Graphics.hpp>
+#include "Statcard.h"
 
 using namespace std;
+using namespace sf;
 
 class Card{
-
-private:
+    //ATTRIBUTS
+    private:
     int id;
-    short type;         //0:unité   1:batiment  2:sort
+    string quality;      //commun  rare   epique   legendaire
     string name;
-    short quality;      //0:commun  1:rare      2:epique    3:legendaire
-    //image
     int mana;
+    short type;         //0:unité   1:batiment  2:sort
     string effectText;
+    Texture dessin;
+    Sprite image;
 
-public:
-    Card(int id);
+    //  placeable
+    int family;         //id de la famille
+    int life;
+    int damage;
+    //unity
+    int movement;
+    bool sleep;
+    //building
+    int build;
+
+    public:
+    Card(int id, Statcard* stat);
+    void importStats();
+    Sprite getimage();
+    void echocard(RenderWindow* window,int i);
+    string getname();
 
 };
 
+/*
 class Placeable : public Card {
     private:
     int family;         //id de la famille
@@ -35,13 +53,11 @@ class Unity : public Placeable {
 
 class Building : public Placeable{
     int build;
-    bool defensive;
 };
 
 class Spell : public Card {
 
 };
-
-
+*/
 
 #endif // CARD_H_INCLUDED

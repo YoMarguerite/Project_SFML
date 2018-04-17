@@ -12,14 +12,16 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
-					<Add library="sfml-graphics-d" />
-					<Add library="sfml-window-d" />
-					<Add library="sfml-system-d" />
-					<Add library="sfml-network-d" />
-					<Add library="sfml-audio-d" />
+					<Add library="libsfml-graphics-d" />
+					<Add library="libsfml-audio-d" />
+					<Add library="libsfml-network-d" />
+					<Add library="libsfml-system-d" />
+					<Add library="libsfml-window-d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -29,51 +31,66 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="sfml-graphics" />
-					<Add library="sfml-window" />
-					<Add library="sfml-system" />
-					<Add library="sfml-network" />
-					<Add library="sfml-audio" />
+					<Add library="libsfml-graphics" />
+					<Add library="libsfml-audio" />
+					<Add library="libsfml-network" />
+					<Add library="libsfml-system" />
+					<Add library="libsfml-window" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
-			<Add option="-fexceptions" />
 			<Add option="-DSFML_STATIC" />
-			<Add directory="D:/SFML-2.4.2/include" />
+			<Add directory="C:/SFML-2.4.2/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="D:/SFML-2.4.2/lib" />
+			<Add directory="C:/SFML-2.4.2/lib" />
 		</Linker>
-		<Unit filename=".gitattributes" />
 		<Unit filename="Board.cpp" />
 		<Unit filename="Board.h" />
-		<Unit filename="Card.cpp" />
-		<Unit filename="Card.h">
-			<Option target="&lt;{~None~}&gt;" />
+		<Unit filename="Card.cpp">
+			<Option target="Debug" />
 		</Unit>
-		<Unit filename="CardBoard.cpp" />
-		<Unit filename="CardBoard.h" />
-		<Unit filename="CircleShape.h" />
+		<Unit filename="Card.h">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="Console.cpp">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="Console.h">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
-		<Unit filename="Project_SFML.cbp" />
-		<Unit filename="Project_SFML.depend" />
-		<Unit filename="Project_SFML.layout" />
-		<Unit filename="Square.cpp" />
-		<Unit filename="Square.h" />
-		<Unit filename="card_export.csv" />
-		<Unit filename="card_export.xlsx" />
-		<Unit filename="class.h" />
+		<Unit filename="Event.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Player.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Player.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Square.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Square.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Statcard.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Statcard.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Timer.cpp" />
+		<Unit filename="Timer.h" />
+		<Unit filename="include/Statcard.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
