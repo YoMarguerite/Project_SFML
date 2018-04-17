@@ -113,10 +113,20 @@ int main()
 
     //    Chargement de la texture pour le background
     Sprite bckg;
+    Texture textureBkg2;
+    if (!textureBkg2.loadFromFile("image/backgroundGame.jpg")){
+        cout << "erreur";
+
+    }
+
+    //    Chargement de la texture pour le background
+    Sprite bckg2;
 
     //on donne cette texture aux sprites, et on leur donne des coordonnées
     bckg.setTexture(textureBkg);
     bckg.setPosition(0,0);
+    bckg2.setTexture(textureBkg2);
+    bckg2.setPosition(0,0);
 
     // on définit des textures et on leur donne une image
     Texture texture_play, texture_leave;
@@ -179,6 +189,7 @@ int main()
             window.draw(titleGame);
 
         }else{
+            window.draw(bckg2);
              // execution du jeu
             game(&window, position_mouse,exit,&interface);
             board.display(&window);

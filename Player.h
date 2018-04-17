@@ -16,6 +16,7 @@ class Player{
     // Ce sera pas vector<Card*> placed; mais peut-être vector<Cardboard*>placed;
     vector<Card*> placed;
     unsigned int mana_dispo;
+    int select;
     public:
 
     Player(Statcard* stat);
@@ -42,6 +43,8 @@ class Player{
     void displayHand();                //Affiche la main du joueur dans la console
 
     void echoHand(RenderWindow* window);
+
+    int getselect();
 
     //____________________MANA____________________
 

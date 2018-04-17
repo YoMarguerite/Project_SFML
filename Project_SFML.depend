@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1523913430 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1523956830 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -854,22 +854,23 @@
 	<string>
 	"Board.h"
 
-1523049867 c:\users\yoann\documents\codeblock\project_sfml\board.h
+1523958114 c:\users\yoann\documents\codeblock\project_sfml\board.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Square.h"
+	"Player.h"
 
-1521244034 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
+1523957337 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
 
-1521244387 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
+1523049867 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
 	<iostream>
 	"CardBoard.h"
 
-1523922091 c:\users\yoann\documents\codeblock\project_sfml\card.h
+1523958650 c:\users\yoann\documents\codeblock\project_sfml\card.h
 	<SFML/Graphics.hpp>
 	"Statcard.h"
 
-1523870225 c:\users\yoann\documents\codeblock\project_sfml\player.h
+1523958586 c:\users\yoann\documents\codeblock\project_sfml\player.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Statcard.h"
@@ -881,7 +882,7 @@
 	<sstream>
 	"Player.h"
 
-1523922157 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
+1523959042 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<string>
@@ -960,7 +961,7 @@
 	<sstream>
 	"Timer.h"
 
-1523922338 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
+1523956104 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
