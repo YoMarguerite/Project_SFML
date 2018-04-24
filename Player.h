@@ -14,7 +14,7 @@ class Player{
     Statcard* stat;
     vector<unsigned int> deck;
     vector<unsigned int> discard;
-    vector<Card*> hand;
+
     // Ce sera pas vector<Card*> placed; mais peut-être vector<Cardboard*>placed;
     vector<CardBoard*> placed;
     unsigned int mana;
@@ -23,7 +23,7 @@ class Player{
     Text cardselect;
     Font fontselect;
     public:
-
+vector<Card*> hand;
     Player(Statcard* stat);
 
     // ____________________DECK____________________
@@ -53,7 +53,11 @@ class Player{
 
     //____________________PLACED__________________
 
-    void addCardPlaced (int i);
+    Card* getcard(int i);
+
+    void addCardPlaced (CardBoard* card,int i);
+
+    void echoPlaced();
 
     //____________________MANA____________________
 

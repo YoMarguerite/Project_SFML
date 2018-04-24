@@ -52,10 +52,36 @@ void Card::nothovercard(int i){
 void Card::setselect(bool check){
     select=check;
 }
+string Card::getquality(){
+    return quality;
+}
+string Card::getname(){
+    return name;
+}
+int Card::getmana(){
+    return mana;
+}
+short Card::gettype(){
+    return type;
+}
 bool Card::getselect(){
     return select;
 }
-
-string Card::getname(){
-    return name;
+string Card::getfamily(){
+    return family;
+}
+int Card::getlife(){
+    return life;
+}
+int Card::getdamage(){
+    return damage;
+}
+int Card::getmovement(){
+    return movement;
+}
+bool Card::getsleep(){
+    return sleep;
+}
+int Card::getbuild(){
+    return build;
 }

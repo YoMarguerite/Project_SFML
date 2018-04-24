@@ -19,6 +19,7 @@ private:
     // vecteur qui va contenir les hexagones pour chaque case
     //(on peut retrouver l'hexagone d'une case car ils sont rangés dans le même ordre sur chaque vecteur)
     vector<CircleShape> graphics_board;
+    vector<CardBoard*> allcard;
     Player* joueur1;
 
 public:
@@ -33,7 +34,7 @@ public:
     vector<Square*>& get();
     void display(RenderWindow* window);
     void collision(RenderWindow* window);
-
+    void setallcard(CardBoard* card);
 };
 
 #endif // PLATEAU_H_INCLUDED

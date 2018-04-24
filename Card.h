@@ -33,8 +33,17 @@ class Card{
     void hovercard(int a, int b, Vector2f z);
     void nothovercard(int i);
     void setselect(bool check);
-    bool getselect();
+    string getquality();
     string getname();
+    int getmana();
+    short gettype();
+    bool getselect();
+    string getfamily();
+    int getlife();
+    int getdamage();
+    int getmovement();
+    bool getsleep();
+    int getbuild();
 
 };
 

@@ -104,6 +104,7 @@ using namespace sf;
         z.y=1;
         int a=0;
         int b=600;
+        cout<<hand.size()<<"taille dans le echo"<<endl;
         for(unsigned int i=0; i<hand.size();i++){
 
             Vector2i position_mouse = Mouse::getPosition(*window);
@@ -146,7 +147,15 @@ using namespace sf;
     }
 //_______________________________PLACED______________________
 
-void Player::addCardPlaced (int i) {               //Ajoute une carte dans la main (proviens du deck)
-        placed.push_back(new CardBoard(hand[i]));
+Card* Player::getcard(int i){
+    return hand[i];
+}
+
+void Player::addCardPlaced (CardBoard* card,int i) {               //Ajoute une carte dans la main (proviens du deck)
+        placed.push_back(card);
         hand.erase(hand.begin()+i);
-    }
+}
+
+void Player::echoPlaced(){
+
+}

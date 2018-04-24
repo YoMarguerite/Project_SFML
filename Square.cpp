@@ -11,6 +11,7 @@ using namespace sf;
 Square::Square(int id){
 
     numero = id;
+    empty=true;
 
     // en fonction de l'id reçus on va définir cet objet, lui affecter une couleur un camp et un type
     if(id < 16){
@@ -88,6 +89,23 @@ string Square::gettype(){
 vector<Square*> Square::getnearby(){
     return nearbySquare;
 }
+void Square::setpos(int x, int y){
+    position.x=x;
+    position.y=y;
+}
 void Square::setnearby(Square* square){
     nearbySquare.push_back(square);
+}
+void Square::setpawn(Card* card,Vector2f position){
+    pawn=new CardBoard(card,position);
+    empty=false;
+}
+CardBoard* Square::getpawn(){
+    return pawn;
+}
+Vector2f Square::getpos(){
+    cout<<"square id:"<<numero<<endl;
+    cout<<"square x:"<<position.x<<endl;
+    cout<<"square y:"<<position.y<<endl;
+    return position;
 }

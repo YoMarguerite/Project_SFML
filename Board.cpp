@@ -60,7 +60,7 @@ Board::Board(Player* joueur){
             posy=40;
             decy=188;
         }
-
+        tab[i]->setpos(posx,i*decy+posy);
         graphics_board.push_back(hex(posx,i*decy+posy));
         lengh=graphics_board.size();
         i++;
@@ -170,6 +170,9 @@ void Board::display(RenderWindow* window){
 
             window->draw(graphics_board[i]);
     }
+    for(unsigned int i=0;i<allcard.size();i++){
+        window->draw(allcard[i]->getimage());
+    }
 }
 
 // gestion de la collision de chaque case avec la souris
@@ -184,17 +187,28 @@ void Board::collision(RenderWindow* window){
             graphics_board[i].setFillColor(Color(186, 186, 186));
             // si on clique les caractéristiques de la case s'affiche
             if(Mouse::isButtonPressed(Mouse::Left)){
+                while(Mouse::isButtonPressed(Mouse::Left)){}
                 echo_case(i);
-                if(tab[i]->getcamp()=="Joueur 1"){
+//                if(tab[i]->getcamp()=="Joueur 1"){
                     int select=joueur1->getselect();
                     if(select!=-1){
-                        joueur1->addCardPlaced(select);
+                        cout<<joueur1->hand.size()<<"taille avant"<<endl;
+                        tab[i]->setpawn(joueur1->getcard(select), tab[i]->getpos());
+                        Vector2f j=tab[i]->getpos();
+                        cout<<j.x<<endl;
+                        cout<<j.y<<endl;
+                        joueur1->addCardPlaced(tab[i]->getpawn(),select);
+                        setallcard(tab[i]->getpawn());
                     }
-                }
+//                }
             }
         }else{
             // si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
             graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
         }
     }
+}
+
+void Board::setallcard(CardBoard* card){
+    allcard.push_back(card);
 }

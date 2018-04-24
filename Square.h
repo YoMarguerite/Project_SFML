@@ -10,6 +10,7 @@ using namespace sf;
 class Square{
 private:
     int numero;
+    Vector2f position;
     // couleur enregistrée pour chaque case
     int red;
     int green;
@@ -36,7 +37,11 @@ public:
     string getcamp();
     string gettype();
     vector<Square*> getnearby();
+    void setpos(int x, int y);
     void setnearby(Square* tab);
+    void setpawn(Card* card,Vector2f position);
+    CardBoard* getpawn();
+    Vector2f getpos();
 };
 
 #endif // SQUARE_H_INCLUDED
