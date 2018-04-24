@@ -199,6 +199,7 @@ int main()
             chrono.endturn(&window);
             joueur1.displayHand();
             joueur1.echoHand(&window);
+            joueur1.stockMana(&window);
 
             // condition inutile c'était juste pour mes tests
             if(Keyboard::isKeyPressed(Keyboard::A)){

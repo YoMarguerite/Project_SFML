@@ -11,6 +11,7 @@ using namespace sf;
         this->stat=stat;
         mana=1;
         mana_dispo=1;
+        displayMana=vector<Sprite>(10);
         deck = {6,52,35,59,17};
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));
@@ -18,9 +19,17 @@ using namespace sf;
         if(!fontselect.loadFromFile("font/CloisterBlack.ttf")){
             cerr<<"Fichier font 'CloisterBlack.ttf' introuvable"<<endl;
         }
+
         cardselect.setString("Select");
         cardselect.setFont(fontselect);
         cardselect.setCharacterSize(30);
+
+        if(!manaAvailable.loadFromFile("image/mana_available.png")){
+            cout << "erreur";
+        }
+        if(!manaEmpty.loadFromFile("image/mana_empty.png")){
+            cout << "erreur";
+        }
     }
 
     // ____________________DECK____________________
@@ -135,9 +144,28 @@ using namespace sf;
         }
     }
 
+    void Player::stockMana(RenderWindow* window){
+        Sprite mana;
+        cout<<mana_dispo<<endl;
+        for(unsigned int i=0; i<10;i++){
+            if(i >= (10 - mana_dispo)){
+                mana.setTexture(manaAvailable);
+                displayMana[i]=mana;
+            } else {
+                mana.setTexture(manaEmpty);
+                displayMana[i]=mana;
+            }
+            displayMana[i].setPosition(80,120+i*50);
+            window->draw(displayMana[i]);
+        }
+    }
+
     void Player::augmentmana(){
         if(mana_dispo<10){
             mana++;
+            mana_dispo=mana;
+        }
+        if(mana_dispo == 10){
             mana_dispo=mana;
         }
     }

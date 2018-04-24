@@ -20,9 +20,7 @@ CardBoard::CardBoard(Card* card,Vector2f position){
         cerr<<"Image introuvable"<<endl;
     }
     image.setTexture(dessin);
-    cout<<"x :" << position.x <<endl;
-    cout<<"y :"<<position.y<<endl;
-    image.setPosition(position.x,position.y);
+    image.setPosition(position.x-80,position.y+20);
 }
 
 void CardBoard::echo(){

@@ -60,7 +60,7 @@ Board::Board(Player* joueur){
             posy=40;
             decy=188;
         }
-        tab[i]->setpos(posx,i*decy+posy);
+        tab[lengh]->setpos(posx,i*decy+posy);
         graphics_board.push_back(hex(posx,i*decy+posy));
         lengh=graphics_board.size();
         i++;
@@ -192,7 +192,6 @@ void Board::collision(RenderWindow* window){
 //                if(tab[i]->getcamp()=="Joueur 1"){
                     int select=joueur1->getselect();
                     if(select!=-1){
-                        cout<<joueur1->hand.size()<<"taille avant"<<endl;
                         tab[i]->setpawn(joueur1->getcard(select), tab[i]->getpos());
                         Vector2f j=tab[i]->getpos();
                         cout<<j.x<<endl;
