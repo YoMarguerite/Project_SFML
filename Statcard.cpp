@@ -15,11 +15,11 @@ Statcard::Statcard(){
     int lengh=80;
     ifstream file ("card_export.csv",ios::in);
     card=vector<vector<string>>(lengh);
+    image=vector<Texture>(lengh);
     int index=0;
     int id=0;
 
     for(int i = 0; i<lengh;i++){
-
         card[i]=vector<string>(10);
     }
 
@@ -57,7 +57,7 @@ Statcard::Statcard(){
                 cout<<"c'est bon : "+card[i][2]<<endl;
 
             }
-            image.push_back(texture);
+            image[i]=texture;
         }
       }
 

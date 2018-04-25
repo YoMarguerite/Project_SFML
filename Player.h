@@ -54,6 +54,8 @@ class Player{
 
     int getselect();
 
+    void deselect();
+
     //____________________PLACED__________________
 
     Card* getcard(int i);
@@ -67,6 +69,10 @@ class Player{
     void stockMana(RenderWindow* window);
 
     void augmentmana();
+
+    bool checkmana(int i);
+
+    void spendmana(int i);
 };
 
 #endif // PLAYER_H_INCLUDED

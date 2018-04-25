@@ -188,18 +188,17 @@ void Board::collision(RenderWindow* window){
             // si on clique les caractéristiques de la case s'affiche
             if(Mouse::isButtonPressed(Mouse::Left)){
                 while(Mouse::isButtonPressed(Mouse::Left)){}
-                echo_case(i);
-//                if(tab[i]->getcamp()=="Joueur 1"){
+                    echo_case(i);
                     int select=joueur1->getselect();
-                    if(select!=-1){
-                        tab[i]->setpawn(joueur1->getcard(select), tab[i]->getpos());
-                        Vector2f j=tab[i]->getpos();
-                        cout<<j.x<<endl;
-                        cout<<j.y<<endl;
-                        joueur1->addCardPlaced(tab[i]->getpawn(),select);
-                        setallcard(tab[i]->getpawn());
+                    if((select!=-1)&&(tab[i]->getcamp()=="Joueur 1")){
+                        if(joueur1->checkmana(select)){
+                            joueur1->spendmana(select);
+                            tab[i]->setpawn(joueur1->getcard(select), tab[i]->getpos());
+                            joueur1->addCardPlaced(tab[i]->getpawn(),select);
+                            setallcard(tab[i]->getpawn());
+                            joueur1->deselect();
+                        }
                     }
-//                }
             }
         }else{
             // si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine

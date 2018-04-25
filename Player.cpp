@@ -12,7 +12,7 @@ using namespace sf;
         mana=1;
         mana_dispo=1;
         displayMana=vector<Sprite>(10);
-        deck = {6,52,35,59,17};
+        deck = {6,56,34,69,17};
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));
         select=-1;
@@ -170,8 +170,23 @@ using namespace sf;
         }
     }
 
+    bool Player::checkmana(int i){
+
+        return hand[i]->getmana()<=mana_dispo;
+    }
+
+    void Player::spendmana(int i){
+        cout<<"ton mana .... :"<<mana_dispo<<endl;
+        cout<<"son mana .... :"<<hand[i]->getmana()<<endl;
+        mana_dispo-=hand[i]->getmana();
+    }
+
     int Player::getselect(){
         return select;
+    }
+
+    void Player::deselect(){
+        select=-1;
     }
 //_______________________________PLACED______________________
 

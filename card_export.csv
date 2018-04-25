@@ -31,7 +31,7 @@
 31;Rare;Hydre;Bete;5;3;3;1;0;0
 32;Rare;Missionnaire;Royal;5;3;5;2;0;0
 33;Epique;Bourreau;Royal;5;2;5;2;0;0
-34;Epique;Adepte de la lumière;Royal;6;2;7;1;0;0
+34;Epique;Adepte de la lumiere;Royal;6;2;7;1;0;0
 35;Rare;Ent;Nature;6;4;10;1;0;0
 36;"Epique
 ";Roi Slime;Slime;6;5;5;2;0;0
@@ -50,11 +50,11 @@
 49;Legendaire;Marcheur Blanc;Mort-vivant;8;6;7;1;0;0
 50;Epique;Demon;Enfer;9;8;10;2;0;0
 51;Epique;Golem;Colosse;9;8;15;1;0;0
-52;Commun;Muraille;Royal;2;0;4;0;0;1
-53;Rare;Lanterne;Royal;2;0;5;0;0;1
-54;Commun;Electrocuteur;Mechanique;3;0;5;0;1;1
-55;Rare;Extracteur de Slime;Slime;3;0;4;0;1;1
-56;Commun;Canon;Barbare;3;2;5;0;1;1
+52;Rare;Lanterne;Royal;2;0;5;0;0;1
+53;Commun;Electrocuteur;Mechanique;3;0;5;0;1;1
+54;Rare;Extracteur de Slime;Slime;3;0;4;0;1;1
+55;Commun;Canon;Barbare;3;2;5;0;1;1
+56;Commun;Muraille;Royal;4;0;4;0;0;1
 57;Commun;Tour de Guet;Barbare;4;0;8;0;1;1
 58;Rare;Tribu Gobeline;Gobelin;4;0;6;0;1;1
 59;Epique;Oeuf d'Aragog;Bete;4;0;6;0;1;1

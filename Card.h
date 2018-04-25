@@ -12,7 +12,7 @@ class Card{
     int id;
     string quality;      //commun  rare   epique   legendaire
     string name;
-    int mana;
+    unsigned int mana;
     short type;         //0:unité   1:batiment  2:sort
     string effectText;
     Texture dessin;
