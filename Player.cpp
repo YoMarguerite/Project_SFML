@@ -7,6 +7,8 @@
 using namespace std;
 using namespace sf;
 
+
+// Importation des statistiques des cartes
     Player::Player(Statcard* stat) {
         this->stat=stat;
         mana=1;
@@ -24,6 +26,8 @@ using namespace sf;
         cardselect.setFont(fontselect);
         cardselect.setCharacterSize(30);
 
+
+    // Chargement des textures de mana disponible et mana vide pour la réserve de mana
         if(!manaAvailable.loadFromFile("image/mana_available.png")){
             cout << "erreur";
         }
@@ -106,7 +110,8 @@ using namespace sf;
         cout << endl << endl;
     }
 
-    void Player::echoHand(RenderWindow* window){
+    void Player::echoHand(RenderWindow* window){ // Collision avec les cartes
+    int hover=-1;
         int hover=-1;
         Vector2f z;
         z.x=1;
@@ -144,7 +149,7 @@ using namespace sf;
         }
     }
 
-    void Player::stockMana(RenderWindow* window){
+    void Player::stockMana(RenderWindow* window){ // Réserve de mana
         Sprite mana;
         cout<<mana_dispo<<endl;
         for(unsigned int i=0; i<10;i++){
@@ -160,7 +165,7 @@ using namespace sf;
         }
     }
 
-    void Player::augmentmana(){
+    void Player::augmentmana(){ // Incrémentation du mana
         if(mana_dispo<10){
             mana++;
             mana_dispo=mana;
@@ -170,7 +175,7 @@ using namespace sf;
         }
     }
 
-    bool Player::checkmana(int i){
+    bool Player::checkmana(int i){ // Décrémentation du mana des cartes du mana dispo
 
         return hand[i]->getmana()<=mana_dispo;
     }

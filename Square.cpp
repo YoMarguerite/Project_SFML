@@ -8,6 +8,7 @@
 using namespace std;
 using namespace sf;
 
+// Méthodes concernant les cases du plateau
 Square::Square(int id){
 
     numero = id;

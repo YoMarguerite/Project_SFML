@@ -78,6 +78,7 @@ void game(RenderWindow* window, Vector2i position_mouse, Sprite exit, int* inter
 
 int main()
 {
+    // Taille de la fenêtre
     Vector2f windowsize;
     windowsize.x=1600;
     windowsize.y=1000;
@@ -104,7 +105,11 @@ int main()
     Board board(&joueur1);
     board.liaison();
 
+    // Chronomètre
     Timer chrono(windowsize,&joueur1,&joueur2);
+
+    //    Chargement de la texture pour le background du Menu
+
 
     Texture textureBkg;
     if (!textureBkg.loadFromFile("image/backgroundMenu.png")){
@@ -112,7 +117,7 @@ int main()
 
     }
 
-    //    Chargement de la texture pour le background
+    //    Chargement de la texture pour le background du Jeu
     Sprite bckg;
     Texture textureBkg2;
     if (!textureBkg2.loadFromFile("image/backgroundGame.jpg")){

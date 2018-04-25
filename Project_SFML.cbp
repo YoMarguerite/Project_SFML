@@ -72,6 +72,18 @@
 		<Unit filename="Event.h">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="Game.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Game.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Menu.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Menu.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Player.cpp">
 			<Option target="Debug" />
 		</Unit>

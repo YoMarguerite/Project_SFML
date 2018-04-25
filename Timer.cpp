@@ -6,6 +6,8 @@
 using namespace std;
 using namespace sf;
 
+
+// Méthodes du Timer pour le tour du joueur
 Timer::Timer(Vector2f windowsize,Player* joueur1,Player* joueur2){
     this->joueur1=joueur1;
     this->joueur2=joueur2;
@@ -38,6 +40,7 @@ Timer::Timer(Vector2f windowsize,Player* joueur1,Player* joueur2){
     endTurn.setPosition(windowsize.x/6,windowsize.y/50);
 }
 
+// Méthode pour le afficher le timer
 void Timer::echo(RenderWindow* window){
     string str;
     if (countdown < seconds(61)){
@@ -62,6 +65,7 @@ void Timer::echo(RenderWindow* window){
     window->draw(joueur);
 }
 
+// Méthode de changement de tour
 void Timer::changement(){
     nbturn++;
     verif=0;
@@ -82,6 +86,7 @@ void Timer::changement(){
     }
 }
 
+// Méthode de fin de tour
 void Timer::endturn(RenderWindow* window){
     Vector2i position_mouse = Mouse::getPosition(*window);
     if(endTurn.getGlobalBounds().contains(position_mouse.x,position_mouse.y)){

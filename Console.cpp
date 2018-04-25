@@ -9,7 +9,7 @@
 using namespace std;
 using namespace sf;
 
-
+// Méthode concernant la console de test
 Console::Console() : threadConsole(&Console::testCommand, this){
     threadConsole.launch();
 }

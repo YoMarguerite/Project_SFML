@@ -5,7 +5,7 @@
 using namespace std;
 using namespace sf;
 
-
+// Méthodes concernant les cartes du plateau
 CardBoard::CardBoard(Card* card,Vector2f position){
     quality=card->getquality();
     name=card->getname();

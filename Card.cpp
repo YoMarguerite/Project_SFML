@@ -6,7 +6,7 @@
 using namespace std;
 using namespace sf;
 
-
+// Méthodes concernant les cartes qui sont dans la main du joueur
 Card::Card(int id, Statcard* stat, int i){
     this->id = id;
     vector<string>importstat=stat->getstats(id);

@@ -9,6 +9,7 @@
 using namespace std;
 using namespace sf;
 
+// Méthode pour les statistiques des cartes
 Statcard::Statcard(){
     string line;
     char letter;

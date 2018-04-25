@@ -8,6 +8,7 @@
 using namespace std;
 using namespace sf;
 
+// Constructeur des cases
 CircleShape hex(int posx, int posy){
 
     // taille d'un côté et nombre de points

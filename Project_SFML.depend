@@ -1008,3 +1008,113 @@
 	<string>
 	"Statcard.h"
 
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\board.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Board.h"
+	"Player.h"
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\board.h
+	<vector>
+	<SFML/Graphics.hpp>
+	"Square.h"
+	"Player.h"
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\square.h
+	"Card.h"
+	"CardBoard.h"
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\card.h
+	<SFML/Graphics.hpp>
+	"Statcard.h"
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\statcard.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\cardboard.h
+	"Card.h"
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\player.h
+	<vector>
+	<SFML/Graphics.hpp>
+	"Statcard.h"
+	"Card.h"
+	"CardBoard.h"
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\card.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<string>
+	"Card.h"
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\cardboard.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"CardBoard.h"
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\console.cpp
+	<iostream>
+	<stdio.h>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Console.h"
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\console.h
+	<iostream>
+	<SFML/System.hpp>
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<fstream>
+	<sstream>
+	<string>
+	"Board.h"
+	"Player.h"
+	"Timer.h"
+	"Console.h"
+	"Statcard.h"
+
+1524665824 c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\timer.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+	"Player.h"
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\player.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<cstdlib>
+	<ctime>
+	"Player.h"
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\square.cpp
+	<iostream>
+	<stdio.h>
+	<SFML/Graphics.hpp>
+	<vector>
+	<string>
+	"Square.h"
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\statcard.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+	<fstream>
+	<sstream>
+	<string>
+	"Statcard.h"
+
+1524665824 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\timer.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<sstream>
+	"Timer.h"
+
