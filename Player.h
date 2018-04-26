@@ -12,6 +12,7 @@ using namespace sf;
 class Player{
     private:
     Statcard* stat;
+    bool active;
     vector<unsigned int> deck;
     vector<unsigned int> discard;
     vector<Card*> hand;
@@ -28,6 +29,12 @@ class Player{
     public:
 
     Player(Statcard* stat);
+
+    // ____________________ACTIVE____________________
+
+    void switchActive(bool active);
+
+    bool getActive();
 
     // ____________________DECK____________________
 

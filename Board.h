@@ -35,6 +35,7 @@ public:
     void display(RenderWindow* window);
     void collision(RenderWindow* window);
     void setallcard(CardBoard* card);
+    void deselect();
 };
 
 #endif // PLATEAU_H_INCLUDED

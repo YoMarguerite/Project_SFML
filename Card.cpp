@@ -6,7 +6,7 @@
 using namespace std;
 using namespace sf;
 
-
+//constructeur d'une carte, on définis ses stats
 Card::Card(int id, Statcard* stat, int i){
     this->id = id;
     vector<string>importstat=stat->getstats(id);
@@ -26,62 +26,70 @@ Card::Card(int id, Statcard* stat, int i){
     image.setScale(Vector2f(0.5f, 0.5f));
     select=false;
 }
-
-void Card::importStats(){
-
-}
-
+//return le sprite de la carte
 Sprite Card::getimage(){
     return image;
 }
-
+//affichage de la carte
 void Card::echocard(RenderWindow* window){
 
     window->draw(image);
 }
-
+//modification de la taille de la carte si on passe dessus
 void Card::hovercard(int a, int b, Vector2f z){
     image.setPosition(a,b);
     image.setScale(z);
 }
-
+//la carte reprends sa taille normale
 void Card::nothovercard(int i){
     image.setPosition(300+i*150,800);
     image.setScale(0.5,0.5);
 }
+//on sélectionnes ou on déselectionnes la carte
 void Card::setselect(bool check){
     select=check;
 }
+//on récupère sa rareté
 string Card::getquality(){
     return quality;
 }
+//on récupère son nom
 string Card::getname(){
     return name;
 }
+//on récupère son coût en mana
 int Card::getmana(){
     return mana;
 }
+//on récupère son type, unité, bâtiment, sort
 short Card::gettype(){
     return type;
 }
+//on récupère le bool qui permet de dire si elle est sélectionnée ou non
 bool Card::getselect(){
     return select;
 }
+//on récupère sa famille
 string Card::getfamily(){
     return family;
 }
+//on récupère sa vie
 int Card::getlife(){
     return life;
 }
+//on récupère son attaque
 int Card::getdamage(){
     return damage;
 }
+//on récupère ses points de déplacements
 int Card::getmovement(){
     return movement;
 }
+//on récupère son état endormie ou non
 bool Card::getsleep(){
     return sleep;
 }
+//on récupère son temps de construction
 int Card::getbuild(){
     return build;
 }

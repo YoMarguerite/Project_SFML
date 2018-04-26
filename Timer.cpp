@@ -6,6 +6,7 @@
 using namespace std;
 using namespace sf;
 
+//constructeur du timer
 Timer::Timer(Vector2f windowsize,Player* joueur1,Player* joueur2){
     this->joueur1=joueur1;
     this->joueur2=joueur2;
@@ -37,7 +38,7 @@ Timer::Timer(Vector2f windowsize,Player* joueur1,Player* joueur2){
     endTurn.setTexture(endTurnButton);
     endTurn.setPosition(windowsize.x/6,windowsize.y/50);
 }
-
+//affichage du timer
 void Timer::echo(RenderWindow* window){
     string str;
     if (countdown < seconds(61)){
@@ -50,7 +51,6 @@ void Timer::echo(RenderWindow* window){
             stringstream stream;
             stream << chrono;
             str = stream.str();
-            cout << str<<endl;
             time.setString(str);
             verif = sec;
         }
@@ -61,7 +61,7 @@ void Timer::echo(RenderWindow* window){
     window->draw(time);
     window->draw(joueur);
 }
-
+//changement de joueur
 void Timer::changement(){
     nbturn++;
     verif=0;
@@ -73,15 +73,21 @@ void Timer::changement(){
         joueur.setString("Joueur 2");
         this->joueur2->addCardHand();
         joueur2->augmentmana();
+        joueur2->displayHand();
+        joueur1->switchActive(false);
+        joueur2->switchActive(true);
     }else{
         joueurcourant--;
         cout<<"joueur"<<joueurcourant<<endl;
         joueur.setString("Joueur 1");
         this->joueur1->addCardHand();
         joueur1->augmentmana();
+        joueur1->displayHand();
+        joueur1->switchActive(true);
+        joueur2->switchActive(false);
     }
 }
-
+// collision avec le bouton fin de tour
 void Timer::endturn(RenderWindow* window){
     Vector2i position_mouse = Mouse::getPosition(*window);
     if(endTurn.getGlobalBounds().contains(position_mouse.x,position_mouse.y)){

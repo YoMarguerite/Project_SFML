@@ -72,6 +72,12 @@
 		<Unit filename="Event.h">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="Menu.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Menu.h">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="Player.cpp">
 			<Option target="Debug" />
 		</Unit>

@@ -26,5 +26,6 @@ public:
     CardBoard(Card* card,Vector2f position);
     void echo();
     Sprite getimage();
+    int getmovement();
 };
 #endif // CARTEPLATEAU_H_INCLUDED

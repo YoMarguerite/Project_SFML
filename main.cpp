@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "Console.h"
 #include "Statcard.h"
+#include "Menu.h"
 
 
 using namespace std;
@@ -23,42 +24,10 @@ bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
 }
 
 
-// fonction pour gérer le menu
-void menu(RenderWindow* window, Vector2i position_mouse,Sprite play,Sprite leave, int* interface){
-    // si le bouton jouer contient la souris
-    if(sprite_mouse(window,position_mouse,play)){
-            // on change sa couleur
-            play.setColor(Color(57,206,107));
-            // si on clique
-            if(Mouse::isButtonPressed(Mouse::Left)){
-                // le jeu commence et on change d'interface
-                cout << "Le jeu commence" << endl;
-                *interface = 2;
-            }
-        }else{
-            // sinon on lui redonne sa couleur d'origine
-            play.setColor(Color(255,255,255));
-        }
 
-        // si le bouton quitter contient la souris
-        if(sprite_mouse(window,position_mouse,leave)){
-            // on change sa couleur
-            leave.setColor(Color(150,150,150));
-            // si on clique la fenêtre se ferme
-            if(Mouse::isButtonPressed(Mouse::Left)){
-                window->close();
-            }
-        }else{
-            // sinon le bouton reprend sa couleur
-            leave.setColor(Color(255,255,255));
-        }
-        // on dessine le bouton jouer et quitter sur la fenêtre
-        window->draw(play);
-        window->draw(leave);
-}
-
-// fonction contenant le futur code du jeu
-void game(RenderWindow* window, Vector2i position_mouse, Sprite exit, int* interface){
+// fonction contenant la collision avec le bouton exit
+void game(RenderWindow* window, Sprite exit, int* interface){
+    Vector2i position_mouse=Mouse::getPosition();
     // si le bouton quitter contient la souris
     if(sprite_mouse(window,position_mouse,exit)){
         // on change sa couleur
@@ -78,54 +47,43 @@ void game(RenderWindow* window, Vector2i position_mouse, Sprite exit, int* inter
 
 int main()
 {
+    //on définit la taille de la fenêtre
     Vector2f windowsize;
     windowsize.x=1600;
     windowsize.y=1000;
 
     // fenêtre principale avec sa taille et son nom
     RenderWindow window(VideoMode(windowsize.x,windowsize.y), "LES TOURS");
-    // Vector2i est l'équivalent d'un point il peut contenir deux valeurs, plus tard on lui affectera les coordonnées de la souris
-    Vector2i position_mouse;
-
+    //on déclare une console, class en cour de développement
     Console console;
+    //on déclare un menu
+    Menu menu(windowsize);
 
-    // sprite des boutons du menu
-    Sprite play, leave;
     // variable définissant si on est sur le menu ou dans une partie
     int interface = 1;
-    // limite les fps pour ne pas faire surchauffer la carte graphique
+    // limite les fps pour ne pas faire surchauffer la carte graphique (ça peut vraiment crasher sinon)
     window.setFramerateLimit(60);
-    // création de l'objet plateau et des cases
+    //création de l'instance stat qui contiendra les stats de toutes les cartes, on importe les stats qu'une seule fois
     Statcard stat;
-
+    //Création des joueurs
     Player joueur1(&stat);
     Player joueur2(&stat);
-
+    //création du plateau
     Board board(&joueur1);
     board.liaison();
-
+    //création du timer
     Timer chrono(windowsize,&joueur1,&joueur2);
 
-    Texture textureBkg;
-    if (!textureBkg.loadFromFile("image/backgroundMenu.png")){
-        cout << "erreur";
-
-    }
-
     //    Chargement de la texture pour le background
-    Sprite bckg;
     Texture textureBkg2;
     if (!textureBkg2.loadFromFile("image/backgroundGame.jpg")){
         cout << "erreur";
-
     }
 
     //    Chargement de la texture pour le background
     Sprite bckg2;
 
     //on donne cette texture aux sprites, et on leur donne des coordonnées
-    bckg.setTexture(textureBkg);
-    bckg.setPosition(0,0);
     bckg2.setTexture(textureBkg2);
     bckg2.setPosition(0,0);
 
@@ -138,28 +96,6 @@ int main()
     if (!texture_leave.loadFromFile("image/button_quit.png")){
         cout << "erreur";
     }
-    //on donne cette texture aux sprites, et on leur donne des coordonnées
-    play.setTexture(texture_play);
-    play.setPosition(windowsize.x/3, 4*windowsize.y/9);
-    leave.setTexture(texture_leave);
-    leave.setPosition(windowsize.x/3, 5.5*windowsize.y/9);
-
-
-    // --------------------------- TITRE DU JEU ------------------------------
-
-
-    // Affichage tu titre du jeu
-    Font title;
-    if(!title.loadFromFile("font/dumbledor.ttf")){
-        cerr<<"Fichier font 'dumbledor.ttf' introuvable"<<endl;
-    }
-
-    Text titleGame;
-    titleGame.setString("Battle Tower");
-    titleGame.setFont(title);
-    titleGame.setCharacterSize(100);
-    titleGame.setPosition(3*windowsize.x/9, windowsize.y/9);
-    titleGame.setFillColor(sf::Color::White);
 
     // ------------------- QUITTER LE JEU EN COURS DE PARTIE -------------------
 
@@ -179,29 +115,26 @@ int main()
             if (event.type == Event::Closed){
                  window.close();
             }
-
         }
         window.clear();
         // on vérifie sur qu'elle interface on est menu ou en jeu
         if(interface == 1){
             // execution du menu
-            window.draw(bckg);
-            menu(&window,position_mouse,play,leave,&interface);
-            window.draw(titleGame);
-
+            menu.display(&window,&interface);
         }else{
             window.draw(bckg2);
              // execution du jeu
-            game(&window, position_mouse,exit,&interface);
+            game(&window,exit,&interface);
             board.display(&window);
             board.collision(&window);
+            board.deselect();
             chrono.echo(&window);
             chrono.endturn(&window);
-            joueur1.displayHand();
+
             joueur1.echoHand(&window);
             joueur1.stockMana(&window);
 
-            // condition inutile c'était juste pour mes tests
+            // condition inutile c'était juste pour des tests
             if(Keyboard::isKeyPressed(Keyboard::A)){
                 int id = -1;
                 while(( id < 0 ) || (id > 49)){
@@ -210,7 +143,7 @@ int main()
                 board.echo_case(id);
             }
         }
-
+        //affichage sur la fenêtre
         window.display();
 
     }

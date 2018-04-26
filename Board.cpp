@@ -8,6 +8,7 @@
 using namespace std;
 using namespace sf;
 
+//créateur des cases de manière graphique
 CircleShape hex(int posx, int posy){
 
     // taille d'un côté et nombre de points
@@ -21,7 +22,7 @@ CircleShape hex(int posx, int posy){
 
     return hexagon;
 }
-
+//constructeur du plateau
 Board::Board(Player* joueur){
     joueur1=joueur;
 // création de chaque case puis on conserve leurs adresses dans le vecteur tab
@@ -29,7 +30,7 @@ Board::Board(Player* joueur){
         tab.push_back(new Square(i));
     }
 
-// création de chaque hexagone avec leurs positions
+// création de chaque hexagone avec leurs positions, hexagone=case graphique
     int lengh=graphics_board.size();
     int i=1;
     int posx=555, posy=40, decy=188;
@@ -60,6 +61,7 @@ Board::Board(Player* joueur){
             posy=40;
             decy=188;
         }
+        //sauvegarde des coordonnées dans la class
         tab[lengh]->setpos(posx,i*decy+posy);
         graphics_board.push_back(hex(posx,i*decy+posy));
         lengh=graphics_board.size();
@@ -183,30 +185,65 @@ void Board::collision(RenderWindow* window){
         Vector2i position_mouse = Mouse::getPosition(*window);
         // on vérifie que l'hexagone contient la souris
         if(graphics_board[i].getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
-            // si c'est le cas on change sa couleur en magenta
+            // si c'est le cas on change sa couleur
             graphics_board[i].setFillColor(Color(186, 186, 186));
-            // si on clique les caractéristiques de la case s'affiche
+            // si on clique
             if(Mouse::isButtonPressed(Mouse::Left)){
+                //on bloque la souris, l'action se fera quand l'utilisateur ne cliquera plus
                 while(Mouse::isButtonPressed(Mouse::Left)){}
+                //les caractéristiques de la case s'affiche
                     echo_case(i);
+                    //on récupère la carte sélectionné par le joueur
                     int select=joueur1->getselect();
-                    if((select!=-1)&&(tab[i]->getcamp()=="Joueur 1")){
-                        if(joueur1->checkmana(select)){
+                    //si une carte est sélectionnée, que la case appartient au joueur1 que ce n'est pas une tour et qu'elle est vide
+                    if((select!=-1)&&(tab[i]->getcamp()=="Joueur 1")&&(tab[i]->gettype()!="Tour")&&(tab[i]->getempty()==true)){
+                            //si le joueur a assez de mana pour poser la carte
+                        if(joueur1->checkmana(select) && joueur1->getActive()== true){
+                            //le mana est dépensé
                             joueur1->spendmana(select);
+                            //on pose la carte sur la case
                             tab[i]->setpawn(joueur1->getcard(select), tab[i]->getpos());
+                            //le joueur 1 déplace la carte de la main jusqu'à ses cartes de plateau
                             joueur1->addCardPlaced(tab[i]->getpawn(),select);
+                            //la carte est aussi sauvegardée dans la class plateau
                             setallcard(tab[i]->getpawn());
+                            //on désélectionnes la carte
                             joueur1->deselect();
                         }
                     }
+                    //si la case est occupée
+                    if(tab[i]->getempty()==false){
+                        //on récupère les points de déplacements de l'unité
+                        tab[i]->getpawn()->getmovement();
+                        //on récupère les cases proches
+                        vector<Square*>SquareSelect=tab[i]->getnearby();
+                        //on les sélectionnes
+                        for(unsigned int i=0;i<SquareSelect.size();i++){
+                            SquareSelect[i]->setselect();
+                        }
+
+                    }
             }
         }else{
-            // si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
-            graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
+            //si une case est sélectionnée sa couleur change
+            if(tab[i]->getselect()){
+                graphics_board[i].setFillColor(Color(50,200,150));
+            }else{
+                // sinon si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
+                graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
+            }
         }
     }
 }
-
+//on ajoute une carte sur le plateau
 void Board::setallcard(CardBoard* card){
     allcard.push_back(card);
+}
+//on déselectionnes toutes les cases
+void Board::deselect(){
+    if(Mouse::isButtonPressed(Mouse::Right)){
+        for(int i=0; i<50; i++){
+            tab[i]->deselect();
+        }
+    }
 }

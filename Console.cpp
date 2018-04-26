@@ -9,11 +9,11 @@
 using namespace std;
 using namespace sf;
 
-
+//constructeur de la console
 Console::Console() : threadConsole(&Console::testCommand, this){
     threadConsole.launch();
 }
-
+//implémentation des commandes
 void Console::testCommand() {
     bool active = true;
     while (active == true){
