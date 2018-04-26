@@ -111,7 +111,6 @@ using namespace sf;
     }
 
     void Player::echoHand(RenderWindow* window){ // Collision avec les cartes
-    int hover=-1;
         int hover=-1;
         Vector2f z;
         z.x=1;
@@ -135,6 +134,7 @@ using namespace sf;
                     hand[hover]->echocard(window);
                     for(unsigned int j=0; j<hand.size();j++){
                         hand[j]->setselect(false);
+
                     }
                     hand[hover]->setselect(true);
                 }

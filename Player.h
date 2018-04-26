@@ -26,7 +26,6 @@ class Player{
     Texture manaEmpty;;
     Texture manaAvailable;
     public:
-
     Player(Statcard* stat);
 
     // ____________________DECK____________________
