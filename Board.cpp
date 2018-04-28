@@ -3,12 +3,12 @@
 #include <vector>
 #include <string>
 #include "Board.h"
-#include "Player.h"
+
 
 using namespace std;
 using namespace sf;
 
-// Constructeur des cases
+//créateur des cases de manière graphique
 CircleShape hex(int posx, int posy){
 
     // taille d'un côté et nombre de points
@@ -22,15 +22,16 @@ CircleShape hex(int posx, int posy){
 
     return hexagon;
 }
-
+//constructeur du plateau
 Board::Board(Player* joueur){
-    joueur1=joueur;
+    this->joueur=joueur;
+    PlaySquare=-1;
 // création de chaque case puis on conserve leurs adresses dans le vecteur tab
     for(int i=0; i<50 ; i++){
         tab.push_back(new Square(i));
     }
 
-// création de chaque hexagone avec leurs positions
+// création de chaque hexagone avec leurs positions, hexagone=case graphique
     int lengh=graphics_board.size();
     int i=1;
     int posx=555, posy=40, decy=188;
@@ -61,6 +62,7 @@ Board::Board(Player* joueur){
             posy=40;
             decy=188;
         }
+        //sauvegarde des coordonnées dans la class
         tab[lengh]->setpos(posx,i*decy+posy);
         graphics_board.push_back(hex(posx,i*decy+posy));
         lengh=graphics_board.size();
@@ -102,7 +104,7 @@ void Board::echo_case(int id){
 }
 
 // retourne les valeurs de tab donc les adresses de chaque case
-vector<Square*>& Board::get() {
+vector<Square*> Board::get() {
 
   return tab;
 
@@ -173,7 +175,34 @@ void Board::display(RenderWindow* window){
     }
     for(unsigned int i=0;i<allcard.size();i++){
         window->draw(allcard[i]->getimage());
+        window->draw(allcard[i]->getvie());
+        window->draw(allcard[i]->getattaque());
+        window->draw(allcard[i]->getmoving());
     }
+}
+
+void Board::selectsquare(int i){
+    for(unsigned int i=0;i<SquareSelect.size();i++){
+        SquareSelect[i]->deselect();
+    }
+    PlaySquare=i;
+    //on récupère les points de déplacements de l'unité
+    if(tab[i]->getpawn()->getmovement()>0){
+         //on récupère les cases proches
+        SquareSelect=tab[i]->getnearby();
+        //on les sélectionnes
+        for(unsigned int i=0;i<SquareSelect.size();i++){
+            SquareSelect[i]->setselect();
+        }
+    }
+}
+
+void Board::movementpawn(int i){
+    tab[i]->movepawn(tab[PlaySquare]->getpawn());
+    tab[i]->getpawn()->setmovement();
+    tab[i]->getpawn()->setposition(tab[i]->getpos());
+    tab[PlaySquare]->setempty();
+    selectsquare(i);
 }
 
 // gestion de la collision de chaque case avec la souris
@@ -184,30 +213,91 @@ void Board::collision(RenderWindow* window){
         Vector2i position_mouse = Mouse::getPosition(*window);
         // on vérifie que l'hexagone contient la souris
         if(graphics_board[i].getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
-            // si c'est le cas on change sa couleur en magenta
+            // si c'est le cas on change sa couleur
             graphics_board[i].setFillColor(Color(186, 186, 186));
-            // si on clique les caractéristiques de la case s'affiche
+            // si on clique
             if(Mouse::isButtonPressed(Mouse::Left)){
+                //on bloque la souris, l'action se fera quand l'utilisateur ne cliquera plus
                 while(Mouse::isButtonPressed(Mouse::Left)){}
+                //les caractéristiques de la case s'affiche
                     echo_case(i);
-                    int select=joueur1->getselect();
-                    if((select!=-1)&&(tab[i]->getcamp()=="Joueur 1")){
-                        if(joueur1->checkmana(select)){
-                            joueur1->spendmana(select);
-                            tab[i]->setpawn(joueur1->getcard(select), tab[i]->getpos());
-                            joueur1->addCardPlaced(tab[i]->getpawn(),select);
-                            setallcard(tab[i]->getpawn());
-                            joueur1->deselect();
+                    //on récupère la carte sélectionné par le joueur
+                    int select=joueur->getselect();
+                    //si une carte est sélectionnée, que la case appartient au joueur que ce n'est pas une tour et qu'elle est vide
+                    if((select!=-1)&&(tab[i]->getcamp()==joueur->getname())&&(tab[i]->gettype()!="Tour")&&(tab[i]->getempty()==true)){
+                            //si le joueur a assez de mana pour poser la carte
+                        if(joueur->checkmana(select) && joueur->getActive()== true){
+                            //le mana est dépensé
+                            joueur->spendmana(select);
+                            //on pose la carte sur la case
+                            tab[i]->setpawn(joueur->getcard(select), tab[i]->getpos(), joueur->getname());
+                            //le joueur 1 déplace la carte de la main jusqu'à ses cartes de plateau
+                            joueur->addCardPlaced(tab[i]->getpawn(),select);
+                            //la carte est aussi sauvegardée dans la class plateau
+                            tab[i]->getpawn()->setplace(setallcard(tab[i]->getpawn())-1);
+                            //on désélectionnes la carte
+                            joueur->deselect();
+                        }
+                    }
+                    //si la case est occupée
+                    if((tab[i]->getempty()==false)&&(tab[i]->getpawn()->getcamp()==joueur->getname())){
+                        selectsquare(i);
+                    }
+                    if(tab[i]->getselect()==true){
+                        if(tab[i]->getempty()==true){
+                            movementpawn(i);
+                        }else if((tab[i]->getpawn()->getcamp()!=joueur->getname())&&(tab[PlaySquare]->getpawn()->getcoup()>0)){
+                            if(tab[i]->getpawn()->takedamage(tab[PlaySquare]->getpawn())){
+                                tab[i]->setempty();
+                                allcard.erase(allcard.begin()+tab[i]->getpawn()->getplace());
+                                diecard.push_back(tab[i]->getpawn());
+                                for(unsigned int j=0;j<allcard.size();j++){
+                                    allcard[j]->setplace(j);
+                                }
+                            }
                         }
                     }
             }
         }else{
-            // si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
-            graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
+            //si une case est sélectionnée sa couleur change
+            if(tab[i]->getselect()){
+                if(tab[i]->getempty()==false){
+                    if(tab[i]->getpawn()->getcamp()!=joueur->getname()){
+                        graphics_board[i].setFillColor(Color(240,120,120));
+                    }
+                }else{
+                    graphics_board[i].setFillColor(Color(50,200,150));
+                }
+            }else{
+                // sinon si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
+                graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
+            }
         }
     }
 }
 
-void Board::setallcard(CardBoard* card){
+int Board::setallcard(CardBoard* card){
     allcard.push_back(card);
+    cout<<"allcard : "<<allcard.size()<<endl;
+    return allcard.size();
+}
+
+void Board::deselect(){
+    for(int i=0; i<50; i++){
+        tab[i]->deselect();
+    }
+}
+
+
+void Board::setplayer(Player* joueur){
+    destructdiecard();
+    this->joueur=joueur;
+}
+
+vector<CardBoard*> Board::getdie(){
+    return diecard;
+}
+
+void Board::destructdiecard(){
+    diecard.clear();
 }

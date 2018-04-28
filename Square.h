@@ -17,6 +17,7 @@ private:
     int blue;
     // carte sur la case
     bool empty;
+    bool select;
     CardBoard* pawn;
     // effet sur la case
     bool mana;
@@ -30,6 +31,7 @@ public:
     //constructeur et autre méthode
     Square(int id);
     vector<Square*>& get();
+    bool getempty();
     int getnumero();
     int getred();
     int getgreen();
@@ -37,11 +39,16 @@ public:
     string getcamp();
     string gettype();
     vector<Square*> getnearby();
+    bool getselect();
     void setpos(int x, int y);
     void setnearby(Square* tab);
-    void setpawn(Card* card,Vector2f position);
+    void setpawn(Card* card,Vector2f position,string camp);
+    void setselect();
+    void deselect();
     CardBoard* getpawn();
     Vector2f getpos();
+    void movepawn(CardBoard* pawn);
+    void setempty();
 };
 
 #endif // SQUARE_H_INCLUDED

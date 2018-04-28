@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1524586600 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
+1524946798 source:c:\users\yoann\documents\codeblock\project_sfml\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 	<vector>
 	<fstream>
 	<sstream>
@@ -11,6 +12,7 @@
 	"Timer.h"
 	"Console.h"
 	"Statcard.h"
+	"Menu.h"
 
 1486739997 c:\sfml-2.4.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -823,7 +825,7 @@
 	<SFML/Graphics.hpp>
 	"Square.h"
 
-1524086244 c:\users\yoann\documents\codeblock\project_sfml\square.h
+1524816225 c:\users\yoann\documents\codeblock\project_sfml\square.h
 	"Card.h"
 	"CardBoard.h"
 
@@ -840,7 +842,7 @@
 	<string>
 	"Plateau.h"
 
-1524578861 source:c:\users\yoann\documents\codeblock\project_sfml\square.cpp
+1524816225 source:c:\users\yoann\documents\codeblock\project_sfml\square.cpp
 	<iostream>
 	<stdio.h>
 	<SFML/Graphics.hpp>
@@ -848,52 +850,54 @@
 	<string>
 	"Square.h"
 
-1524659205 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
+1524915212 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"Board.h"
-	"Player.h"
 
-1524087889 c:\users\yoann\documents\codeblock\project_sfml\board.h
+1524834867 c:\users\yoann\documents\codeblock\project_sfml\board.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Square.h"
 	"Player.h"
 
-1524087889 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
+1524832057 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
 	"Card.h"
 
-1524586557 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
+1524832057 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
 	<iostream>
+	<sstream>
 	<SFML/Graphics.hpp>
 	"CardBoard.h"
 
-1524592424 c:\users\yoann\documents\codeblock\project_sfml\card.h
+1524824472 c:\users\yoann\documents\codeblock\project_sfml\card.h
 	<SFML/Graphics.hpp>
 	"Statcard.h"
 
-1524592368 c:\users\yoann\documents\codeblock\project_sfml\player.h
+1524831896 c:\users\yoann\documents\codeblock\project_sfml\player.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Statcard.h"
 	"Card.h"
 	"CardBoard.h"
 
-1523267827 c:\users\yoann\documents\codeblock\project_sfml\timer.h
+1524796911 c:\users\yoann\documents\codeblock\project_sfml\timer.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
+	"Board.h"
+	"Statcard.h"
 	"Player.h"
 
-1524047958 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
+1524824497 source:c:\users\yoann\documents\codeblock\project_sfml\card.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<string>
 	"Card.h"
 
-1523276538 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
+1524832116 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
@@ -966,14 +970,14 @@
 	<sstream>
 	"Timer.h"
 
-1524663064 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
+1524915846 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<cstdlib>
 	<ctime>
 	"Player.h"
 
-1523199604 source:c:\users\yoann\documents\codeblock\project_sfml\console.cpp
+1524784546 source:c:\users\yoann\documents\codeblock\project_sfml\console.cpp
 	<iostream>
 	<stdio.h>
 	<SFML/Graphics.hpp>
@@ -993,13 +997,13 @@
 	<string>
 	"Console.h"
 
-1523481126 c:\users\yoann\documents\codeblock\project_sfml\statcard.h
+1524731130 c:\users\yoann\documents\codeblock\project_sfml\statcard.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 
-1524662809 source:c:\users\yoann\documents\codeblock\project_sfml\statcard.cpp
+1524785654 source:c:\users\yoann\documents\codeblock\project_sfml\statcard.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -1007,6 +1011,18 @@
 	<sstream>
 	<string>
 	"Statcard.h"
+
+1524731158 D
+
+1524784587 c:\users\yoann\documents\codeblock\project_sfml\menu.h
+	<SFML/Graphics.hpp>
+
+1524785844 source:c:\users\yoann\documents\codeblock\project_sfml\menu.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Menu.h"
+
+1524736785 hics.hpp>
 
 1524668652 source:c:\users\anais\documents\epsi cours\project_transdevobj\project_sfml\board.cpp
 	<iostream>
@@ -1127,5 +1143,110 @@
 	<SFML/Graphics.hpp>
 	<cstdlib>
 	<ctime>
+
+1524733617 a546dc821c175a5bcfc0d9ece06e030896b72
 	"Menu.h"
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/InputSoundFile.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/OutputSoundFile.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundFileFactory.hpp>
+	<SFML/Audio/SoundFileReader.hpp>
+	<SFML/Audio/SoundFileWriter.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1486740055 c:\sfml-2.4.2\include\sfml\audio\inputsoundfile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\export.hpp
+	<SFML/Config.hpp>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\listener.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1486740055 c:\sfml-2.4.2\include\sfml\audio\music.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/Audio/InputSoundFile.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+
+1486740055 c:\sfml-2.4.2\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Mutex.hpp>
+	<cstdlib>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundsource.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Vector3.hpp>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\alresource.hpp
+	<SFML/Audio/Export.hpp>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\outputsoundfile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<string>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\sound.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundbuffer.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+	<set>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<vector>
+	<string>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundfilefactory.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
+	<vector>
+	<SFML/Audio/SoundFileFactory.inl>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundfilefactory.inl
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundfilereader.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
+
+1486739997 c:\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
 

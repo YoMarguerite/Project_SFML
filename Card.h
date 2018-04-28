@@ -33,6 +33,7 @@ class Card{
     void hovercard(int a, int b, Vector2f z);
     void nothovercard(int i);
     void setselect(bool check);
+    int getid();
     string getquality();
     string getname();
     int getmana();

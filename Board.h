@@ -15,12 +15,17 @@ class Board{
 private:
     // vecteur qui va contenir toutes les cases du plateau
     vector<Square*> tab;
-
+    vector<Square*>SquareSelect;
     // vecteur qui va contenir les hexagones pour chaque case
     //(on peut retrouver l'hexagone d'une case car ils sont rangés dans le même ordre sur chaque vecteur)
     vector<CircleShape> graphics_board;
     vector<CardBoard*> allcard;
-    Player* joueur1;
+    vector<CardBoard*> diecard;
+    Player* joueur;
+    int PlaySquare;
+    //------------------------
+    void selectsquare(int i);
+    void movementpawn(int i);
 
 public:
     // constructeur
@@ -31,10 +36,14 @@ public:
     void echo();
     void echo_case(int id);
     void liaison();
-    vector<Square*>& get();
+    vector<Square*> get();
     void display(RenderWindow* window);
     void collision(RenderWindow* window);
-    void setallcard(CardBoard* card);
+    int setallcard(CardBoard* card);
+    void deselect();
+    void setplayer(Player* joueur);
+    vector<CardBoard*> getdie();
+    void destructdiecard();
 };
 
 #endif // PLATEAU_H_INCLUDED

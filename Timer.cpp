@@ -7,17 +7,21 @@ using namespace std;
 using namespace sf;
 
 
-// Méthodes du Timer pour le tour du joueur
-Timer::Timer(Vector2f windowsize,Player* joueur1,Player* joueur2){
-    this->joueur1=joueur1;
-    this->joueur2=joueur2;
-    this->joueur1->addCardHand();
-    this->joueur2->addCardHand();
+//constructeur du timer
+
+Timer::Timer(Vector2f windowsize,RenderWindow* window){
+    this->window=window;
+    stat=new Statcard;
+    joueur1=new Player(stat,"Joueur 1");
+    joueur2=new Player(stat,"Joueur 2");
+    board=new Board(joueur1);
+    board->liaison();
+    joueur1->addCardHand();
     clock.restart();
     countdown = seconds(0.01f);
     verif=0;
     chrono=61;
-    joueurcourant=1;
+    joueurcourant=true;
     nbturn=1;
     if(!font.loadFromFile("font/CloisterBlack.ttf")){
         cerr<<"Fichier font 'CloisterBlack.ttf' introuvable"<<endl;
@@ -40,8 +44,22 @@ Timer::Timer(Vector2f windowsize,Player* joueur1,Player* joueur2){
     endTurn.setPosition(windowsize.x/6,windowsize.y/50);
 }
 
-// Méthode pour le afficher le timer
+//affichage du timer
+
 void Timer::echo(RenderWindow* window){
+    board->display(window);
+    board->collision(window);
+    if(Mouse::isButtonPressed(Mouse::Right)){
+        board->deselect();
+    }
+    if(joueurcourant){
+        joueur1->echoHand(window);
+        joueur1->stockMana(window);
+    }else{
+        joueur2->echoHand(window);
+        joueur2->stockMana(window);
+    }
+
     string str;
     if (countdown < seconds(61)){
 
@@ -53,7 +71,6 @@ void Timer::echo(RenderWindow* window){
             stringstream stream;
             stream << chrono;
             str = stream.str();
-            cout << str<<endl;
             time.setString(str);
             verif = sec;
         }
@@ -66,26 +83,47 @@ void Timer::echo(RenderWindow* window){
 }
 
 // Méthode de changement de tour
+
 void Timer::changement(){
     nbturn++;
     verif=0;
     chrono=61;
     clock.restart();
     countdown=clock.getElapsedTime();
-    if(joueurcourant==1){
-        joueurcourant++;
+    board->deselect();
+    vector<CardBoard*>diecard=board->getdie();
+    if(joueurcourant){
+        for(unsigned int i=0;i<diecard.size();i++){
+            joueur1->addCardDiscard(diecard[i]->getid());
+            for(unsigned int j=0;j<joueur2->getplaced().size();i++){
+                if(diecard[i]==joueur2->getplaced()[j]){
+                    joueur2->destruct(j);
+                    break;
+                }
+            }
+        }
+        joueurcourant=false;
         joueur.setString("Joueur 2");
-        this->joueur2->addCardHand();
-        joueur2->augmentmana();
+        joueur1->switchActive(false);
+        joueur2->switchActive(true);
+        board->setplayer(joueur2);
     }else{
-        joueurcourant--;
-        cout<<"joueur"<<joueurcourant<<endl;
+        for(unsigned int i=0;i<diecard.size();i++){
+            joueur2->addCardDiscard(diecard[i]->getid());
+            for(unsigned int j=0;j<joueur1->getplaced().size();i++){
+                if(diecard[i]==joueur1->getplaced()[j]){
+                    joueur1->destruct(j);
+                    break;
+                }
+            }
+        }
+        joueurcourant=true;
         joueur.setString("Joueur 1");
-        this->joueur1->addCardHand();
-        joueur1->augmentmana();
+        joueur1->switchActive(true);
+        joueur2->switchActive(false);
+        board->setplayer(joueur1);
     }
 }
-
 // Méthode de fin de tour
 void Timer::endturn(RenderWindow* window){
     Vector2i position_mouse = Mouse::getPosition(*window);

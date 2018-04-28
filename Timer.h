@@ -3,6 +3,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include "Board.h"
+#include "Statcard.h"
 #include "Player.h"
 
 using namespace std;
@@ -19,14 +21,17 @@ private:
     Sprite endTurn;
     Texture endTurnButton;
     int nbturn;
-    int joueurcourant;
+    bool joueurcourant;
     int sec;
     int chrono;
     int verif;
+    RenderWindow* window;
+    Statcard* stat;
     Player* joueur1;
     Player* joueur2;
+    Board* board;
 public:
-    Timer(Vector2f windowsize,Player* joueur1,Player* joueur2);
+    Timer(Vector2f windowsize,RenderWindow* window);
     void echo(RenderWindow* window);
     void changement();
     void endturn(RenderWindow* window);

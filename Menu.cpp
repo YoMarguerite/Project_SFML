@@ -1,56 +1,65 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <cstdlib>
-#include <ctime>
 #include "Menu.h"
 
 using namespace std;
 using namespace sf;
 
-bool sprite_mouse(RenderWindow* window, Vector2i position_mouse, Sprite sprite){
-    position_mouse = Mouse::getPosition(*window);
-    //cout << "Mouse.x :" << position_souris.x << "Mouse.y :" << position_souris.y << endl;
-    return sprite.getGlobalBounds().contains(position_mouse.x,position_mouse.y);
-}
 
+//constructeur du menu
 Menu::Menu(Vector2f windowsize){
+    //importation de l'image du background
+    if (!textureBkg.loadFromFile("image/backgroundMenu.png")){
+        cout << "erreur";
+    }
 
     bckg.setTexture(textureBkg);
     bckg.setPosition(0,0);
     // ____________________ BOUTONS _____________________________
 
+    //importation des images des boutons
     if (!texture_play.loadFromFile("image/button_jouer.png")){
         cout << "erreur";
     }
+
     if (!texture_leave.loadFromFile("image/button_quit.png")){
         cout << "erreur";
     }
+
     //on donne cette texture aux sprites, et on leur donne des coordonnées
     play.setTexture(texture_play);
     play.setPosition(windowsize.x/3, 4*windowsize.y/9);
     leave.setTexture(texture_leave);
     leave.setPosition(windowsize.x/3, 5.5*windowsize.y/9);
 
-    // Affichage tu titre du jeu
-    Font title;
+    // mise en place tu titre du jeu
+
     if(!title.loadFromFile("font/dumbledor.ttf")){
         cerr<<"Fichier font 'dumbledor.ttf' introuvable"<<endl;
     }
 
-    Text titleGame;
     titleGame.setString("Battle Tower");
     titleGame.setFont(title);
     titleGame.setCharacterSize(100);
     titleGame.setPosition(3*windowsize.x/9, windowsize.y/9);
     titleGame.setFillColor(sf::Color::White);
 
-
 }
 
-// Méthode concernant le menu
-void Menu::display(RenderWindow* window, Vector2i position_mouse, int* interface){
+
+
+// Méthode concernant le menu, affichage
+
+void Menu::display(RenderWindow* window, int* interface){
+
+    //on récupère les coordonnées de la souris
+
+    Vector2i position_mouse=Mouse::getPosition(*window);
+
     // si le bouton jouer contient la souris
-    if(sprite_mouse(window,position_mouse,play)){
+
+    if(play.getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
+
             // on change sa couleur
             play.setColor(Color(57,206,107));
             // si on clique
@@ -65,7 +74,7 @@ void Menu::display(RenderWindow* window, Vector2i position_mouse, int* interface
         }
 
     // si le bouton quitter contient la souris
-    if(sprite_mouse(window,position_mouse,leave)){
+    if(leave.getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
         // on change sa couleur
         leave.setColor(Color(150,150,150));
         // si on clique la fenêtre se ferme
@@ -76,7 +85,9 @@ void Menu::display(RenderWindow* window, Vector2i position_mouse, int* interface
         // sinon le bouton reprend sa couleur
         leave.setColor(Color(255,255,255));
     }
-    // on dessine le bouton jouer et quitter sur la fenêtre
+
+    // on affiche le background, le titre, le bouton jouer et quitter sur la fenêtre
+
     window->draw(bckg);
     window->draw(titleGame);
     window->draw(play);

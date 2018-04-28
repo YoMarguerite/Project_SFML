@@ -72,39 +72,16 @@
 		<Unit filename="Event.h">
 			<Option target="Debug" />
 		</Unit>
-		<Unit filename="Game.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Game.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Menu.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Menu.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Player.cpp">
-			<Option target="Debug" />
-		</Unit>
-		<Unit filename="Player.h">
-			<Option target="Debug" />
-		</Unit>
-		<Unit filename="Square.cpp">
-			<Option target="Debug" />
-		</Unit>
-		<Unit filename="Square.h">
-			<Option target="Debug" />
-		</Unit>
-		<Unit filename="Statcard.cpp">
-			<Option target="Debug" />
-		</Unit>
-		<Unit filename="Statcard.h">
-			<Option target="Debug" />
-		</Unit>
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.h" />
+		<Unit filename="Square.cpp" />
+		<Unit filename="Square.h" />
+		<Unit filename="Statcard.cpp" />
+		<Unit filename="Statcard.h" />
 		<Unit filename="Timer.cpp" />
 		<Unit filename="Timer.h" />
-		<Unit filename="include/Statcard.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

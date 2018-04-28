@@ -9,7 +9,9 @@
 using namespace std;
 using namespace sf;
 
-// Méthode pour les statistiques des cartes
+
+//constructeur de la class contenant les stats des cartes
+
 Statcard::Statcard(){
     string line;
     char letter;
@@ -19,7 +21,7 @@ Statcard::Statcard(){
     image=vector<Texture>(lengh);
     int index=0;
     int id=0;
-
+    //importation des stats
     for(int i = 0; i<lengh;i++){
         card[i]=vector<string>(10);
     }
@@ -50,6 +52,7 @@ Statcard::Statcard(){
         // Fermer le fichier
 
         file.close();
+        //importation des images des cartes
         Texture texture;
         for(unsigned int i=6; i<card.size();i++){
             if(!texture.loadFromFile("image/"+card[i][2]+".png")){
@@ -67,11 +70,11 @@ Statcard::Statcard(){
             cerr << "Impossible d'ouvrir le fichier" << endl;
       }
 }
-
+//on récupère l'image d'une carte
 Texture Statcard::getimage(int id){
     return image[id];
 }
-
+//on récupère les stats d'une carte
 vector<string> Statcard::getstats(int id){
     return card[id];
 }

@@ -11,7 +11,9 @@ using namespace sf;
 
 class Player{
     private:
+    string name;
     Statcard* stat;
+    bool active;
     vector<unsigned int> deck;
     vector<unsigned int> discard;
     vector<Card*> hand;
@@ -26,7 +28,16 @@ class Player{
     Texture manaEmpty;;
     Texture manaAvailable;
     public:
-    Player(Statcard* stat);
+
+    Player(Statcard* stat,string name);
+
+    // ____________________ACTIVE____________________
+
+    void switchActive(bool active);
+
+    bool getActive();
+
+    string getname();
 
     // ____________________DECK____________________
 
@@ -41,7 +52,7 @@ class Player{
 
     //____________________DISCARD____________________
 
-
+    void addCardDiscard(int i);
 
     //____________________HAND____________________
 
@@ -59,9 +70,13 @@ class Player{
 
     Card* getcard(int i);
 
+    vector<CardBoard*> getplaced();
+
+    void destruct(int i);
+
     void addCardPlaced (CardBoard* card,int i);
 
-    void echoPlaced();
+    void reset();
 
     //____________________MANA____________________
 
