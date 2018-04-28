@@ -52,7 +52,7 @@ void Timer::echo(RenderWindow* window){
     if(Mouse::isButtonPressed(Mouse::Right)){
         board->deselect();
     }
-    if(joueurcourant){
+    if(joueurcourant==true){
         joueur1->echoHand(window);
         joueur1->stockMana(window);
     }else{
@@ -92,7 +92,7 @@ void Timer::changement(){
     countdown=clock.getElapsedTime();
     board->deselect();
     vector<CardBoard*>diecard=board->getdie();
-    if(joueurcourant){
+    if(joueurcourant==true){
         for(unsigned int i=0;i<diecard.size();i++){
             joueur1->addCardDiscard(diecard[i]->getid());
             for(unsigned int j=0;j<joueur2->getplaced().size();i++){

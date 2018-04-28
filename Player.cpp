@@ -50,12 +50,12 @@ using namespace sf;
     // ____________________ACTIVE____________________
 
     void Player::switchActive(bool active){
-        if(active==true){
+        if(active){
             addCardHand();
             augmentmana();
             displayHand();
-            reset();
         }
+        reset();
         this->active = active;
     }
 
