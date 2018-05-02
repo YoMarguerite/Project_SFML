@@ -191,16 +191,20 @@ void Board::display(RenderWindow* window){
 }
 
 void Board::selectsquare(int i){
+    PlaySquare=i;
     for(unsigned int i=0;i<SquareSelect.size();i++){
         SquareSelect[i]->deselect();
     }
-    PlaySquare=i;
-    //on récupère les points de déplacements de l'unité
-    if(tab[i]->getpawn()->getmovement()>0){
-         //on récupère les cases proches
-        SquareSelect=tab[i]->getnearby();
-        //on les sélectionnes
-        for(unsigned int i=0;i<SquareSelect.size();i++){
+    //on récupère les cases proches
+    SquareSelect=tab[PlaySquare]->getnearby();
+    //on les sélectionnes
+    for(unsigned int i=0;i<SquareSelect.size();i++){
+        if(SquareSelect[i]->getempty()){
+            //on récupère les points de déplacements de l'unité
+            if(tab[PlaySquare]->getpawn()->getmovement()>0){
+                SquareSelect[i]->setselect();
+            }
+        }else if((tab[PlaySquare]->getpawn()->getcoup()>0)&&(SquareSelect[i]->getpawn()->getcamp()!=joueur->getname())){
             SquareSelect[i]->setselect();
         }
     }
@@ -230,14 +234,12 @@ void Board::collision(RenderWindow* window){
             if(Mouse::isButtonPressed(Mouse::Left)){
                 //on bloque la souris, l'action se fera quand l'utilisateur ne cliquera plus
                 while(Mouse::isButtonPressed(Mouse::Left)){}
-                //les caractéristiques de la case s'affiche
-                    //echo_case(i);
                     //on récupère la carte sélectionné par le joueur
                     int select=joueur->getselect();
                     //si une carte est sélectionnée, que la case appartient au joueur que ce n'est pas une tour et qu'elle est vide
-                    if((select!=-1)&&(tab[i]->getcamp()==joueur->getname())&&(tab[i]->gettype()!="Tour")&&(tab[i]->getempty()==true)){
+                    if((select!=-1)&&(tab[i]->getcamp()==joueur->getname())&&(tab[i]->gettype()!="Tour")&&(tab[i]->getempty())){
                             //si le joueur a assez de mana pour poser la carte
-                        if(joueur->checkmana(select) && joueur->getActive()== true){
+                        if((joueur->checkmana(select)) && (joueur->getActive())){
                             //le mana est dépensé
                             joueur->spendmana(select);
                             //on pose la carte sur la case
@@ -251,11 +253,11 @@ void Board::collision(RenderWindow* window){
                         }
                     }
                     //si la case est occupée
-                    if((tab[i]->getempty()==false)&&(tab[i]->getpawn()->getcamp()==joueur->getname())){
+                    if((!tab[i]->getempty())&&(tab[i]->getpawn()->getcamp()==joueur->getname())){
                         selectsquare(i);
                     }
-                    if(tab[i]->getselect()==true){
-                        if(tab[i]->getempty()==true){
+                    if(tab[i]->getselect()){
+                        if(tab[i]->getempty()){
                             movementpawn(i);
                         }else if((tab[i]->getpawn()->getcamp()!=joueur->getname())&&(tab[PlaySquare]->getpawn()->getcoup()>0)){
                             if(tab[i]->getpawn()->takedamage(tab[PlaySquare]->getpawn())){
@@ -265,23 +267,21 @@ void Board::collision(RenderWindow* window){
                                 for(unsigned int j=0;j<allcard.size();j++){
                                     allcard[j]->setplace(j);
                                 }
+                                selectsquare(PlaySquare);
                             }
                         }
                     }
             }
         }else{
+            // sinon si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
+            graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
             //si une case est sélectionnée sa couleur change
             if(tab[i]->getselect()){
-                if(tab[i]->getempty()==false){
-                    if(tab[i]->getpawn()->getcamp()!=joueur->getname()){
-                        graphics_board[i].setFillColor(Color(240,120,120));
-                    }
-                }else{
+                if(tab[i]->getempty()){
                     graphics_board[i].setFillColor(Color(50,200,150));
+                }else{
+                    graphics_board[i].setFillColor(Color(240,120,120));
                 }
-            }else{
-                // sinon si l'hexagone ne contient pas la souris on lui redonne sa couleur d'origine
-                graphics_board[i].setFillColor(Color(tab[i]->getred(),tab[i]->getgreen(),tab[i]->getblue()));
             }
         }
     }

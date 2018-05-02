@@ -53,7 +53,7 @@ void Timer::echo(RenderWindow* window){
     if(Mouse::isButtonPressed(Mouse::Right)){
         board->deselect();
     }
-    if(joueurcourant==true){
+    if(joueurcourant){
         joueur1->echoHand(window);
         joueur1->stockMana(window);
     }else{
