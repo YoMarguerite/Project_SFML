@@ -36,6 +36,7 @@ public:
     void echo();
     void echo_case(int id);
     void liaison();
+    void settower(Card* tower);
     vector<Square*> get();
     void display(RenderWindow* window);
     void collision(RenderWindow* window);

@@ -850,14 +850,14 @@
 	<string>
 	"Square.h"
 
-1524915212 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
+1525219100 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"Board.h"
 
-1524834867 c:\users\yoann\documents\codeblock\project_sfml\board.h
+1525219112 c:\users\yoann\documents\codeblock\project_sfml\board.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Square.h"
@@ -876,7 +876,7 @@
 	<SFML/Graphics.hpp>
 	"Statcard.h"
 
-1524831896 c:\users\yoann\documents\codeblock\project_sfml\player.h
+1525220934 c:\users\yoann\documents\codeblock\project_sfml\player.h
 	<vector>
 	<SFML/Graphics.hpp>
 	"Statcard.h"
@@ -897,7 +897,7 @@
 	<string>
 	"Card.h"
 
-1524832116 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
+1525220934 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
@@ -970,7 +970,7 @@
 	<sstream>
 	"Timer.h"
 
-1524915846 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
+1525220934 source:c:\users\yoann\documents\codeblock\project_sfml\player.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<cstdlib>
@@ -1003,7 +1003,7 @@
 	<vector>
 	<string>
 
-1524785654 source:c:\users\yoann\documents\codeblock\project_sfml\statcard.cpp
+1525111458 source:c:\users\yoann\documents\codeblock\project_sfml\statcard.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>

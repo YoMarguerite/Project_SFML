@@ -16,6 +16,7 @@ Timer::Timer(Vector2f windowsize,RenderWindow* window){
     joueur2=new Player(stat,"Joueur 2");
     board=new Board(joueur1);
     board->liaison();
+    board->settower(new Card(0,stat,0));
     joueur1->addCardHand();
     clock.restart();
     countdown = seconds(0.01f);
@@ -98,7 +99,6 @@ void Timer::changement(){
             for(unsigned int j=0;j<joueur2->getplaced().size();i++){
                 if(diecard[i]==joueur2->getplaced()[j]){
                     joueur2->destruct(j);
-                    break;
                 }
             }
         }
@@ -113,7 +113,6 @@ void Timer::changement(){
             for(unsigned int j=0;j<joueur1->getplaced().size();i++){
                 if(diecard[i]==joueur1->getplaced()[j]){
                     joueur1->destruct(j);
-                    break;
                 }
             }
         }

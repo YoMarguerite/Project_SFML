@@ -20,6 +20,7 @@ class Player{
     vector<Sprite> displayMana;
     // Ce sera pas vector<Card*> placed; mais peut-être vector<Cardboard*>placed;
     vector<CardBoard*> placed;
+    unsigned int towers;
     unsigned int mana;
     unsigned int mana_dispo;
     int select;

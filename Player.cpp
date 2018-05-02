@@ -24,10 +24,11 @@ using namespace sf;
         }
 
         displayMana=vector<Sprite>(10);
-        deck = {6,56,34,69,16};
+        deck = {7,57,35,70,17};
         //on place deux cartes dans la main
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));
+        towers=3;
         //aucune carte n'est sélectionnée
         select=-1;
         //importation de la font d'écriture
@@ -116,7 +117,7 @@ using namespace sf;
 
     void Player::addCardHand () {               //Ajoute une carte dans la main (proviens du deck)
         if (hand.size() < 20){
-            if (deck.empty() == false){
+            if (!deck.empty()){
                 hand.push_back(new Card(drawCardDeck(),stat,hand.size()-1));
             } else {
                 cout << "! Le deck est vide" << endl << endl;
@@ -238,6 +239,7 @@ Card* Player::getcard(int i){
 
 void Player::addCardPlaced (CardBoard* card,int i) {       //Ajoute une carte dans la main (proviens du deck)
         placed.push_back(card);
+        delete hand[i];
         hand.erase(hand.begin()+i);
 }
 

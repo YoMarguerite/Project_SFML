@@ -166,6 +166,15 @@ void Board::liaison(){
     }
 }
 
+void Board::settower(Card* tower){
+    for(unsigned int i=0;i<tab.size();i++){
+        if(tab[i]->gettype()=="Tour"){
+            tab[i]->setpawn(tower,tab[i]->getpos(),tab[i]->getcamp());
+            setallcard(tab[i]->getpawn());
+        }
+    }
+}
+
 // affichage sur l'écran des hexagones des cases
 void Board::display(RenderWindow* window){
 
@@ -207,12 +216,14 @@ void Board::movementpawn(int i){
 
 // gestion de la collision de chaque case avec la souris
 void Board::collision(RenderWindow* window){
+    bool hover=false;
     // on fait défiler tous les hexagones
     for(int i=0; i<50; i++){
         // on récupère les coordonnées de la souris
         Vector2i position_mouse = Mouse::getPosition(*window);
         // on vérifie que l'hexagone contient la souris
-        if(graphics_board[i].getGlobalBounds().contains(position_mouse.x,position_mouse.y)){
+        if((graphics_board[i].getGlobalBounds().contains(position_mouse.x,position_mouse.y))&&(!hover)){
+            hover=true;
             // si c'est le cas on change sa couleur
             graphics_board[i].setFillColor(Color(186, 186, 186));
             // si on clique
@@ -220,7 +231,7 @@ void Board::collision(RenderWindow* window){
                 //on bloque la souris, l'action se fera quand l'utilisateur ne cliquera plus
                 while(Mouse::isButtonPressed(Mouse::Left)){}
                 //les caractéristiques de la case s'affiche
-                    echo_case(i);
+                    //echo_case(i);
                     //on récupère la carte sélectionné par le joueur
                     int select=joueur->getselect();
                     //si une carte est sélectionnée, que la case appartient au joueur que ce n'est pas une tour et qu'elle est vide

@@ -15,7 +15,7 @@ using namespace sf;
 Statcard::Statcard(){
     string line;
     char letter;
-    int lengh=80;
+    int lengh=81;
     ifstream file ("card_export.csv",ios::in);
     card=vector<vector<string>>(lengh);
     image=vector<Texture>(lengh);
