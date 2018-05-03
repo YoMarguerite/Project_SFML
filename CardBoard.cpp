@@ -22,6 +22,8 @@ CardBoard::CardBoard(Card* card,Vector2f position,string camp){
     id=card->getid();
     lim_coup=1;
     nbcoup=1;
+    anim=0;
+    this->position=position;
     if(!dessin.loadFromFile("image/board_"+name+".png")){
         cerr<<"Image introuvable"<<endl;
     }
@@ -35,7 +37,7 @@ CardBoard::CardBoard(Card* card,Vector2f position,string camp){
     Vie.setString(convertvie.str());
     Vie.setFont(font);
     Vie.setCharacterSize(30);
-    Vie.setPosition(position.x-26,position.y+63);
+    Vie.setPosition(position.x-28,position.y+63);
     Vie.setFillColor(sf::Color::Black);
     stringstream convertdamage;
     convertdamage<<damage;
@@ -114,13 +116,19 @@ void CardBoard::resetstat(){
     nbcoup=lim_coup;
 }
 
+Vector2f CardBoard::getposition(){
+    return position;
+}
+
 void CardBoard::setposition(Vector2f position){
+    this->position=position;
+}
+
+void CardBoard::setimageposition(Vector2f position){
     image.setPosition(position.x-100,position.y+0);
     Moving.setPosition(position.x-55,position.y-5);
     Attaque.setPosition(position.x-85,position.y+63);
-    Vie.setPosition(position.x-26,position.y+63);
-    cout<<image.getPosition().x<<endl;
-    cout<<image.getPosition().y<<endl;
+    Vie.setPosition(position.x-28,position.y+63);
 }
 
 string CardBoard::getcamp(){
@@ -140,4 +148,16 @@ bool CardBoard::takedamage(CardBoard* opponent){
             return false;
         }
     }else{return false;}
+}
+
+int CardBoard::getanim(){
+    return anim;
+}
+
+void CardBoard::setanim(){
+    anim=10;
+}
+
+void CardBoard::duringanim(){
+    anim--;
 }

@@ -850,7 +850,7 @@
 	<string>
 	"Square.h"
 
-1525344766 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
+1525388921 source:c:\users\yoann\documents\codeblock\project_sfml\board.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -863,10 +863,10 @@
 	"Square.h"
 	"Player.h"
 
-1524832057 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
+1525388507 c:\users\yoann\documents\codeblock\project_sfml\cardboard.h
 	"Card.h"
 
-1525344766 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
+1525389011 source:c:\users\yoann\documents\codeblock\project_sfml\cardboard.cpp
 	<iostream>
 	<sstream>
 	<SFML/Graphics.hpp>
@@ -883,7 +883,7 @@
 	"Card.h"
 	"CardBoard.h"
 
-1524796911 c:\users\yoann\documents\codeblock\project_sfml\timer.h
+1525357307 c:\users\yoann\documents\codeblock\project_sfml\timer.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
@@ -897,7 +897,7 @@
 	<string>
 	"Card.h"
 
-1525281088 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
+1525357307 source:c:\users\yoann\documents\codeblock\project_sfml\timer.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<sstream>
@@ -1249,4 +1249,10 @@
 1486739997 c:\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp
 	<SFML/Audio/Export.hpp>
 	<string>
+
+1525357606 source:c:\users\yoann\documents\codeblock\project_sfml\animation.cpp
+	<SFML/Graphics.hpp>
+	"Animation.h"
+
+1525386257 c:\users\yoann\documents\codeblock\project_sfml\animation.h
 

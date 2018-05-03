@@ -24,6 +24,7 @@ Timer::Timer(Vector2f windowsize,RenderWindow* window){
     chrono=61;
     joueurcourant=true;
     nbturn=1;
+    journuit=true;
     if(!font.loadFromFile("font/CloisterBlack.ttf")){
         cerr<<"Fichier font 'CloisterBlack.ttf' introuvable"<<endl;
     }
@@ -87,6 +88,7 @@ void Timer::echo(RenderWindow* window){
 
 void Timer::changement(){
     nbturn++;
+
     verif=0;
     chrono=61;
     clock.restart();

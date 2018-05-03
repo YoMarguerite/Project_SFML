@@ -20,6 +20,7 @@ private:
     // BOUTON POUR FINIR LE TOUR AVANT LA FIN DU TIMER
     Sprite endTurn;
     Texture endTurnButton;
+    bool journuit;
     int nbturn;
     bool joueurcourant;
     int sec;

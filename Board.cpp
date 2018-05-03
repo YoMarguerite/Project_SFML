@@ -182,6 +182,17 @@ void Board::display(RenderWindow* window){
             window->draw(graphics_board[i]);
     }
     for(unsigned int i=0;i<allcard.size();i++){
+        if(allcard[i]->getanim()>0){
+            Vector2f position=allcard[i]->getimage().getPosition();
+            position.x+=100;
+            Vector2f ecart=(allcard[i]->getposition()-position);
+            ecart.x=ecart.x/allcard[i]->getanim();
+            ecart.y=ecart.y/allcard[i]->getanim();
+            position.x+=ecart.x;
+            position.y+=ecart.y;
+            allcard[i]->duringanim();
+            allcard[i]->setimageposition(position);
+        }
         window->draw(allcard[i]->getimage());
         window->draw(allcard[i]->getvie());
         window->draw(allcard[i]->getattaque());
@@ -213,6 +224,7 @@ void Board::movementpawn(int i){
     tab[i]->movepawn(tab[PlaySquare]->getpawn());
     tab[i]->getpawn()->setmovement();
     tab[i]->getpawn()->setposition(tab[i]->getpos());
+    tab[i]->getpawn()->setanim();
     tab[PlaySquare]->setempty();
     selectsquare(i);
 }

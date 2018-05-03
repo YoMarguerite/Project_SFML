@@ -21,6 +21,8 @@ private:
     Text Vie;
     Text Attaque;
     Text Moving;
+    Vector2f position;
+    int anim;
     bool select;
     string family;
     int life;
@@ -39,6 +41,8 @@ public:
     Text getvie();
     Text getattaque();
     Text getmoving();
+    Vector2f getposition();
+    void setposition(Vector2f position);
     int getid();
     int getmovement();
     int getdamage();
@@ -48,9 +52,12 @@ public:
     void setmovement();
     void setcoup();
     void resetstat();
-    void setposition(Vector2f position);
+    void setimageposition(Vector2f position);
     string getcamp();
     bool takedamage(CardBoard* opponent);
+    int getanim();
+    void setanim();
+    void duringanim();
 
 };
 #endif // CARTEPLATEAU_H_INCLUDED
