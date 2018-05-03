@@ -23,11 +23,13 @@ class Player{
     unsigned int towers;
     unsigned int mana;
     unsigned int mana_dispo;
+    unsigned int mana_plus;
     int select;
     Text cardselect;
     Font fontselect;
     Texture manaEmpty;;
     Texture manaAvailable;
+    Texture manaPlus;
     public:
 
     Player(Statcard* stat,string name);

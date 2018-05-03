@@ -22,8 +22,9 @@ using namespace sf;
             mana=0;
             mana_dispo=0;
         }
+        mana_plus=0;
 
-        displayMana=vector<Sprite>(10);
+        displayMana=vector<Sprite>(12);
         deck = {7,57,35,70,17};
         //on place deux cartes dans la main
         hand.push_back(new Card (drawCardDeck(),stat,0));
@@ -44,6 +45,9 @@ using namespace sf;
             cout << "erreur";
         }
         if(!manaEmpty.loadFromFile("image/mana_empty.png")){
+            cout << "erreur";
+        }
+        if(!manaPlus.loadFromFile("image/mana_plus.png")){
             cout << "erreur";
         }
     }
@@ -193,14 +197,17 @@ using namespace sf;
     void Player::stockMana(RenderWindow* window){
 
         Sprite mana;
-        for(unsigned int i=0; i<10;i++){
-            if(i >= (10 - mana_dispo)){
-                mana.setTexture(manaAvailable);
-                displayMana[i]=mana;
-            } else {
-                mana.setTexture(manaEmpty);
-                displayMana[i]=mana;
+        for(unsigned int i=0; i<10+mana_plus;i++){
+            if(i<10){
+                if(i >= (10 - mana_dispo)){
+                    mana.setTexture(manaAvailable);
+                } else {
+                    mana.setTexture(manaEmpty);
+                }
+            }else{
+                mana.setTexture(manaPlus);
             }
+            displayMana[i]=mana;
             displayMana[i].setPosition(80,120+i*50);
             window->draw(displayMana[i]);
         }
@@ -212,16 +219,32 @@ using namespace sf;
             mana++;
         }
         mana_dispo=mana;
+        mana_plus=0;
+        Vector2f position;
+        for(unsigned int i=0;i<placed.size();i++){
+            position=placed[i]->getimage().getPosition();
+            if(position.x==783){
+                if((position.y==134)||(position.y==699)){
+                    mana_plus++;
+                }
+            }
+        }
     }
 
 //on vérifie qu'il nous reste assez de mana pour jouer la carte
     bool Player::checkmana(int i){
-        unsigned int mana=hand[i]->getmana();
-        return mana<=mana_dispo;
+        unsigned int mana_spend=hand[i]->getmana();
+        return mana_spend<=(mana_dispo+mana_plus);
     }
 //on consomme le mana
     void Player::spendmana(int i){
-        mana_dispo-=hand[i]->getmana();
+        unsigned int mana_spend=hand[i]->getmana();
+        if(mana_plus<mana_spend){
+            mana_dispo+=(mana_plus-mana_spend);
+            mana_plus=0;
+        }else{
+            mana_plus-=mana_spend;
+        }
     }
 //on récupère l'id de la carte sélectionnée
     int Player::getselect(){

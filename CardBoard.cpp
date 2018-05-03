@@ -119,6 +119,8 @@ void CardBoard::setposition(Vector2f position){
     Moving.setPosition(position.x-55,position.y-5);
     Attaque.setPosition(position.x-85,position.y+63);
     Vie.setPosition(position.x-26,position.y+63);
+    cout<<image.getPosition().x<<endl;
+    cout<<image.getPosition().y<<endl;
 }
 
 string CardBoard::getcamp(){

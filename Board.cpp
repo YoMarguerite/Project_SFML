@@ -179,7 +179,6 @@ void Board::settower(Card* tower){
 void Board::display(RenderWindow* window){
 
     for(int i = 0; i<50; i++){
-
             window->draw(graphics_board[i]);
     }
     for(unsigned int i=0;i<allcard.size();i++){
@@ -289,7 +288,6 @@ void Board::collision(RenderWindow* window){
 
 int Board::setallcard(CardBoard* card){
     allcard.push_back(card);
-    cout<<"allcard : "<<allcard.size()<<endl;
     return allcard.size();
 }
 
