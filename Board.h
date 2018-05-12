@@ -13,6 +13,10 @@ using namespace sf;
 class Board{
 
 private:
+    Texture image;
+    Sprite parchemin;
+    Font font;
+    vector<Text> stats;
     // vecteur qui va contenir toutes les cases du plateau
     vector<Square*> tab;
     vector<Square*>SquareSelect;

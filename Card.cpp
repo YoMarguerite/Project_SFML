@@ -18,11 +18,20 @@ Card::Card(int id, Statcard* stat, int i){
     life=atoi(importstat[6].c_str());
     movement=atoi(importstat[7].c_str());
     build=atoi(importstat[8].c_str());
-    type=atoi(importstat[9].c_str());
+    short type=atoi(importstat[9].c_str());
+    if(type==0){
+        this->type="Unite";
+    }
+    if(type==1){
+        this->type="Batiment";
+    }
+    if(type==2){
+        this->type="Sort";
+    }
     dessin=stat->getimage(id);
     dessin.setSmooth(true);
     image.setTexture(dessin);
-    image.setPosition(300+150*i,800);
+    image.setPosition(100+150*i,800);
     image.setScale(Vector2f(0.5f, 0.5f));
     select=false;
 }
@@ -42,7 +51,7 @@ void Card::hovercard(int a, int b, Vector2f z){
 }
 //la carte reprends sa taille normale
 void Card::nothovercard(int i){
-    image.setPosition(300+i*150,800);
+    image.setPosition(100+i*150,800);
     image.setScale(0.5,0.5);
 }
 //on sélectionnes ou on déselectionnes la carte
@@ -66,7 +75,7 @@ int Card::getmana(){
     return mana;
 }
 //on récupère son type, unité, bâtiment, sort
-short Card::gettype(){
+string Card::gettype(){
     return type;
 }
 //on récupère le bool qui permet de dire si elle est sélectionnée ou non

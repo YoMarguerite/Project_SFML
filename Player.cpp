@@ -25,7 +25,7 @@ using namespace sf;
         mana_plus=0;
 
         displayMana=vector<Sprite>(12);
-        deck = {7,57,35,70,17};
+        deck = {7,57,35,70,17,7,57,35,70,17,7,57,35,70,17};
         //on place deux cartes dans la main
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));
@@ -156,13 +156,13 @@ using namespace sf;
             Vector2i position_mouse = Mouse::getPosition(*window);
             //si une carte est sélectionné on affiche un indicateur au dessus de celle ci "select"
             if(hand[i]->getselect()){
-                cardselect.setPosition(300+i*150,760);
+                cardselect.setPosition(100+i*150,760);
                 window->draw(cardselect);
             }
             //si on pace sur une carte et qu'aucune autre n'est déjà balayé par la souris
             if((hand[i]->getimage().getGlobalBounds().contains(position_mouse.x,position_mouse.y))&&(hover==-1)){
                 //changement de taille et de position de la carte quand on passe dessus
-                a=300+i*150-75;
+                a=100+i*150-75;
                 hand[i]->hovercard(a,b,z);
                 //on sauvegarde la carte sur laquelle la souris est
                 hover=i;

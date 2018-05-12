@@ -13,7 +13,7 @@ class Card{
     string quality;      //commun  rare   epique   legendaire
     string name;
     unsigned int mana;
-    short type;         //0:unité   1:batiment  2:sort
+    string type;         //0:unité   1:batiment  2:sort
     string effectText;
     Texture dessin;
     Sprite image;
@@ -37,7 +37,7 @@ class Card{
     string getquality();
     string getname();
     int getmana();
-    short gettype();
+    string gettype();
     bool getselect();
     string getfamily();
     int getlife();

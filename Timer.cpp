@@ -87,15 +87,17 @@ void Timer::echo(RenderWindow* window){
 // Méthode de changement de tour
 
 void Timer::changement(){
+    if(nbturn%6==0){
+        journuit=!journuit;
+    }
     nbturn++;
-
     verif=0;
     chrono=61;
     clock.restart();
     countdown=clock.getElapsedTime();
     board->deselect();
     vector<CardBoard*>diecard=board->getdie();
-    if(joueurcourant==true){
+    if(joueurcourant){
         for(unsigned int i=0;i<diecard.size();i++){
             joueur1->addCardDiscard(diecard[i]->getid());
             for(unsigned int j=0;j<joueur2->getplaced().size();i++){

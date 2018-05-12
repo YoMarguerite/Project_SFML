@@ -12,8 +12,7 @@ private:
     string camp;
     string quality;
     string name;
-    int mana;
-    short type;
+    string type;
     string effectText;
     Texture dessin;
     Sprite image;
@@ -46,6 +45,7 @@ public:
     int getid();
     int getmovement();
     int getdamage();
+    int getlife();
     int getcoup();
     int getplace();
     void setplace(int i);
@@ -54,6 +54,7 @@ public:
     void resetstat();
     void setimageposition(Vector2f position);
     string getcamp();
+    string getname();
     bool takedamage(CardBoard* opponent);
     int getanim();
     void setanim();

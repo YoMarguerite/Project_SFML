@@ -12,7 +12,6 @@ CardBoard::CardBoard(Card* card,Vector2f position,string camp){
     quality=card->getquality();
     name=card->getname();
     family=card->getfamily();
-    mana=card->getmana();
     damage=card->getdamage();
     life=card->getlife();
     movement=card->getmovement();
@@ -91,6 +90,10 @@ int CardBoard::getdamage(){
     return damage;
 }
 
+int CardBoard::getlife(){
+    return life;
+}
+
 int CardBoard::getcoup(){
     return nbcoup;
 }
@@ -133,6 +136,10 @@ void CardBoard::setimageposition(Vector2f position){
 
 string CardBoard::getcamp(){
     return camp;
+}
+
+string CardBoard::getname(){
+    return name;
 }
 
 bool CardBoard::takedamage(CardBoard* opponent){

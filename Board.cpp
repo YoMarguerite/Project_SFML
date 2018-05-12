@@ -68,6 +68,21 @@ Board::Board(Player* joueur){
         lengh=graphics_board.size();
         i++;
     }
+    if(!image.loadFromFile("image/parchemin.png")){
+        cout<<"image parchemin.png introuvable"<<endl;
+    }
+    parchemin.setTexture(image);
+    parchemin.setScale(0.7,0.7);
+    parchemin.setPosition(1250,200);
+    if(!font.loadFromFile("font/dumbledor.ttf")){
+        cout<<"font introuvable"<<endl;
+    }
+    stats=vector<Text>(5);
+    for(unsigned int i=0;i<stats.size();i++){
+        stats[i].setFont(font);
+        stats[i].setPosition(1350,240+i*50);
+        stats[i].setFillColor(Color::Black);
+    }
 }
 
 // destructeur du plateau et de chaque case
@@ -100,14 +115,11 @@ void Board::echo_case(int id){
     for(int i=0; i<longueur ; i++){
         cout << "id : " << tab[id]->getnearby()[i]->getnumero() << " , " << tab[id]->getnearby()[i] << endl;
     }
-
 }
 
 // retourne les valeurs de tab donc les adresses de chaque case
 vector<Square*> Board::get() {
-
   return tab;
-
 }
 
 // définie les liaisons de chaque case avec les cases adjacentes
@@ -198,6 +210,30 @@ void Board::display(RenderWindow* window){
         window->draw(allcard[i]->getattaque());
         window->draw(allcard[i]->getmoving());
     }
+    if(PlaySquare!=-1){
+        window->draw(parchemin);
+        stats[0].setString(tab[PlaySquare]->getpawn()->getname());
+        stats[1].setString(tab[PlaySquare]->getpawn()->getcamp());
+        char* ilmafaitchier;
+        int manquedinspidesole=tab[PlaySquare]->getpawn()->getdamage();
+        sprintf(ilmafaitchier, "%d", manquedinspidesole);
+        string setstring="ATQ : ";
+        setstring+=ilmafaitchier;
+        stats[2].setString(setstring);
+        manquedinspidesole=tab[PlaySquare]->getpawn()->getlife();
+        sprintf(ilmafaitchier, "%d", manquedinspidesole);
+        setstring="PV     : ";
+        setstring+=ilmafaitchier;
+        stats[3].setString(setstring);
+        manquedinspidesole=tab[PlaySquare]->getpawn()->getmovement();
+        sprintf(ilmafaitchier, "%d", manquedinspidesole);
+        setstring="PM    : ";
+        setstring+=ilmafaitchier;
+        stats[4].setString(setstring);
+        for(unsigned int i=0; i<stats.size();i++){
+            window->draw(stats[i]);
+        }
+    }
 }
 
 void Board::selectsquare(int i){
@@ -264,8 +300,14 @@ void Board::collision(RenderWindow* window){
                         }
                     }
                     //si la case est occupée
-                    if((!tab[i]->getempty())&&(tab[i]->getpawn()->getcamp()==joueur->getname())){
-                        selectsquare(i);
+                    if(!tab[i]->getempty()){
+                        if((tab[i]->getpawn()->getcamp()==joueur->getname())){
+                            selectsquare(i);
+                        }
+                        if((tab[i]->getpawn()->getcamp()!=joueur->getname())&&(!tab[i]->getselect())){
+                            deselect();
+                            PlaySquare=i;
+                        }
                     }
                     if(tab[i]->getselect()){
                         if(tab[i]->getempty()){
@@ -307,6 +349,7 @@ void Board::deselect(){
     for(int i=0; i<50; i++){
         tab[i]->deselect();
     }
+    PlaySquare=-1;
 }
 
 
