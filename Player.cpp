@@ -59,8 +59,8 @@ using namespace sf;
             addCardHand();
             augmentmana();
             displayHand();
+            reset();
         }
-        reset();
         this->active = active;
     }
 

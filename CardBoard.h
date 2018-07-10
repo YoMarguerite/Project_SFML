@@ -48,9 +48,11 @@ public:
     int getlife();
     int getcoup();
     int getplace();
+    int getbuild();
     void setplace(int i);
     void setmovement();
     void setcoup();
+    void setbuild();
     void resetstat();
     void setimageposition(Vector2f position);
     string getcamp();

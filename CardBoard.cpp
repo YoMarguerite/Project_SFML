@@ -102,6 +102,10 @@ int CardBoard::getplace(){
     return place;
 }
 
+int CardBoard::getbuild(){
+    return build;
+}
+
 void CardBoard::setplace(int i){
     place=i;
 }
@@ -114,9 +118,16 @@ void CardBoard::setcoup(){
     nbcoup--;
 }
 
+void CardBoard::setbuild(){
+    build--;
+}
+
 void CardBoard::resetstat(){
     movement=lim_move;
     nbcoup=lim_coup;
+    if(build > -1){
+        build--;
+    }
 }
 
 Vector2f CardBoard::getposition(){
