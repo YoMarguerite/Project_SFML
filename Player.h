@@ -75,7 +75,7 @@ class Player{
 
     vector<CardBoard*> getplaced();
 
-    void destruct(int i);
+    bool destruct(CardBoard* card);
 
     void addCardPlaced (CardBoard* card,int i);
 

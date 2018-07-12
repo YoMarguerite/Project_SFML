@@ -23,8 +23,10 @@ CircleShape hex(int posx, int posy){
     return hexagon;
 }
 //constructeur du plateau
-Board::Board(Player* joueur){
-    this->joueur=joueur;
+Board::Board(Player* joueur1,Player* joueur2){
+    this->joueur=joueur1;
+    joueurs.push_back(joueur1);
+    joueurs.push_back(joueur2);
     PlaySquare=-1;
 // création de chaque case puis on conserve leurs adresses dans le vecteur tab
     for(int i=0; i<50 ; i++){
@@ -178,13 +180,18 @@ void Board::liaison(){
     }
 }
 
-void Board::settower(Card* tower){
+vector<CardBoard*> Board::settower(Card* tower){
+
+    vector<CardBoard*> towers;
+
     for(unsigned int i=0;i<tab.size();i++){
         if(tab[i]->gettype()=="Tour"){
             tab[i]->setpawn(tower,tab[i]->getpos(),tab[i]->getcamp());
-            setallcard(tab[i]->getpawn());
+            tab[i]->getpawn()->setplace(setallcard(tab[i]->getpawn())-1);
+            towers.push_back(tab[i]->getpawn());
         }
     }
+    return towers;
 }
 
 // affichage sur l'écran des hexagones des cases
@@ -230,7 +237,7 @@ void Board::display(RenderWindow* window){
         setstring="PV     : ";
         setstring+=string_fin;
         stats[3].setString(setstring);
-        int_to_string=tab[PlaySquare]->getpawn()->getmovement();
+        int_to_string=tab[PlaySquare]->getpawn()->getbuild();
         sprintf(string_fin, "%d", int_to_string);
 
         setstring="PM    : ";
@@ -328,8 +335,21 @@ void Board::collision(RenderWindow* window){
                         }else if((tab[i]->getpawn()->getcamp()!=joueur->getname())&&(tab[PlaySquare]->getpawn()->getcoup()>0)){
                             if(tab[i]->getpawn()->takedamage(tab[PlaySquare]->getpawn())){
                                 tab[i]->setempty();
+
+                                if(tab[i]->getpawn()->getcamp() == "Joueur 1"){
+
+                                    if(joueurs[0]->destruct(allcard[tab[i]->getpawn()->getplace()])){
+                                        cout<<"victoire : joueur 2"<<endl;
+                                    }
+                                }else{
+
+
+                                    if(joueurs[1]->destruct(allcard[tab[i]->getpawn()->getplace()])){
+                                        cout<<"victoire : joueur 1"<<endl;
+                                    }
+                                }
                                 allcard.erase(allcard.begin()+tab[i]->getpawn()->getplace());
-                                diecard.push_back(tab[i]->getpawn());
+
                                 for(unsigned int j=0;j<allcard.size();j++){
                                     allcard[j]->setplace(j);
                                 }
@@ -358,6 +378,7 @@ int Board::setallcard(CardBoard* card){
     return allcard.size();
 }
 
+
 void Board::deselect(){
     for(int i=0; i<50; i++){
         tab[i]->deselect();
@@ -367,14 +388,5 @@ void Board::deselect(){
 
 
 void Board::setplayer(Player* joueur){
-    destructdiecard();
     this->joueur=joueur;
-}
-
-vector<CardBoard*> Board::getdie(){
-    return diecard;
-}
-
-void Board::destructdiecard(){
-    diecard.clear();
 }

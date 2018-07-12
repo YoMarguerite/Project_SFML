@@ -26,6 +26,7 @@ CardBoard::CardBoard(Card* card,Vector2f position,string camp){
     if(!dessin.loadFromFile("image/board_"+name+".png")){
         cerr<<"Image introuvable"<<endl;
     }
+
     image.setTexture(dessin);
     image.setPosition(position.x-100,position.y+0);
     if(!font.loadFromFile("font/CloisterBlack.ttf")){

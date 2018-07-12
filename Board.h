@@ -24,7 +24,7 @@ private:
     //(on peut retrouver l'hexagone d'une case car ils sont rangés dans le même ordre sur chaque vecteur)
     vector<CircleShape> graphics_board;
     vector<CardBoard*> allcard;
-    vector<CardBoard*> diecard;
+    vector<Player*> joueurs;
     Player* joueur;
     int PlaySquare;
     //------------------------
@@ -33,22 +33,20 @@ private:
 
 public:
     // constructeur
-    Board(Player* joueur);
+    Board(Player* joueur1,Player* joueur2);
     // destructeur
     ~Board();
     // autre méthode ou fonction
     void echo();
     void echo_case(int id);
     void liaison();
-    void settower(Card* tower);
+    vector<CardBoard*> settower(Card* tower);
     vector<Square*> get();
     void display(RenderWindow* window);
     void collision(RenderWindow* window);
     int setallcard(CardBoard* card);
     void deselect();
     void setplayer(Player* joueur);
-    vector<CardBoard*> getdie();
-    void destructdiecard();
 };
 
 #endif // PLATEAU_H_INCLUDED

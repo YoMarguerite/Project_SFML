@@ -29,9 +29,12 @@ using namespace sf;
         //on place deux cartes dans la main
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));
+
         towers=3;
+
         //aucune carte n'est sélectionnée
         select=-1;
+
         //importation de la font d'écriture
         if(!fontselect.loadFromFile("font/CloisterBlack.ttf")){
             cerr<<"Fichier font 'CloisterBlack.ttf' introuvable"<<endl;
@@ -236,6 +239,7 @@ using namespace sf;
         unsigned int mana_spend=hand[i]->getmana();
         return mana_spend<=(mana_dispo+mana_plus);
     }
+
 //on consomme le mana
     void Player::spendmana(int i){
         unsigned int mana_spend=hand[i]->getmana();
@@ -246,38 +250,72 @@ using namespace sf;
             mana_plus-=mana_spend;
         }
     }
+
 //on récupère l'id de la carte sélectionnée
     int Player::getselect(){
         return select;
     }
+
 //on déselectionnes
     void Player::deselect(){
         select=-1;
     }
+
+
 //_______________________________PLACED______________________
 
+
 Card* Player::getcard(int i){
+
     return hand[i];
 }
 
-void Player::addCardPlaced (CardBoard* card,int i) {       //Ajoute une carte dans la main (proviens du deck)
-        placed.push_back(card);
+
+void Player::addCardPlaced (CardBoard* card, int i) {       //Ajoute une carte dans la main (proviens du deck)
+
+    placed.push_back(card);
+    if(i != -1){
         delete hand[i];
         hand.erase(hand.begin()+i);
+    }
 }
 
+
 void Player::reset(){
+
     for(unsigned int i=0;i<placed.size();i++){
+
+
         placed[i]->resetstat();
     }
 }
 
+
 vector<CardBoard*> Player::getplaced(){
+
     return placed;
 }
 
-void Player::destruct(int i){
-    placed.erase(placed.begin()+i);
+
+bool Player::destruct(CardBoard* card){
+
+    for(unsigned int i=0;i< placed.size();i++){
+
+        if(card == placed[i]){
+
+            placed.erase(placed.begin()+i);
+            addCardDiscard(card->getid());
+            if(card->getname() == "Tour"){
+                towers--;
+
+                if(towers <= 1){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+    }
 }
 
 //_________________________________DISCARD__________________

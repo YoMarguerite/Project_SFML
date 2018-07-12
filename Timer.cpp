@@ -10,14 +10,28 @@ using namespace sf;
 //constructeur du timer
 
 Timer::Timer(Vector2f windowsize,RenderWindow* window){
+
     this->window=window;
     stat=new Statcard;
     joueur1=new Player(stat,"Joueur 1");
     joueur2=new Player(stat,"Joueur 2");
-    board=new Board(joueur1);
+
+    board=new Board(joueur1,joueur2);
     board->liaison();
-    board->settower(new Card(0,stat,0));
+    Card* tower = new Card(0,stat,0);
+    vector<CardBoard*> towers = board->settower(tower);
+
+    for(unsigned int i = 0; i < towers.size(); i++){
+
+        if( i > 2){
+            joueur2->addCardPlaced(towers[i], -1);
+        }else{
+            joueur1->addCardPlaced(towers[i], -1);
+        }
+    }
+
     joueur1->addCardHand();
+
     clock.restart();
     countdown = seconds(0.01f);
     verif=0;
@@ -25,6 +39,7 @@ Timer::Timer(Vector2f windowsize,RenderWindow* window){
     joueurcourant=true;
     nbturn=1;
     journuit=true;
+
     if(!font.loadFromFile("font/CloisterBlack.ttf")){
         cerr<<"Fichier font 'CloisterBlack.ttf' introuvable"<<endl;
     }
@@ -96,30 +111,17 @@ void Timer::changement(){
     clock.restart();
     countdown=clock.getElapsedTime();
     board->deselect();
-    vector<CardBoard*>diecard=board->getdie();
+
+
     if(joueurcourant){
-        for(unsigned int i=0;i<diecard.size();i++){
-            joueur1->addCardDiscard(diecard[i]->getid());
-            for(unsigned int j=0;j<joueur2->getplaced().size();i++){
-                if(diecard[i]==joueur2->getplaced()[j]){
-                    joueur2->destruct(j);
-                }
-            }
-        }
+
         joueurcourant=false;
         joueur.setString("Joueur 2");
         joueur1->switchActive(false);
         joueur2->switchActive(true);
         board->setplayer(joueur2);
     }else{
-        for(unsigned int i=0;i<diecard.size();i++){
-            joueur2->addCardDiscard(diecard[i]->getid());
-            for(unsigned int j=0;j<joueur1->getplaced().size();i++){
-                if(diecard[i]==joueur1->getplaced()[j]){
-                    joueur1->destruct(j);
-                }
-            }
-        }
+
         joueurcourant=true;
         joueur.setString("Joueur 1");
         joueur1->switchActive(true);
