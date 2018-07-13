@@ -35,6 +35,10 @@ Card::Card(int id, Statcard* stat, int i){
     image.setScale(Vector2f(0.5f, 0.5f));
     select=false;
 }
+
+
+Card::~Card(){}
+
 //return le sprite de la carte
 Sprite Card::getimage(){
     return image;

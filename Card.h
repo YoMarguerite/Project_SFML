@@ -26,7 +26,10 @@ class Card{
     int build;
 
     public:
+
     Card(int id, Statcard* stat, int i);
+    ~Card();
+
     void importStats();
     Sprite getimage();
     void echocard(RenderWindow* window);

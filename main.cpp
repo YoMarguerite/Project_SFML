@@ -17,22 +17,29 @@ using namespace std;
 using namespace sf;
 
 bool sprite_mouse(RenderWindow* window,Vector2i position_mouse, Sprite sprite){
-return sprite.getGlobalBounds().contains(position_mouse.x,position_mouse.y);
+
+    return sprite.getGlobalBounds().contains(position_mouse.x,position_mouse.y);
 }
 
 // fonction contenant la collision avec le bouton exit
-void game(RenderWindow* window, Sprite exit, int* interface){
+void game(RenderWindow* window, Sprite exit, int* interface, Timer* chrono){
+
+    chrono->echo(window);
+    chrono->endturn(window);
+
     Vector2i position_mouse=Mouse::getPosition(*window);
     // si le bouton quitter contient la souris
     if(sprite_mouse(window,position_mouse,exit)){
-        // on change sa couleur
+
         exit.setColor(Color(150,150,150));
-        // si on clique la fenêtre se ferme
+
         if(Mouse::isButtonPressed(Mouse::Left)){
+
              *interface=1;
+             delete chrono;
         }
     }else{
-        // sinon le bouton reprend sa couleur
+
         exit.setColor(Color(255,255,255));
 
     }
@@ -42,7 +49,7 @@ void game(RenderWindow* window, Sprite exit, int* interface){
 
 int main()
 {
-    //on définit la taille de la fenêtre
+
     // Taille de la fenêtre
     Vector2f windowsize;
     windowsize.x=1600;
@@ -50,19 +57,23 @@ int main()
 
     // fenêtre principale avec sa taille et son nom
     RenderWindow window(VideoMode(windowsize.x,windowsize.y), "LES TOURS");
+
     //on déclare une console, class en cour de développement
     Console console;
+
+    Statcard stat;
+
     //on déclare un menu
     Menu menu(windowsize);
+
     // variable définissant si on est sur le menu ou dans une partie
     int interface = 1;
+
     // limite les fps pour ne pas faire surchauffer la carte graphique (ça peut vraiment crasher sinon)
     window.setFramerateLimit(60);
-    //création de l'instance stat qui contiendra les stats de toutes les cartes, on importe les stats qu'une seule fois
-    //création du timer
-    Timer chrono(windowsize,&window);
 
-    //    Chargement de la texture pour le background
+    Timer* chrono;
+
 
     Texture textureBkg2;
     if (!textureBkg2.loadFromFile("image/backgroundGame.jpg")){
@@ -113,24 +124,39 @@ int main()
         if(interface == 1){
             // execution du menu
             if (activeMenuMusic) {
-            gameMusic.stop();
-            menuMusic.play();
-            activeMenuMusic = false;
-            activeGameMusic = true;
+
+                gameMusic.stop();
+                menuMusic.play();
+                activeMenuMusic = false;
+                activeGameMusic = true;
             }
+            if(menuMusic.getStatus() == 0){
+                menuMusic.play();
+            }
+
             menu.display(&window,&interface);
         }else{
             if (activeGameMusic) {
-            menuMusic.stop();
-            gameMusic.play();
-            activeMenuMusic = true;
-            activeGameMusic = false;
+
+                menuMusic.stop();
+                gameMusic.play();
+                activeMenuMusic = true;
+                activeGameMusic = false;
+
+                //création du timer
+                chrono = new Timer( windowsize, &window, &stat);
             }
+
+            if(gameMusic.getStatus() == 0){
+
+                gameMusic.play();
+            }
+
             window.draw(bckg2);
+
              // execution du jeu
-            game(&window,exit,&interface);
-            chrono.echo(&window);
-            chrono.endturn(&window);
+            game(&window,exit,&interface,chrono);
+
         }
         //affichage sur la fenêtre
         window.display();

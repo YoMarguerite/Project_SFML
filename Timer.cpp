@@ -9,10 +9,10 @@ using namespace sf;
 
 //constructeur du timer
 
-Timer::Timer(Vector2f windowsize,RenderWindow* window){
+Timer::Timer(Vector2f windowsize,RenderWindow* window, Statcard* stat){
 
     this->window=window;
-    stat=new Statcard;
+    this->stat = stat;
     joueur1=new Player(stat,"Joueur 1");
     joueur2=new Player(stat,"Joueur 2");
 
@@ -59,6 +59,14 @@ Timer::Timer(Vector2f windowsize,RenderWindow* window){
     }
     endTurn.setTexture(endTurnButton);
     endTurn.setPosition(windowsize.x/6,windowsize.y/50);
+}
+
+
+Timer::~Timer(){
+
+    delete joueur1;
+    delete joueur2;
+    delete board;
 }
 
 //affichage du timer

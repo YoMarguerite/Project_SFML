@@ -55,6 +55,16 @@ using namespace sf;
         }
     }
 
+
+    Player::~Player(){
+
+        for(unsigned int i = 0; i < hand.size(); i++){
+
+            delete hand[i];
+        }
+        hand.clear();
+    }
+
     // ____________________ACTIVE____________________
 
     void Player::switchActive(bool active){
@@ -316,6 +326,8 @@ bool Player::destruct(CardBoard* card){
             }
         }
     }
+
+    return false;
 }
 
 //_________________________________DISCARD__________________

@@ -55,6 +55,10 @@ CardBoard::CardBoard(Card* card,Vector2f position,string camp){
     Moving.setFillColor(sf::Color::Black);
 
 }
+
+
+CardBoard::~CardBoard(){}
+
 //on affiche ses caractéristiques
 void CardBoard::echo(){
     cout << type << endl;

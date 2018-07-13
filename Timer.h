@@ -32,7 +32,8 @@ private:
     Player* joueur2;
     Board* board;
 public:
-    Timer(Vector2f windowsize,RenderWindow* window);
+    Timer(Vector2f windowsize,RenderWindow* window, Statcard* stat);
+    ~Timer();
     void echo(RenderWindow* window);
     void changement();
     void endturn(RenderWindow* window);

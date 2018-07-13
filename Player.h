@@ -34,6 +34,8 @@ class Player{
 
     Player(Statcard* stat,string name);
 
+    ~Player();
+
     // ____________________ACTIVE____________________
 
     void switchActive(bool active);

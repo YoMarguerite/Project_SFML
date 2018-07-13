@@ -30,6 +30,8 @@ private:
 public:
     //constructeur et autre méthode
     Square(int id);
+    ~Square();
+
     vector<Square*>& get();
     bool getempty();
     int getnumero();

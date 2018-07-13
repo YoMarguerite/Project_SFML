@@ -60,6 +60,9 @@ Square::Square(int id){
 }
 
 
+Square::~Square(){}
+
+
 // cette fonction retourne le vecteur contenant les adresses des cases adjacentes
 vector<Square*>& Square::get(){
 

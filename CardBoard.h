@@ -35,6 +35,8 @@ private:
 
 public:
     CardBoard(Card* card,Vector2f position,string camp);
+    ~CardBoard();
+
     void echo();
     Sprite getimage();
     Text getvie();

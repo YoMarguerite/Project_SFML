@@ -89,10 +89,17 @@ Board::Board(Player* joueur1,Player* joueur2){
 
 // destructeur du plateau et de chaque case
 Board::~Board(){
-    int taille = tab.size();
-    for(int i = 0; i<taille-1; i++){
+
+    for(unsigned int i = 0; i < tab.size(); i++){
         delete tab[i];
     }
+    tab.clear();
+    SquareSelect.clear();
+
+    for(unsigned int i = 0; i < allcard.size(); i++){
+        delete allcard[i];
+    }
+    allcard.clear();
 }
 
 //affichage du contenu de tab
