@@ -48,17 +48,31 @@ Timer::Timer(Vector2f windowsize,RenderWindow* window, Statcard* stat){
     time.setCharacterSize(75);
     time.setPosition(windowsize.x/2,windowsize.y/20);
     time.setFillColor(sf::Color::White);
+
     joueur.setString("Joueur 1");
     joueur.setFont(font);
     joueur.setCharacterSize(50);
     joueur.setPosition(windowsize.x/50,windowsize.y/50);
     joueur.setFillColor(sf::Color::White);
 
+    victorytext.setString("Cliquez pour continuer !");
+    victorytext.setFont(font);
+    victorytext.setCharacterSize(50);
+    victorytext.setPosition(windowsize.x/2.70,windowsize.y/(1.20));
+    victorytext.setFillColor(sf::Color::White);
+
     if (!endTurnButton.loadFromFile("image/button_endturn.png")){
         cerr << "erreur";
     }
     endTurn.setTexture(endTurnButton);
     endTurn.setPosition(windowsize.x/6,windowsize.y/50);
+
+    if (!victoryImage.loadFromFile("image/victory.png")){
+        cerr << "erreur";
+    }
+    victory.setTexture(victoryImage);
+    victory.setPosition(windowsize.x/2.70,windowsize.y/3);
+
 }
 
 
@@ -73,35 +87,44 @@ Timer::~Timer(){
 
 void Timer::echo(RenderWindow* window){
     board->display(window);
-    board->collision(window);
-    if(Mouse::isButtonPressed(Mouse::Right)){
-        board->deselect();
-    }
-    if(joueurcourant){
-        joueur1->echoHand(window);
-        joueur1->stockMana(window);
-    }else{
-        joueur2->echoHand(window);
-        joueur2->stockMana(window);
-    }
 
-    string str;
-    if (countdown < seconds(61)){
-
-        countdown = clock.getElapsedTime();
-        sec = floor(countdown.asSeconds());
-
-        if(sec != verif){
-            chrono--;
-            stringstream stream;
-            stream << chrono;
-            str = stream.str();
-            time.setString(str);
-            verif = sec;
+    if(!board->getvictory()){
+        board->collision(window);
+        if(Mouse::isButtonPressed(Mouse::Right)){
+            board->deselect();
         }
+        if(joueurcourant){
+            joueur1->echoHand(window);
+            joueur1->stockMana(window);
+        }else{
+            joueur2->echoHand(window);
+            joueur2->stockMana(window);
+        }
+
+        string str;
+        if (countdown < seconds(61)){
+
+            countdown = clock.getElapsedTime();
+            sec = floor(countdown.asSeconds());
+
+            if(sec != verif){
+                chrono--;
+                stringstream stream;
+                stream << chrono;
+                str = stream.str();
+                time.setString(str);
+                verif = sec;
+            }
+        }else{
+            changement();
+        }
+        endturn(window);
+
     }else{
-        changement();
+        window->draw(victory);
+        window->draw(victorytext);
     }
+
     window->draw(endTurn);
     window->draw(time);
     window->draw(joueur);
@@ -154,4 +177,10 @@ void Timer::endturn(RenderWindow* window){
             // sinon le bouton reprend sa couleur
             endTurn.setColor(Color(255,255,255));
         }
+}
+
+
+
+bool Timer::getvictory(){
+    return board->getvictory();
 }

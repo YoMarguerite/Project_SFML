@@ -25,7 +25,7 @@ using namespace sf;
         mana_plus=0;
 
         displayMana=vector<Sprite>(12);
-        deck = {7,57,35,70,17,7,57,35,70,17,7,57,35,70,17};
+        deck = {7,57,35,7,17,7,57,35,70,17,7,57,35,70,17};
         //on place deux cartes dans la main
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));

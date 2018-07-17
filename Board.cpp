@@ -28,6 +28,7 @@ Board::Board(Player* joueur1,Player* joueur2){
     joueurs.push_back(joueur1);
     joueurs.push_back(joueur2);
     PlaySquare=-1;
+    victory = false;
 // création de chaque case puis on conserve leurs adresses dans le vecteur tab
     for(int i=0; i<50 ; i++){
         tab.push_back(new Square(i));
@@ -347,14 +348,17 @@ void Board::collision(RenderWindow* window){
 
                                     if(joueurs[0]->destruct(allcard[tab[i]->getpawn()->getplace()])){
                                         cout<<"victoire : joueur 2"<<endl;
+                                        victory = true;
                                     }
                                 }else{
 
 
                                     if(joueurs[1]->destruct(allcard[tab[i]->getpawn()->getplace()])){
                                         cout<<"victoire : joueur 1"<<endl;
+                                        victory = true;
                                     }
                                 }
+
                                 allcard.erase(allcard.begin()+tab[i]->getpawn()->getplace());
 
                                 for(unsigned int j=0;j<allcard.size();j++){
@@ -396,4 +400,9 @@ void Board::deselect(){
 
 void Board::setplayer(Player* joueur){
     this->joueur=joueur;
+}
+
+
+bool Board::getvictory(){
+    return victory;
 }

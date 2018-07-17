@@ -27,6 +27,7 @@ private:
     vector<Player*> joueurs;
     Player* joueur;
     int PlaySquare;
+    bool victory;
     //------------------------
     void selectsquare(int i);
     void movementpawn(int i);
@@ -47,6 +48,7 @@ public:
     int setallcard(CardBoard* card);
     void deselect();
     void setplayer(Player* joueur);
+    bool getvictory();
 };
 
 #endif // PLATEAU_H_INCLUDED

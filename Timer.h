@@ -16,10 +16,13 @@ private:
     Time countdown;
     Text time;
     Text joueur;
+    Text victorytext;
     Font font;
     // BOUTON POUR FINIR LE TOUR AVANT LA FIN DU TIMER
     Sprite endTurn;
     Texture endTurnButton;
+    Sprite victory;
+    Texture victoryImage;
     bool journuit;
     int nbturn;
     bool joueurcourant;
@@ -37,6 +40,7 @@ public:
     void echo(RenderWindow* window);
     void changement();
     void endturn(RenderWindow* window);
+    bool getvictory();
 };
 
 #endif // TIMER_H_INCLUDED

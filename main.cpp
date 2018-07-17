@@ -25,24 +25,36 @@ bool sprite_mouse(RenderWindow* window,Vector2i position_mouse, Sprite sprite){
 void game(RenderWindow* window, Sprite exit, int* interface, Timer* chrono){
 
     chrono->echo(window);
-    chrono->endturn(window);
 
-    Vector2i position_mouse=Mouse::getPosition(*window);
-    // si le bouton quitter contient la souris
-    if(sprite_mouse(window,position_mouse,exit)){
+    if(!chrono->getvictory()){
 
-        exit.setColor(Color(150,150,150));
+        Vector2i position_mouse=Mouse::getPosition(*window);
+        // si le bouton quitter contient la souris
+        if(sprite_mouse(window,position_mouse,exit)){
 
-        if(Mouse::isButtonPressed(Mouse::Left)){
+            exit.setColor(Color(150,150,150));
 
-             *interface=1;
-             delete chrono;
+            if(Mouse::isButtonPressed(Mouse::Left)){
+
+                 *interface=1;
+                 delete chrono;
+            }
+        }else{
+
+            exit.setColor(Color(255,255,255));
+
         }
     }else{
 
-        exit.setColor(Color(255,255,255));
+        if(Mouse::isButtonPressed(Mouse::Left)){
 
+            while(Mouse::isButtonPressed(Mouse::Left)){}
+
+            *interface=1;
+            delete chrono;
+        }
     }
+
     // on dessine le bouton jouer et quitter sur la fenêtre
     window->draw(exit);
  }
