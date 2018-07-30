@@ -196,6 +196,7 @@ vector<CardBoard*> Board::settower(Card* tower){
         if(tab[i]->gettype()=="Tour"){
             tab[i]->setpawn(tower,tab[i]->getpos(),tab[i]->getcamp());
             tab[i]->getpawn()->setplace(setallcard(tab[i]->getpawn())-1);
+            tab[i]->getpawn()->settab(i);
             towers.push_back(tab[i]->getpawn());
         }
     }
@@ -294,6 +295,7 @@ void Board::movementpawn(int i){
 // gestion de la collision de chaque case avec la souris
 void Board::collision(RenderWindow* window){
     bool hover=false;
+    int select;
     // on fait défiler tous les hexagones
     for(int i=0; i<50; i++){
 
@@ -308,7 +310,7 @@ void Board::collision(RenderWindow* window){
                 //on bloque la souris, l'action se fera quand l'utilisateur ne cliquera plus
                 while(Mouse::isButtonPressed(Mouse::Left)){}
                     //on récupère la carte sélectionné par le joueur
-                    int select=joueur->getselect();
+                    select=joueur->getselect();
 
                     if((select!=-1)&&(tab[i]->getcamp()==joueur->getname())&&(tab[i]->gettype()!="Tour")&&(tab[i]->getempty())){
 
@@ -316,20 +318,31 @@ void Board::collision(RenderWindow* window){
 
                             joueur->spendmana(select);
 
-                            tab[i]->setpawn(joueur->getcard(select), tab[i]->getpos(), joueur->getname());
+                            if(joueur->getcard(select)->gettype() != "Sort"){
 
-                            joueur->addCardPlaced(tab[i]->getpawn(),select);
+                                tab[i]->setpawn(joueur->getcard(select), tab[i]->getpos(), joueur->getname());
 
-                            tab[i]->getpawn()->setplace(setallcard(tab[i]->getpawn())-1);
+                                joueur->addCardPlaced(tab[i]->getpawn(),select);
 
-                            joueur->deselect();
+                                tab[i]->getpawn()->setplace(setallcard(tab[i]->getpawn())-1);
 
-                            selectsquare(i);
+                                tab[i]->getpawn()->settab(i);
+
+                                joueur->deselect();
+
+                                selectsquare(i);
+
+                            }else{
+
+                                flux_de_mana();
+
+                            }
                         }
                     }
 
                     if(!tab[i]->getempty()){
-                        if((tab[i]->getpawn()->getcamp()==joueur->getname())){
+                        cout<<tab[i]->getpawn()->getname()<<tab[i]->getpawn()->getplace()<<endl;
+                        if(tab[i]->getpawn()->getcamp()==joueur->getname()){
                             selectsquare(i);
                         }
                         if((tab[i]->getpawn()->getcamp()!=joueur->getname())&&(!tab[i]->getselect())){
@@ -339,9 +352,14 @@ void Board::collision(RenderWindow* window){
                     }
                     if(tab[i]->getselect()){
                         if(tab[i]->getempty()){
+
                             movementpawn(i);
+                            tab[i]->getpawn()->settab(i);
+
                         }else if((tab[i]->getpawn()->getcamp()!=joueur->getname())&&(tab[PlaySquare]->getpawn()->getcoup()>0)){
+
                             if(tab[i]->getpawn()->takedamage(tab[PlaySquare]->getpawn())){
+
                                 tab[i]->setempty();
 
                                 if(tab[i]->getpawn()->getcamp() == "Joueur 1"){
@@ -405,4 +423,51 @@ void Board::setplayer(Player* joueur){
 
 bool Board::getvictory(){
     return victory;
+}
+
+
+void Board::flux_de_mana(){
+
+    srand(time(NULL));
+    Player* adverse;
+    Player* you;
+    if(joueur == joueurs[0]){
+        adverse = joueurs[1];
+        you = joueurs[0];
+    }else{
+        adverse = joueurs[0];
+        you = joueurs[1];
+    }
+    you->delCardHand(-2);
+
+    int random;
+    int lengh = adverse->getplaced().size();
+
+    for(int i = 0 ;i < 3 ; i++){
+
+        if(lengh > 0){
+
+            lengh = adverse->getplaced().size();
+            random = rand()%lengh;
+
+            if(adverse->getplaced()[random]->takedamage(1)){
+
+                tab[adverse->getplaced()[random]->gettab()]->setempty();
+
+                allcard.erase(allcard.begin()+adverse->getplaced()[random]->getplace());
+
+                if(adverse->destruct(adverse->getplaced()[random])){
+
+                    victory = true;
+                }
+
+                for(unsigned int j=0;j<allcard.size();j++){
+
+                    allcard[j]->setplace(j);
+                }
+
+                deselect();
+            }
+        }
+    }
 }

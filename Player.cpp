@@ -15,17 +15,12 @@ using namespace sf;
         this->stat=stat;
         this->name=name;
         //initialisation des variables
-        if(name=="Joueur 1"){
-            mana=1;
-            mana_dispo=1;
-        }else{
-            mana=0;
-            mana_dispo=0;
-        }
+        mana=0;
+        mana_dispo=0;
         mana_plus=0;
 
         displayMana=vector<Sprite>(12);
-        deck = {7,57,35,7,17,7,57,35,70,17,7,57,35,70,17};
+        deck = {70,57,35,7,17,7,57,35,70,17,7,57,35,70,17};
         //on place deux cartes dans la main
         hand.push_back(new Card (drawCardDeck(),stat,0));
         hand.push_back(new Card (drawCardDeck(),stat,1));
@@ -143,6 +138,22 @@ using namespace sf;
             cout << "! Nombre de carte max atteint" << endl << endl;
         }
     }
+
+
+    void Player::delCardHand (int i) {       //Supprime une carte dans la main
+
+        if(i == -2){
+
+            delete hand[select];
+            hand.erase(hand.begin()+select);
+        }else{
+
+            delete hand[i];
+            hand.erase(hand.begin()+i);
+        }
+
+    }
+
 
     void Player::displayHand() {                //Affiche la main du joueur dans la console
         cout << "Main: " ;
@@ -281,12 +292,12 @@ Card* Player::getcard(int i){
 }
 
 
-void Player::addCardPlaced (CardBoard* card, int i) {       //Ajoute une carte dans la main (proviens du deck)
+void Player::addCardPlaced (CardBoard* card, int i) {       //Ajoute une carte sur le plateau
 
     placed.push_back(card);
     if(i != -1){
-        delete hand[i];
-        hand.erase(hand.begin()+i);
+
+        delCardHand(i);
     }
 }
 

@@ -63,6 +63,8 @@ class Player{
 
     void addCardHand ();                //Ajoute une carte dans la main (proviens du deck)
 
+    void delCardHand (int i);
+
     void displayHand();                //Affiche la main du joueur dans la console
 
     void echoHand(RenderWindow* window);

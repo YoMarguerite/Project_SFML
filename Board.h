@@ -33,10 +33,13 @@ private:
     void movementpawn(int i);
 
 public:
+
     // constructeur
     Board(Player* joueur1,Player* joueur2);
+
     // destructeur
-    ~Board();
+    virtual ~Board();
+
     // autre méthode ou fonction
     void echo();
     void echo_case(int id);
@@ -49,6 +52,9 @@ public:
     void deselect();
     void setplayer(Player* joueur);
     bool getvictory();
+
+    //sort
+    void flux_de_mana();
 };
 
 #endif // PLATEAU_H_INCLUDED

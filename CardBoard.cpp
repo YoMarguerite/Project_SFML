@@ -173,6 +173,24 @@ bool CardBoard::takedamage(CardBoard* opponent){
     }else{return false;}
 }
 
+bool CardBoard::takedamage(int damage){
+
+    if(life>0){
+
+        life-=damage;
+        stringstream convertvie;
+        convertvie<<life;
+        Vie.setString(convertvie.str());
+        if(life<=0){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
+
 int CardBoard::getanim(){
     return anim;
 }
@@ -183,4 +201,14 @@ void CardBoard::setanim(){
 
 void CardBoard::duringanim(){
     anim--;
+}
+
+
+int CardBoard::gettab(){
+    return tab;
+}
+
+
+void CardBoard::settab(int i){
+    tab = i;
 }

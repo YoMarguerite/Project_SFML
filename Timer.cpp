@@ -13,8 +13,10 @@ Timer::Timer(Vector2f windowsize,RenderWindow* window, Statcard* stat){
 
     this->window=window;
     this->stat = stat;
+
     joueur1=new Player(stat,"Joueur 1");
     joueur2=new Player(stat,"Joueur 2");
+    joueur1->switchActive(true);
 
     board=new Board(joueur1,joueur2);
     board->liaison();
@@ -24,13 +26,12 @@ Timer::Timer(Vector2f windowsize,RenderWindow* window, Statcard* stat){
     for(unsigned int i = 0; i < towers.size(); i++){
 
         if( i > 2){
+
             joueur2->addCardPlaced(towers[i], -1);
         }else{
             joueur1->addCardPlaced(towers[i], -1);
         }
     }
-
-    joueur1->addCardHand();
 
     clock.restart();
     countdown = seconds(0.01f);
@@ -134,7 +135,7 @@ void Timer::echo(RenderWindow* window){
 
 void Timer::changement(){
     if(nbturn%6==0){
-        journuit=!journuit;
+        journuit = !journuit;
     }
     nbturn++;
     verif=0;

@@ -54,7 +54,7 @@ Statcard::Statcard(){
         file.close();
         //importation des images des cartes
         Texture texture;
-        for(unsigned int i=6; i<card.size();i++){
+        for(unsigned int i=0; i<card.size();i++){
             if(!texture.loadFromFile("image/"+card[i][2]+".png")){
                 cerr<<"Fichier image "+card[i][2]+".png introuvable"<<endl;
             }else{

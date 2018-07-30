@@ -28,14 +28,16 @@ class Card{
     public:
 
     Card(int id, Statcard* stat, int i);
-    ~Card();
+    virtual ~Card();
 
     void importStats();
     Sprite getimage();
+
     void echocard(RenderWindow* window);
     void hovercard(int a, int b, Vector2f z);
     void nothovercard(int i);
     void setselect(bool check);
+
     int getid();
     string getquality();
     string getname();

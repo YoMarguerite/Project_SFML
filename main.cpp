@@ -86,7 +86,6 @@ int main()
 
     Timer* chrono;
 
-
     Texture textureBkg2;
     if (!textureBkg2.loadFromFile("image/backgroundGame.jpg")){
         cout << "erreur";
@@ -131,48 +130,50 @@ int main()
                  window.close();
             }
         }
-        window.clear();
-        // on vérifie sur qu'elle interface on est menu ou en jeu
-        if(interface == 1){
-            // execution du menu
-            if (activeMenuMusic) {
+        if(window.hasFocus()){
 
-                gameMusic.stop();
-                menuMusic.play();
-                activeMenuMusic = false;
-                activeGameMusic = true;
+                window.clear();
+            // on vérifie sur qu'elle interface on est menu ou en jeu
+            if(interface == 1){
+                // execution du menu
+                if (activeMenuMusic) {
+
+                    gameMusic.stop();
+                    menuMusic.play();
+                    activeMenuMusic = false;
+                    activeGameMusic = true;
+                }
+                if(menuMusic.getStatus() == 0){
+                    menuMusic.play();
+                }
+
+                menu.display(&window,&interface);
+            }else{
+                if (activeGameMusic) {
+
+                    menuMusic.stop();
+                    gameMusic.play();
+                    activeMenuMusic = true;
+                    activeGameMusic = false;
+
+                    //création du timer
+                    chrono = new Timer( windowsize, &window, &stat);
+                }
+
+                if(gameMusic.getStatus() == 0){
+
+                    gameMusic.play();
+                }
+
+                window.draw(bckg2);
+
+                 // execution du jeu
+                game(&window,exit,&interface,chrono);
+
             }
-            if(menuMusic.getStatus() == 0){
-                menuMusic.play();
-            }
-
-            menu.display(&window,&interface);
-        }else{
-            if (activeGameMusic) {
-
-                menuMusic.stop();
-                gameMusic.play();
-                activeMenuMusic = true;
-                activeGameMusic = false;
-
-                //création du timer
-                chrono = new Timer( windowsize, &window, &stat);
-            }
-
-            if(gameMusic.getStatus() == 0){
-
-                gameMusic.play();
-            }
-
-            window.draw(bckg2);
-
-             // execution du jeu
-            game(&window,exit,&interface,chrono);
-
+            //affichage sur la fenêtre
+            window.display();
         }
-        //affichage sur la fenêtre
-        window.display();
-
     }
 
     return 0;

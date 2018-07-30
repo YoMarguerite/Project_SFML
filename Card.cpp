@@ -66,46 +66,57 @@ void Card::setselect(bool check){
 int Card::getid(){
     return id;
 }
+
 //on récupère sa rareté
 string Card::getquality(){
     return quality;
 }
+
 //on récupère son nom
 string Card::getname(){
     return name;
 }
+
 //on récupère son coût en mana
 int Card::getmana(){
     return mana;
 }
+
 //on récupère son type, unité, bâtiment, sort
 string Card::gettype(){
     return type;
 }
+
 //on récupère le bool qui permet de dire si elle est sélectionnée ou non
 bool Card::getselect(){
     return select;
 }
+
 //on récupère sa famille
 string Card::getfamily(){
     return family;
 }
+
 //on récupère sa vie
 int Card::getlife(){
     return life;
 }
+
 //on récupère son attaque
 int Card::getdamage(){
     return damage;
 }
+
 //on récupère ses points de déplacements
 int Card::getmovement(){
     return movement;
 }
+
 //on récupère son état endormie ou non
 bool Card::getsleep(){
     return sleep;
 }
+
 //on récupère son temps de constu
 int Card::getbuild(){
     return build;

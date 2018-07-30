@@ -32,6 +32,7 @@ private:
     int build;
     int lim_coup;
     int nbcoup;
+    int tab;
 
 public:
     CardBoard(Card* card,Vector2f position,string camp);
@@ -60,9 +61,12 @@ public:
     string getcamp();
     string getname();
     bool takedamage(CardBoard* opponent);
+    bool takedamage(int damage);
     int getanim();
     void setanim();
     void duringanim();
+    int gettab();
+    void settab(int i);
 
 };
 #endif // CARTEPLATEAU_H_INCLUDED
